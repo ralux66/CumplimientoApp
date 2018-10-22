@@ -50,13 +50,14 @@ public class AllConsultingController {
 				resultSerach.setCity(ofac.getCity());
 				resultSerach.setCountry(ofac.getCountry());
 				resultSerach.setKeyEntity(ofac.getId());
-				resultSerach.setListSource("OFAC-ANALIZER");
+				resultSerach.setListSource("ANALIZER");
 				resultSerach.setProgram(ofac.getFrom_file());
 				resultSerach.setRemarks(ofac.getNationalityOrig());
 				resultSerach.setScore(score);
 				resultSerach.setTitle("Blacklist");
 				resultSerach.setTypeEntity("Natural");
 				resultSerachList.add(resultSerach);
+				resultSerach = new ResultSearch(); 
 			}
 		}
 		

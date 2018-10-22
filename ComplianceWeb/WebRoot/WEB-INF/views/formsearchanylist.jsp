@@ -27,7 +27,7 @@
 
 			<button type="submit" class="btn btn-primary">Submit</button>
 			<div class="container">
-				<div class="table-responsive">
+				<div class="table-responsive-sm">
 					<table class="table table-striped">
 						<thead class="thead-dark">
 							<tr>
