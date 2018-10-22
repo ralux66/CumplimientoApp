@@ -13,7 +13,7 @@
 
 </head>
 <body>
-	<h1>All List Ofac</h1>
+	<h1>All List</h1>
 	<nav aria-label="Page navigation example">
 		<ul class="pagination">
 			<li class="page-item"><a class="page-link" href="#">Previous</a></li>

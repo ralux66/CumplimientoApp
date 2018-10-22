@@ -59,6 +59,7 @@ public class AllConsultingController {
 				resultSerachList.add(resultSerach);
 			}
 		}
+		
 		model.addAttribute("allResult", resultSerachList);
 		return "formsearchanylist";
 	}
