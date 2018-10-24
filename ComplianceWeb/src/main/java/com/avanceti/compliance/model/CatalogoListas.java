@@ -1,5 +1,11 @@
 package com.avanceti.compliance.model;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -21,31 +27,43 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "statustracking", catalog = "busqueda", schema = "")
+@Table(name = "catalogo_listas", catalog = "busqueda", schema = "")
 @XmlRootElement
-public class StatusTrackingOne implements Serializable {
+public class CatalogoListas implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "idstatus")
-    private Integer idstatus;
+    @Column(name = "idcatalogo_lista")
+    private Integer idcatalogoLista;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 200)
-    @Column(name = "nombre")
-    private String nombre;
+    @Size(min = 1, max = 150)
+    @Column(name = "nombresdn")
+    private String nombresdn;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 2000)
+    @Column(name = "fechaincorpora")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaincorpora;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "fechaactualiza")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaactualiza;
+    @Size(max = 2000)
     @Column(name = "descripcion")
     private String descripcion;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 200)
-    @Column(name = "referencia")
-    private String referencia;
+    @Size(max = 2000)
+    @Column(name = "observacion")
+    private String observacion;
+    @Size(max = 200)
+    @Column(name = "proveedor")
+    private String proveedor;
+    @Size(max = 100)
+    @Column(name = "costo")
+    private String costo;
     @Size(max = 100)
     @Column(name = "custom1")
     private String custom1;
@@ -75,41 +93,57 @@ public class StatusTrackingOne implements Serializable {
     @Column(name = "modificadoel")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modificadoel;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idstatus", fetch = FetchType.LAZY)
-    private List<Tracking> trackingList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcatalogoLista", fetch = FetchType.LAZY)
+    private List<CaseConsulted> casoconsultaList;
 
-    public StatusTrackingOne() {
+    public CatalogoListas() {
     }
 
-    public StatusTrackingOne(Integer idstatus) {
-        this.idstatus = idstatus;
+    public CatalogoListas(Integer idcatalogoLista) {
+        this.idcatalogoLista = idcatalogoLista;
     }
 
-    public StatusTrackingOne(Integer idstatus, String nombre, String descripcion, String referencia, String creadopor, Date creadoel, String modificadopor, Date modificadoel) {
-        this.idstatus = idstatus;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.referencia = referencia;
+    public CatalogoListas(Integer idcatalogoLista, String nombresdn, Date fechaincorpora, Date fechaactualiza, String creadopor, Date creadoel, String modificadopor, Date modificadoel) {
+        this.idcatalogoLista = idcatalogoLista;
+        this.nombresdn = nombresdn;
+        this.fechaincorpora = fechaincorpora;
+        this.fechaactualiza = fechaactualiza;
         this.creadopor = creadopor;
         this.creadoel = creadoel;
         this.modificadopor = modificadopor;
         this.modificadoel = modificadoel;
     }
 
-    public Integer getIdstatus() {
-        return idstatus;
+    public Integer getIdcatalogoLista() {
+        return idcatalogoLista;
     }
 
-    public void setIdstatus(Integer idstatus) {
-        this.idstatus = idstatus;
+    public void setIdcatalogoLista(Integer idcatalogoLista) {
+        this.idcatalogoLista = idcatalogoLista;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombresdn() {
+        return nombresdn;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombresdn(String nombresdn) {
+        this.nombresdn = nombresdn;
+    }
+
+    public Date getFechaincorpora() {
+        return fechaincorpora;
+    }
+
+    public void setFechaincorpora(Date fechaincorpora) {
+        this.fechaincorpora = fechaincorpora;
+    }
+
+    public Date getFechaactualiza() {
+        return fechaactualiza;
+    }
+
+    public void setFechaactualiza(Date fechaactualiza) {
+        this.fechaactualiza = fechaactualiza;
     }
 
     public String getDescripcion() {
@@ -120,12 +154,28 @@ public class StatusTrackingOne implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getReferencia() {
-        return referencia;
+    public String getObservacion() {
+        return observacion;
     }
 
-    public void setReferencia(String referencia) {
-        this.referencia = referencia;
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
+    public String getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(String proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    public String getCosto() {
+        return costo;
+    }
+
+    public void setCosto(String costo) {
+        this.costo = costo;
     }
 
     public String getCustom1() {
@@ -185,29 +235,29 @@ public class StatusTrackingOne implements Serializable {
     }
 
     @XmlTransient
-    public List<Tracking> getTrackingList() {
-        return trackingList;
+    public List<CaseConsulted> getCasoconsultaList() {
+        return casoconsultaList;
     }
 
-    public void setTrackingList(List<Tracking> trackingList) {
-        this.trackingList = trackingList;
+    public void setCasoconsultaList(List<CaseConsulted> casoconsultaList) {
+        this.casoconsultaList = casoconsultaList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idstatus != null ? idstatus.hashCode() : 0);
+        hash += (idcatalogoLista != null ? idcatalogoLista.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof StatusTrackingOne)) {
+        if (!(object instanceof CatalogoListas)) {
             return false;
         }
-        StatusTrackingOne other = (StatusTrackingOne) object;
-        if ((this.idstatus == null && other.idstatus != null) || (this.idstatus != null && !this.idstatus.equals(other.idstatus))) {
+        CatalogoListas other = (CatalogoListas) object;
+        if ((this.idcatalogoLista == null && other.idcatalogoLista != null) || (this.idcatalogoLista != null && !this.idcatalogoLista.equals(other.idcatalogoLista))) {
             return false;
         }
         return true;
@@ -215,6 +265,7 @@ public class StatusTrackingOne implements Serializable {
 
     @Override
     public String toString() {
-        return "com.compliance.model.Statustracking[ idstatus=" + idstatus + " ]";
+        return "com.compliance.model.CatalogoListas[ idcatalogoLista=" + idcatalogoLista + " ]";
     }
+    
 }

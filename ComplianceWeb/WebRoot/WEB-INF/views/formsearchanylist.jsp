@@ -46,17 +46,17 @@
 						</thead>
 						<c:forEach var="allResult" items="${allResult}">
 							<tr>
-								<td>${allResult.keyEntity}</td>
+								<td>${allResult.keyentity}</td>
 								<td>${allResult.name}</td>
 								<td>${allResult.address}</td>
 								<td>${allResult.altername}</td>
 								<td>${allResult.score}</td>
-								<td>${allResult.listSource}</td>
+								<td>${allResult.source}</td>
 								<td>${allResult.city}</td>
 								<td>${allResult.country}</td>
 								<td>${allResult.remarks}</td>
 								<td>${allResult.title}</td>
-								<td>${allResult.typeEntity}</td>
+								<td>${allResult.typeentity}</td>
 							</tr>
 						</c:forEach>
 					</table>

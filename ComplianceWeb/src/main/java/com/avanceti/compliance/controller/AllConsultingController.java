@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.avanceti.compliance.utility.JaroWinklerDistance;
 import com.avanceti.compliance.model.Ofac;
-import com.avanceti.compliance.model.ResultSearch;
+import com.avanceti.compliance.model.ResultSearchCustomized;
 import com.avanceti.compliance.services.IOfacService;
+import com.avanceti.compliance.utility.JaroWinklerDistance;
 
 @Controller
 @RequestMapping("/allconsulting")
@@ -32,8 +32,8 @@ public class AllConsultingController {
 	@PostMapping(value = "/goSearch")
 	public String goConsulting(Model model, @RequestParam("nameSearch") String name) {
 		Double score;	
-		List<ResultSearch> resultSerachList =  new LinkedList<>();	
-		ResultSearch resultSerach =  new ResultSearch();			
+		List<ResultSearchCustomized> resultSerachList = new LinkedList<>();	
+		ResultSearchCustomized resultSerach =  new ResultSearchCustomized();			
 		JaroWinklerDistance jaroSearch = new JaroWinklerDistance();
 		List<Ofac> allOfacList = new LinkedList<>();	
 		
@@ -49,15 +49,15 @@ public class AllConsultingController {
 				resultSerach.setAltername(ofac.getEntNameOrig());
 				resultSerach.setCity(ofac.getCity());
 				resultSerach.setCountry(ofac.getCountry());
-				resultSerach.setKeyEntity(ofac.getId());
-				resultSerach.setListSource("ANALIZER");
-				resultSerach.setProgram(ofac.getFrom_file());
+				resultSerach.setKeyentity(ofac.getId());
+				resultSerach.setSource("ANALIZER");
+				resultSerach.setProgram(ofac.getFromFile());
 				resultSerach.setRemarks(ofac.getNationalityOrig());
 				resultSerach.setScore(score);
 				resultSerach.setTitle("Blacklist");
-				resultSerach.setTypeEntity("Natural");
+				resultSerach.setTypeentity("Natural");
 				resultSerachList.add(resultSerach);
-				resultSerach = new ResultSearch(); 
+				resultSerach = new ResultSearchCustomized(); 
 			}
 		}
 		

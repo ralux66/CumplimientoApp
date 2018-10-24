@@ -1,169 +1,286 @@
 package com.avanceti.compliance.model;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
-public class CaseConsulted  {
+@Entity
+@Table(name = "casoconsulta", catalog = "busqueda", schema = "")
+public class CaseConsulted  implements Serializable  {
 
-	private int idcc;
-	private int idcaso;
-	private int nombres;
-	private int apellidos;
-	private int sexo;
-	private Date fechanacimiento;
-	private int dui;
-	private int nit;
-	private int custom1;
-	private int custom2;
-	private int custom3;
-	private int creadopor;
-	private Date creadoel;
-	private int modificadopor;
-	private Date modificadoel;
-	private int idusr;
-	private int idsdn;
-	
-	@Override
-	public String toString() {
-		return "CaseConsulted [idcc=" + idcc + ", idcaso=" + idcaso + ", nombres=" + nombres + ", apellidos="
-				+ apellidos + ", sexo=" + sexo + ", fechanacimiento=" + fechanacimiento + ", dui=" + dui + ", nit="
-				+ nit + ", custom1=" + custom1 + ", custom2=" + custom2 + ", custom3=" + custom3 + ", creadopor="
-				+ creadopor + ", creadoel=" + creadoel + ", modificadopor=" + modificadopor + ", modificadoel="
-				+ modificadoel + ", idusr=" + idusr + ", idsdn=" + idsdn + "]";
-	}
+	 private static final long serialVersionUID = 1L;
+	    @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	    @Basic(optional = false)
+	    @Column(name = "idcc")
+	    private Integer idcc;
+	    @Basic(optional = false)
+	    @NotNull
+	    @Size(min = 1, max = 100)
+	    @Column(name = "idcaso")
+	    private String idcaso;
+	    @Basic(optional = false)
+	    @NotNull
+	    @Size(min = 1, max = 200)
+	    @Column(name = "nombres")
+	    private String nombres;
+	    @Basic(optional = false)
+	    @NotNull
+	    @Size(min = 1, max = 200)
+	    @Column(name = "apellidos")
+	    private String apellidos;
+	    @Size(max = 2)
+	    @Column(name = "sexo")
+	    private String sexo;
+	    @Column(name = "fechanacimiento")
+	    @Temporal(TemporalType.TIMESTAMP)
+	    private Date fechanacimiento;
+	    @Size(max = 15)
+	    @Column(name = "dui")
+	    private String dui;
+	    @Size(max = 20)
+	    @Column(name = "nit")
+	    private String nit;
+	    @Size(max = 100)
+	    @Column(name = "custom1")
+	    private String custom1;
+	    @Size(max = 100)
+	    @Column(name = "custom2")
+	    private String custom2;
+	    @Size(max = 100)
+	    @Column(name = "custom3")
+	    private String custom3;
+	    @Basic(optional = false)
+	    @NotNull
+	    @Size(min = 1, max = 50)
+	    @Column(name = "creadopor")
+	    private String creadopor;
+	    @Basic(optional = false)
+	    @NotNull
+	    @Column(name = "creadoel")
+	    @Temporal(TemporalType.TIMESTAMP)
+	    private Date creadoel;
+	    @Basic(optional = false)
+	    @NotNull
+	    @Size(min = 1, max = 50)
+	    @Column(name = "modificadopor")
+	    private String modificadopor;
+	    @Basic(optional = false)
+	    @NotNull
+	    @Column(name = "modificadoel")
+	    @Temporal(TemporalType.TIMESTAMP)
+	    private Date modificadoel;
+	    @JoinColumn(name = "idusr", referencedColumnName = "idusr")
+	    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+	    private User idusr;
+	    @JoinColumn(name = "idcatalogo_lista", referencedColumnName = "idcatalogo_lista")
+	    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+	    private CatalogoListas idcatalogoLista;
+	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcc", fetch = FetchType.LAZY)
+	    private List<ReturnCaseConsulted> retornocasoconsultaList;
 
-	public int getIdcc() {
-		return idcc;
-	}
+	    public CaseConsulted() {
+	    }
 
-	public void setIdcc(int idcc) {
-		this.idcc = idcc;
-	}
+	    public CaseConsulted(Integer idcc) {
+	        this.idcc = idcc;
+	    }
 
-	public int getIdcaso() {
-		return idcaso;
-	}
+	    public CaseConsulted(Integer idcc, String idcaso, String nombres, String apellidos, String creadopor, Date creadoel, String modificadopor, Date modificadoel) {
+	        this.idcc = idcc;
+	        this.idcaso = idcaso;
+	        this.nombres = nombres;
+	        this.apellidos = apellidos;
+	        this.creadopor = creadopor;
+	        this.creadoel = creadoel;
+	        this.modificadopor = modificadopor;
+	        this.modificadoel = modificadoel;
+	    }
 
-	public void setIdcaso(int idcaso) {
-		this.idcaso = idcaso;
-	}
+	    public Integer getIdcc() {
+	        return idcc;
+	    }
 
-	public int getNombres() {
-		return nombres;
-	}
+	    public void setIdcc(Integer idcc) {
+	        this.idcc = idcc;
+	    }
 
-	public void setNombres(int nombres) {
-		this.nombres = nombres;
-	}
+	    public String getIdcaso() {
+	        return idcaso;
+	    }
 
-	public int getApellidos() {
-		return apellidos;
-	}
+	    public void setIdcaso(String idcaso) {
+	        this.idcaso = idcaso;
+	    }
 
-	public void setApellidos(int apellidos) {
-		this.apellidos = apellidos;
-	}
+	    public String getNombres() {
+	        return nombres;
+	    }
 
-	public int getSexo() {
-		return sexo;
-	}
+	    public void setNombres(String nombres) {
+	        this.nombres = nombres;
+	    }
 
-	public void setSexo(int sexo) {
-		this.sexo = sexo;
-	}
+	    public String getApellidos() {
+	        return apellidos;
+	    }
 
-	public Date getFechanacimiento() {
-		return fechanacimiento;
-	}
+	    public void setApellidos(String apellidos) {
+	        this.apellidos = apellidos;
+	    }
 
-	public void setFechanacimiento(Date fechanacimiento) {
-		this.fechanacimiento = fechanacimiento;
-	}
+	    public String getSexo() {
+	        return sexo;
+	    }
 
-	public int getDui() {
-		return dui;
-	}
+	    public void setSexo(String sexo) {
+	        this.sexo = sexo;
+	    }
 
-	public void setDui(int dui) {
-		this.dui = dui;
-	}
+	    public Date getFechanacimiento() {
+	        return fechanacimiento;
+	    }
 
-	public int getNit() {
-		return nit;
-	}
+	    public void setFechanacimiento(Date fechanacimiento) {
+	        this.fechanacimiento = fechanacimiento;
+	    }
 
-	public void setNit(int nit) {
-		this.nit = nit;
-	}
+	    public String getDui() {
+	        return dui;
+	    }
 
-	public int getCustom1() {
-		return custom1;
-	}
+	    public void setDui(String dui) {
+	        this.dui = dui;
+	    }
 
-	public void setCustom1(int custom1) {
-		this.custom1 = custom1;
-	}
+	    public String getNit() {
+	        return nit;
+	    }
 
-	public int getCustom2() {
-		return custom2;
-	}
+	    public void setNit(String nit) {
+	        this.nit = nit;
+	    }
 
-	public void setCustom2(int custom2) {
-		this.custom2 = custom2;
-	}
+	    public String getCustom1() {
+	        return custom1;
+	    }
 
-	public int getCustom3() {
-		return custom3;
-	}
+	    public void setCustom1(String custom1) {
+	        this.custom1 = custom1;
+	    }
 
-	public void setCustom3(int custom3) {
-		this.custom3 = custom3;
-	}
+	    public String getCustom2() {
+	        return custom2;
+	    }
 
-	public int getCreadopor() {
-		return creadopor;
-	}
+	    public void setCustom2(String custom2) {
+	        this.custom2 = custom2;
+	    }
 
-	public void setCreadopor(int creadopor) {
-		this.creadopor = creadopor;
-	}
-	
-	public Date getCreadoel() {
-		return creadoel;
-	}
+	    public String getCustom3() {
+	        return custom3;
+	    }
 
-	public void setCreadoel(Date creadoel) {
-		this.creadoel = creadoel;
-	}
+	    public void setCustom3(String custom3) {
+	        this.custom3 = custom3;
+	    }
 
-	public int getModificadopor() {
-		return modificadopor;
-	}
+	    public String getCreadopor() {
+	        return creadopor;
+	    }
 
-	public void setModificadopor(int modificadopor) {
-		this.modificadopor = modificadopor;
-	}
+	    public void setCreadopor(String creadopor) {
+	        this.creadopor = creadopor;
+	    }
 
-	public Date getModificadoel() {
-		return modificadoel;
-	}
+	    public Date getCreadoel() {
+	        return creadoel;
+	    }
 
-	public void setModificadoel(Date modificadoel) {
-		this.modificadoel = modificadoel;
-	}
+	    public void setCreadoel(Date creadoel) {
+	        this.creadoel = creadoel;
+	    }
 
-	public int getIdusr() {
-		return idusr;
-	}
+	    public String getModificadopor() {
+	        return modificadopor;
+	    }
 
-	public void setIdusr(int idusr) {
-		this.idusr = idusr;
-	}
+	    public void setModificadopor(String modificadopor) {
+	        this.modificadopor = modificadopor;
+	    }
 
-	public int getIdsdn() {
-		return idsdn;
-	}
+	    public Date getModificadoel() {
+	        return modificadoel;
+	    }
 
-	public void setIdsdn(int idsdn) {
-		this.idsdn = idsdn;
-	}
+	    public void setModificadoel(Date modificadoel) {
+	        this.modificadoel = modificadoel;
+	    }
+
+	    public User getIdusr() {
+	        return idusr;
+	    }
+
+	    public void setIdusr(User idusr) {
+	        this.idusr = idusr;
+	    }
+
+	    public CatalogoListas getIdcatalogoLista() {
+	        return idcatalogoLista;
+	    }
+
+	    public void setIdcatalogoLista(CatalogoListas idcatalogoLista) {
+	        this.idcatalogoLista = idcatalogoLista;
+	    }
+
+	    @XmlTransient
+	    public List<ReturnCaseConsulted> getRetornocasoconsultaList() {
+	        return retornocasoconsultaList;
+	    }
+
+	    public void setRetornocasoconsultaList(List<ReturnCaseConsulted> retornocasoconsultaList) {
+	        this.retornocasoconsultaList = retornocasoconsultaList;
+	    }
+
+	    @Override
+	    public int hashCode() {
+	        int hash = 0;
+	        hash += (idcc != null ? idcc.hashCode() : 0);
+	        return hash;
+	    }
+
+	    @Override
+	    public boolean equals(Object object) {
+	        // TODO: Warning - this method won't work in the case the id fields are not set
+	        if (!(object instanceof CaseConsulted)) {
+	            return false;
+	        }
+	        CaseConsulted other = (CaseConsulted) object;
+	        if ((this.idcc == null && other.idcc != null) || (this.idcc != null && !this.idcc.equals(other.idcc))) {
+	            return false;
+	        }
+	        return true;
+	    }
+
+	    @Override
+	    public String toString() {
+	        return "com.compliance.model.Casoconsulta[ idcc=" + idcc + " ]";
+	    }
 }
