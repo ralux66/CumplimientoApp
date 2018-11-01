@@ -1,0 +1,51 @@
+//
+// Aside Footer
+//
+
+
+
+
+.k-aside__footer {
+	padding: 0.5rem 0.5rem 2rem 0.5rem;
+	display: flex;
+	justify-content: center;
+
+	.dropdown.dropdown-inline,
+	.btn {
+		margin-right: 1rem;
+	}
+
+	.btn {
+		height: 3rem;
+    	width: 3rem;
+		background-color: #f0f0f6;
+			
+		i {
+			@include k-transition();
+			font-size: 1.4rem;
+			color: k-brand-color();
+		}
+
+		&:hover {
+			background-color: k-brand-color();
+
+			i {
+				@include k-transition();
+				color: k-brand-color(inverse);
+			}
+		}
+	}
+
+	// Minimize
+	.k-aside--minimize & {
+		.dropdown.dropdown-inline,
+		.btn {
+			display: none;
+
+			&:last-child {
+				display: inline-block;
+				opacity: 0;
+			}
+		}
+	}
+}

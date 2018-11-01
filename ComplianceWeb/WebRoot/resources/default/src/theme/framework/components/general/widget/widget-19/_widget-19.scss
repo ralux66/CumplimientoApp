@@ -1,0 +1,118 @@
+//
+// Widget 19
+//
+
+
+
+
+.k-widget-19 {      
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content:space-between;
+
+    .k-widget-19__label {
+		font-size: 2.7rem;
+		line-height: 1em;
+		position: relative;
+		display: flex;
+		flex-basis: auto;
+		align-items: center;
+		justify-content: center;
+		margin-left: 2rem;
+
+		@include k-responsive-range(1200px, 1550px){
+			flex-basis: 100%;
+			justify-content: flex-start;
+			margin-bottom: 3.5rem;
+    		margin-top: 1rem;
+		}
+		@include k-responsive-below(380px){
+			flex-basis: 100%;
+			justify-content: flex-start;
+			margin-bottom: 3.5rem;
+    		margin-top: 1rem;
+		}
+
+		.k-widget-19__title{
+			position: relative;
+			z-index: 1;
+
+			.k-widget-19__currency{
+				font-size: 1.7rem;
+				color: k-font-color(-2);
+				margin-left: -1.7rem;
+			}
+		}
+
+		.k-widget-19__label-bg{
+			opacity: 0.1;
+			position: absolute;
+			z-index: 0;
+			width: 140px;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+			@include k-responsive-range(1200px, 1550px){
+				left: 2rem;
+			}
+			@include k-responsive-below(380px){
+				left: 2rem;
+			}
+		}
+    }
+
+    .k-widget-19__data{
+    	flex: 1;
+    	display:flex;
+    	align-items: flex-end;
+    	justify-content: flex-end;
+    	flex: 0 0 220px;  
+    	width: 220px;
+    	height:130px;
+    	transition: all 0.3s ease;
+
+    	@at-root
+		.k-aside-secondary--expanded &{
+			flex: 0 0 190px;  
+    		width: 190px;
+		}
+
+    	.k-widget-19__chart{
+    		display: flex;
+    		width: 100%;
+    		flex: 0 0 100%;
+    		flex-wrap: wrap;
+    		justify-content: space-between;
+    		align-items:flex-end;
+    		transition: all 0.3s ease;
+
+    		.k-widget-19__bar-bg{
+    			$bar-height: 110px;
+    			$bar-width: 10px;
+	    		display: flex;
+	    		align-items:flex-end;
+	    		transition: all 0.3s ease;
+				background-color: #eceaf6;
+				height: $bar-height;
+				width: $bar-width;
+				border-radius: 5px;
+
+				[class*="k-widget-19__bar"] {
+					border-radius: 5px;
+					transition: all .6s ease;
+					background-color: k-state-color(success, base); 
+					width: $bar-width;
+				}
+
+				@for $i from 1 through 100 {
+					$this-height : $bar-height * ($i / 100);
+					.k-widget-19__bar-#{$i} {
+						height: #{$this-height};
+					}
+				}
+			}
+    	}
+    }   
+} 

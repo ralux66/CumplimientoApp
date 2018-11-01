@@ -1,0 +1,98 @@
+//
+// Widget 4
+//
+
+// General Mode
+
+.k-widget-4 {
+	margin: 0.5rem 0;
+
+	.k-widget-4__item {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 2.5rem;	
+		padding-right: 1rem;		
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+
+		.k-widget-4__item-content {	
+			.k-widget-4__item-price {
+				text-align: right;
+
+				.k-widget-4__item-badge {
+					font-size: 1.1rem;
+					color: k-font-color(-2);
+					font-weight: 500; 
+				}
+
+				.k-widget-4__item-number {
+					font-weight: 500; 
+					font-size: 1.2rem;
+					color: k-font-color();
+				}
+			}	
+
+			.k-widget-4__item-section {
+				display: flex;
+				align-items: center;
+
+				.k-widget-4__item-pic {
+					> img {
+						width: 3.5rem;
+						height: 3.5rem;
+						border-radius: 100%;
+					}
+				}
+
+				.k-widget-4__item-info {
+					padding-left: 1rem;
+					flex: 1 0 0px;
+
+					 a {
+					 	text-decoration: none;
+						.k-widget-4__item-username {
+							font-weight: 500; 
+							font-size: 1.1rem;
+							color: k-font-color(-1);
+						}
+					}	
+
+					.k-widget-4__item-desc {					
+						color: k-font-color(-2);
+					}
+				}
+			}
+
+			&:first-child {
+				width:80%;
+			}
+
+			&:last-child {
+				width: 20%;
+				flex-grow: 1;
+			}
+		}
+	}
+
+	// States
+	@each $name, $color in $k-state-colors {
+		.k-widget-4__item {
+			.k-widget-4__item-content {
+				.k-widget-4__item-section  {
+					.k-widget-4__item-info {
+						> a {
+							&:hover {	
+								.k-widget-4__item-username {
+									color: k-state-color(brand, base);
+								}							
+							}						 
+						}	
+					}
+				}
+			}							 
+		}			
+	}	
+}

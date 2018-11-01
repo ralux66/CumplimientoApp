@@ -1,0 +1,61 @@
+  /*
+    Flaticon icon font: Flaticon
+    Creation date: 20/03/2017 20:02
+    */
+
+@font-face {
+  font-family: "Flaticon2";
+  src: url("./font/Flaticon.eot");
+  src: url("./font/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("./font/Flaticon.woff") format("woff"),
+       url("./font/Flaticon.ttf") format("truetype"),
+       url("./font/Flaticon.svg#Flaticon2") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon2";
+    src: url("./font/Flaticon.svg#Flaticon2") format("svg");
+  }
+}
+
+[class^="flaticon2-"]:before, 
+[class*=" flaticon2-"]:before {
+    font-family: Flaticon2;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    line-height: 1;
+    text-decoration: inherit;
+    text-rendering: optimizeLegibility;
+    text-transform: none;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}  
+
+.flaticon2-notification:before { content: "\f100"; }
+.flaticon2-settings:before { content: "\f101"; }
+.flaticon2-search:before { content: "\f102"; }
+.flaticon2-delete:before { content: "\f103"; }
+.flaticon2-psd:before { content: "\f104"; }
+.flaticon2-list:before { content: "\f105"; }
+.flaticon2-box:before { content: "\f106"; }
+.flaticon2-download:before { content: "\f107"; }
+.flaticon2-shield:before { content: "\f108"; }
+.flaticon2-paperplane:before { content: "\f109"; }
+.flaticon2-avatar:before { content: "\f10a"; }
+.flaticon2-bell:before { content: "\f10b"; }
+.flaticon2-fax:before { content: "\f10c"; }
+.flaticon2-chart2:before { content: "\f10d"; }
+.flaticon2-supermarket:before { content: "\f10e"; }
+.flaticon2-phone:before { content: "\f10f"; }
+.flaticon2-envelope:before { content: "\f110"; }
+.flaticon2-pin:before { content: "\f111"; }
+.flaticon2-chat:before { content: "\f112"; }
+.flaticon2-chart:before { content: "\f113"; }
+.flaticon2-infographic:before { content: "\f114"; }
+.flaticon2-grids:before { content: "\f115"; }
+.flaticon2-menu:before { content: "\f116"; }

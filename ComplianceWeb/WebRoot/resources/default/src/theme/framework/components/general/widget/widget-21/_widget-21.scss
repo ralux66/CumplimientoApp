@@ -1,0 +1,150 @@
+//
+// Widget 21
+//
+
+
+
+
+.k-widget-21 {      
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content:space-between;
+
+    .k-widget-21__label {
+		font-size: 2.7rem;
+		line-height: 1em;
+		position: relative;
+		display: flex;
+		flex-basis: auto;
+		align-items: center;
+		justify-content: center;
+		margin-left: 2rem;
+
+		@include k-responsive-range(1200px, 1550px){
+			flex-basis: 100%;
+			justify-content: flex-start;
+			margin-bottom: 3.5rem;
+    		margin-top: 1rem;
+		}
+		@include k-responsive-below(380px){
+			flex-basis: 100%;
+			justify-content: flex-start;
+			margin-bottom: 3.5rem;
+    		margin-top: 1rem;
+		}
+
+		.k-widget-21__title{
+			position: relative;
+			z-index: 1;
+		}
+
+		.k-widget-21__label-bg{
+			opacity: 0.1;
+			position: absolute;
+			z-index: 0;
+			width: 140px;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+
+			@include k-responsive-range(1200px, 1550px){
+				left: 2rem;
+			}
+			@include k-responsive-below(390px){
+				left: 2rem;
+			}
+		}
+    }
+
+    .k-widget-21__data{
+    	display:flex;
+    	align-items: flex-end;
+    	justify-content: flex-end;
+    	flex-wrap: nowrap;
+
+    	@at-root
+		.k-aside-secondary--expanded &{
+			flex-wrap: wrap;
+			flex:1;
+		}
+
+    	@include k-responsive-range(1200px, 1550px){
+			flex-wrap: wrap;
+			flex:1;
+		}
+		@include k-responsive-below(380px){
+			flex-wrap: wrap;
+			flex:1;
+		}
+
+    	.k-widget-21__legends {
+    		margin: auto 2rem 1rem auto;
+    		transition: all 0.3s ease;
+
+    		@at-root
+    		.k-aside-secondary--expanded &{
+    			margin-right: 0;
+    		}
+
+    		@include k-responsive-range(1200px, 1600px){
+				margin-right: 0;
+			}
+
+    		.k-widget-21__legend {
+	    		display: flex;
+	    		flex-direction: row;
+	    		align-items: center;
+	    		flex-wrap: nowrap;
+		        margin-bottom: 0.9rem;
+		        color: k-font-color(-2);
+
+		        &:last-child {
+		             margin-bottom: 0;
+		        }
+		        
+		        .k-widget-21__legend-bullet {
+		            width: 0.45rem;
+		            height: 0.45rem;
+		            flex: 0 0 0.45rem;
+		            border-radius: 1.1rem;
+		            margin-bottom: 0.12rem;
+		            margin-right: 0.8rem;
+		        }
+		        
+		        .k-widget-21__legend-text {                
+		            display: inline-block;
+		        }
+		    }
+    	}    	
+
+	    .k-widget-21__chart {
+	        position: relative;
+	        display: flex;
+	        justify-content: center;
+	        align-items: center;
+	        height: 130px;
+	        flex: 0 0 130px;
+
+	        .k-widget-21__stat {
+	        	display: flex;
+	        	justify-content: center;
+	        	align-items: center;
+	        	position: absolute;
+	        	left: 0;
+	        	right: 0;
+	        	bottom: 0;
+	        	top: 0;
+	            font-size: 1.7rem;
+	            color: k-font-color(-2);
+	        } 
+
+	        canvas {
+	        	position: relative;
+	        	z-index: 1;
+	        } 
+	    }     
+    }   
+} 
+
+

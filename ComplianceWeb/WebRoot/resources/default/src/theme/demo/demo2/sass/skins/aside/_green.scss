@@ -1,0 +1,25 @@
+//
+// Aside Green Skin
+//
+
+
+
+// Build skin
+.k-aside.k-aside--skin-green {
+	background-color: #1cac81;
+
+	.k-aside-menu.k-aside-menu--skin-green {
+		.k-menu__nav {
+			.k-menu__item {
+				&.k-menu__item--active {
+					> .k-menu__link {		
+						background-color: #169d75;	
+					}				
+				}
+			}
+		}
+	}
+
+	// Scrollbar
+	@include k-perfect-scrollbar-skin( lighten(#1cac81, 8%) );
+}

@@ -15,9 +15,9 @@ public class ClientServiceImpl implements IClientService {
 
 	@Override
 	public void createClient(Client client) {
-		if (!clientRepository.existsById(client.getIdcliente())) {
+		//if (!clientRepository.existsById(client.getIdcliente())) {
 			clientRepository.save(client);	
-		}		
+		//}		
 	}
 
 	@Override

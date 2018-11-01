@@ -1,0 +1,46 @@
+//
+// Brand Green Skin
+//
+
+
+
+// Desktop mode
+@include k-desktop {
+	.k-aside__brand.k-aside__brand--skin-green {
+	    background-color: #169d75;
+    	box-shadow: none;
+
+    	.k-aside__brand-tools {
+			@include k-burger-icon-skin(k-aside__brand-aside-toggler, (default: #2ac396, hover: #fff, active: #fff) );		
+		}
+	}
+}
+
+
+// Tablet and mobile mode
+@include k-tablet-and-mobile {
+	.k-aside__brand--skin-green {    	
+		.k-header-mobile {
+			background-color: #169d75;
+			box-shadow: 0px 1px 9px -3px rgba(0,0,0,0.75);
+
+			// Toolbar
+			.k-header-mobile__toolbar {
+				@include k-burger-icon-skin(k-header-mobile__toolbar-toggler, (default: #2ac396, hover: #fff, active: #fff) );	
+
+				.k-header-mobile__toolbar-topbar-toggler {
+					i {
+						color: #2ac396;
+					}
+
+					&.k-header-mobile__toolbar-topbar-toggler--active,
+					&:hover {
+						i {
+							color: #fff;
+						}
+					}
+				}
+			}
+		}
+	}
+}

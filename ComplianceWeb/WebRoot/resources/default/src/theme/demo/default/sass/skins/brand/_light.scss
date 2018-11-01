@@ -1,0 +1,17 @@
+//
+// Brand Light Skin
+//
+
+
+
+// Desktop mode
+@include k-desktop {
+	.k-aside__brand.k-aside__brand--skin-light {
+	    background-color: #ffffff;
+    	box-shadow: none;
+
+    	.k-aside__brand-tools {
+			@include k-burger-icon-skin(k-aside__brand-aside-toggler, (default: lighten(#757385, 10%), hover: k-brand-color(), active: k-brand-color()) );		
+		}
+	}
+}

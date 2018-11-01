@@ -25,30 +25,33 @@ public class ClientController {
 	@Autowired
 	private IClientService clientService;
 	
-	@GetMapping(value = "/newclient")
+	@GetMapping(value="/newclient")
 	public String homeCliente(Model model) {
-		model.addAttribute("client", new Client());
-		return "client/newClient";
+		model.addAttribute("client", new Client());		
+		return "client/newClient1";
 	}
 	
-	@PostMapping(value = "/saveclient")
+	@PostMapping(value="/saveclient")
 	public String saveCliente(@ModelAttribute("client") Client client, Model model, BindingResult result, RedirectAttributes attributes) {
+		System.out.println("Save");
 		try {
 			if (result.hasErrors()) {
 				System.out.println("Error en el binding");
 			}
+			//client.setIdcliente(2);			
 			client.setCreadopor("rzepeda");
 			client.setModificadopor("rzepeda");
 			client.setCreadoel(new Date());
 			client.setModificadoel(new Date());
 			clientService.createClient(client);	
-			//model.addAttribute("cliente", client)
+			attributes.addFlashAttribute("message", "Save Succes!!");			
 		} catch (Exception e) {
-			// TODO: handle exception
+			//System.out.println("newclient/save-->"+client);
+			System.out.println("on ERROR");
+			attributes.addFlashAttribute("message", "Some thing brow!!");			
 		}
 		
-		
-		return "client/formclient";
+		return "client/newClient1";
 	}
 	
 	@InitBinder

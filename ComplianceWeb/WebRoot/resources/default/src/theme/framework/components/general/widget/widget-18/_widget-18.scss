@@ -1,0 +1,106 @@
+//
+// Widget 18
+//
+
+
+
+
+.k-widget-18{
+
+	.k-widget-18__summary{
+		margin-top: -1rem;
+		margin-bottom: 1rem;
+		display: flex;
+		align-items: flex-end;
+
+		.k-widget-18__total{
+			font-size: 3rem;
+			font-weight: 600;
+			color: k-font-color(-1);
+			margin-right: 1rem;
+		}
+
+		.k-widget-18__label{
+			color: k-font-color(-2);
+			font-weight: 500;
+			margin-bottom: 1rem;
+		}
+	}
+
+	.k-widget-18__progress{
+		margin-bottom: 2rem;
+	}
+
+	.k-widget-18__item{
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		margin-bottom: 2rem;
+
+		&:last-child{
+			margin-bottom: 0;
+		}
+
+		.k-widget-18__legend{
+			background-color: k-state-color(brand, base);
+			width: 1rem;
+			height: 1rem;
+			border-radius: 3px;
+			margin-right: 1.25rem;
+		}
+
+		.k-widget-18__desc{
+			margin-right: 1.25rem;
+
+			.k-widget-18__title{
+				font-size: 1.1rem;
+				font-weight: 500;
+				color: k-font-color(-1);
+				margin-bottom: 0.2rem;
+				@include transition(all 0.3s ease);
+
+				&:hover{
+					color: k-state-color(brand, base);
+				}
+			}
+
+			.k-widget-18__desc{
+				font-size: 0.9rem;
+				font-weight: 400;
+				color: k-font-color(-3);
+			}
+		}
+
+		.k-widget-18__orders{
+			font-weight: 400;
+			color: k-font-color(-3);
+			font-size: 0.9rem;
+			margin: auto 0 auto auto;
+
+			span{
+				font-weight: 500;
+				color: k-font-color(-2);
+				font-size: 1rem;
+			}
+		}
+
+		@each $name, $color in $k-state-colors {
+	 		&.k-widget-18__item--#{$name}{
+
+	 			.k-widget-18__legend{
+	 				background-color: k-get($color, base);
+	 			}
+
+	 			.k-widget-18__desc{
+
+	 				.k-widget-18__title{
+
+	 					&:hover{
+							color: k-get($color, base);
+						}
+	 				}
+	 			}	 			
+	 		}
+		}
+	}
+}

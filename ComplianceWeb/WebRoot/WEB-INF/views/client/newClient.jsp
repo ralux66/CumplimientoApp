@@ -63,7 +63,7 @@
 	<div class="container-contact100">
 		<div class="wrap-contact100">
 			<form:form class="contact100-form validate-form" action="${urlForm}"
-				method="post" enctype="multipart/form-data" modelAttribute="client">
+				method="post" modelAttribute="client">
 				
 				<span class="contact100-form-title"> Form User </span>
 				<div class="wrap-input100 validate-input bg1"
@@ -113,6 +113,7 @@
 							aria-hidden="true"></i>
 						</span>
 					</button>
+					<button type="submit" class="btn btn-danger" >Guardar</button>
 				</div>
 			</form:form>
 		</div>

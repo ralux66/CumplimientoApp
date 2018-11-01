@@ -1,0 +1,14 @@
+//
+// Aside
+//
+
+
+
+
+.k-aside {
+	width: k-get($k-aside-config, default, width);
+	background-color: k-get($k-aside-config, default, bg-color);
+	box-shadow: k-get($k-aside-config, default, shadow);
+}
+
+@include k-offcanvas-build(k-aside, tablet-and-mobile, k-get($k-aside-config, offcanvas-mobile));
