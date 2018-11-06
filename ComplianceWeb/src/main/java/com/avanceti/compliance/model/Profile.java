@@ -72,7 +72,7 @@ public class Profile implements Serializable {
 	    private Date modificadoel;
 	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idperfil", fetch = FetchType.LAZY)
 	    private List<ModulosPerfiles> modulosPerfilesList;
-	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idperfil", fetch = FetchType.LAZY)
+	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idperfil", fetch = FetchType.EAGER)
 	    private List<User> usuariosList;
 
 	    public Profile() {

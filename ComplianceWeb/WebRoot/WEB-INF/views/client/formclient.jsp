@@ -11,17 +11,7 @@
 <spring:url value="/client/saveclient" var="urlForm" />
 </head>
 <body>
-	<h1>Cliente Home</h1>
-
-	<c:forEach var="allClient" items="${allClient}">							
-								${allClient.nombrepropio1}
-								${allClient.direccion1}
-								${allClient.email}
-								${allClient.tipodeentidad}
-								${allClient.telefono1}
-								${allClient.ciudad}															
-	</c:forEach>
-
+	<h1>Cliente Home</h1>	
 
 	<form action="${urlForm}" method="post">
 		<div class="form-group">
@@ -43,5 +33,9 @@
 		</div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
+	
+	
+	
+	
 </body>
 </html>

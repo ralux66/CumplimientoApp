@@ -30,6 +30,7 @@
 		<property name="showSql" value="true"></property>
 		<property name="databasePlatform"
 			value="org.hibernate.dialect.MySQL5Dialect" />
+
 	</bean>
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -43,4 +44,6 @@
 		<property name="entityManagerFactory"
 			ref="entityManagerFactory" />
 	</bean>
+	<tx:annotation-driven
+		transaction-manager="transactionManager" />
 </beans>

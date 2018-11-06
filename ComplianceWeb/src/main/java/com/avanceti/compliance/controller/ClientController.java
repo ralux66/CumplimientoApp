@@ -27,7 +27,8 @@ public class ClientController {
 	
 	@GetMapping(value="/newclient")
 	public String homeCliente(Model model) {
-		model.addAttribute("client", new Client());		
+		model.addAttribute("client", new Client());	
+		model.addAttribute("allClient", clientService.allClient());
 		return "client/newClient1";
 	}
 	
@@ -44,12 +45,15 @@ public class ClientController {
 			client.setCreadoel(new Date());
 			client.setModificadoel(new Date());
 			clientService.createClient(client);	
-			attributes.addFlashAttribute("message", "Save Succes!!");			
+			model.addAttribute("message", "Success");
+			//attributes.addFlashAttribute("message", "Save Success!!");			
 		} catch (Exception e) {
 			//System.out.println("newclient/save-->"+client);
 			System.out.println("on ERROR");
-			attributes.addFlashAttribute("message", "Some thing brow!!");			
+			model.addAttribute("message", "Error");		
 		}
+		
+		model.addAttribute("allClient", clientService.allClient());
 		
 		return "client/newClient1";
 	}

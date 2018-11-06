@@ -117,7 +117,7 @@ public class Client implements Serializable {
     @Column(name = "modificadoel")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modificadoel;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcliente", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcliente", fetch = FetchType.EAGER)
     private List<User> usuariosList;
 
     public Client() {
@@ -362,14 +362,8 @@ public class Client implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Client [idcliente=" + idcliente + ", nombrepropio1=" + nombrepropio1 + ", nombrepropio2="
-				+ nombrepropio2 + ", direccion1=" + direccion1 + ", direccion2=" + direccion2 + ", ciudad=" + ciudad
-				+ ", departamento=" + departamento + ", municipio=" + municipio + ", telefono1=" + telefono1
-				+ ", telefono2=" + telefono2 + ", telefonocontacto1=" + telefonocontacto1 + ", telefonocontacto2="
-				+ telefonocontacto2 + ", numerodedependientes=" + numerodedependientes + ", email=" + email
-				+ ", tipodeentidad=" + tipodeentidad + ", estado=" + estado + ", descripcion=" + descripcion
-				+ ", observacion=" + observacion + ", custom2=" + custom2 + ", custom3=" + custom3 + ", creadopor="
-				+ creadopor + ", creadoel=" + creadoel + ", modificadopor=" + modificadopor + ", modificadoel="
-				+ modificadoel + ", usuariosList=" + usuariosList + "]";
-	}    
+		return "Client [idcliente=" + idcliente + ", nombrepropio1=" + nombrepropio1 + "]";
+	}
+
+	
 }

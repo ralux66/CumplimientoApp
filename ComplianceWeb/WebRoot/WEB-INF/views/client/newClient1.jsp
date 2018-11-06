@@ -45,6 +45,15 @@
 				<td><input type="submit" value="Submit" /></td>
 			</tr>
 		</table>
+		
+		<c:forEach var="allClient" items="${allClient}">							
+								${allClient.nombrepropio1}
+								${allClient.direccion1}
+								${allClient.email}
+								${allClient.tipodeentidad}
+								${allClient.telefono1}
+								${allClient.ciudad}															
+	</c:forEach>
 	</form:form>
 </body>
 </html>

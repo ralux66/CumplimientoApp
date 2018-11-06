@@ -125,10 +125,10 @@ public class User implements Serializable {
 	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idusr", fetch = FetchType.LAZY)
 	    private List<CaseConsulted> casoconsultaList;
 	    @JoinColumn(name = "idperfil", referencedColumnName = "idperfil")
-	    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+	    @ManyToOne(optional = false, fetch = FetchType.EAGER)
 	    private Profile idperfil;
 	    @JoinColumn(name = "idcliente", referencedColumnName = "idcliente")
-	    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+	    @ManyToOne(optional = false, fetch = FetchType.EAGER)
 	    private Client idcliente;
 
 	    public User() {
@@ -378,10 +378,19 @@ public class User implements Serializable {
 	        return true;
 	    }
 
-	    @Override
-	    public String toString() {
-	        return "com.compliance.model.Usuarios[ idusr=" + idusr + " ]";
-	    }
-	    
+		@Override
+		public String toString() {
+			return "User [idusr=" + idusr + ", codusr=" + codusr + ", nombre=" + nombre + ", apellido=" + apellido
+					+ ", password=" + password + ", email=" + email + ", sexo=" + sexo + ", dui=" + dui + ", nit=" + nit
+					+ ", telefono=" + telefono + ", fechaNac=" + fechaNac + ", estado=" + estado + ", solicitaEmail="
+					+ solicitaEmail + ", observacion=" + observacion + ", custom1=" + custom1 + ", custom2=" + custom2
+					+ ", custom3=" + custom3 + ", creadopor=" + creadopor + ", creadoel=" + creadoel
+					+ ", modificadopor=" + modificadopor + ", modificadoel=" + modificadoel + ", idcliente=" + idcliente
+					+ "]";
+		}
+
+	
+
+	
 
 }
