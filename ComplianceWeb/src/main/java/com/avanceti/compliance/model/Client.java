@@ -117,7 +117,7 @@ public class Client implements Serializable {
     @Column(name = "modificadoel")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modificadoel;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcliente", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcliente", fetch = FetchType.LAZY)
     private List<User> usuariosList;
 
     public Client() {

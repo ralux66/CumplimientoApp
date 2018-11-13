@@ -88,10 +88,10 @@ public class CaseConsulted  implements Serializable  {
 	    @Temporal(TemporalType.TIMESTAMP)
 	    private Date modificadoel;
 	    @JoinColumn(name = "idusr", referencedColumnName = "idusr")
-	    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+	    @ManyToOne(optional = false, fetch = FetchType.EAGER)
 	    private User idusr;
 	    @JoinColumn(name = "idcatalogo_lista", referencedColumnName = "idcatalogo_lista")
-	    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+	    @ManyToOne(optional = false, fetch = FetchType.EAGER)
 	    private CatalogoListas idcatalogoLista;
 	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcc", fetch = FetchType.LAZY)
 	    private List<ReturnCaseConsulted> retornocasoconsultaList;

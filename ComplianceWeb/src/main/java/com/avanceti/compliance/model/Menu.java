@@ -71,7 +71,7 @@ public class Menu implements Serializable {
 	    @Temporal(TemporalType.TIMESTAMP)
 	    private Date modificadoel;
 	    @JoinColumn(name = "idmodulo", referencedColumnName = "idmodulo")
-	    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+	    @ManyToOne(optional = false, fetch = FetchType.EAGER)
 	    private Modulos idmodulo;
 
 	    public Menu() {

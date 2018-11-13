@@ -48,13 +48,21 @@
 				<td><form:input path="fechaNac" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="idcliente">IdCliente</form:label></td>
-				<td><form:select path="idcliente" items="${allClient}"/></td>
+				<td><form:label path="idcliente">idcliente</form:label></td>
+				<td><form:select path="idcliente">
+						<form:option value="-" label="--Please Select" />
+						<form:options items="${allClient}"
+							itemValue="${allClient.idcliente}" itemLabel="name" />
+					</form:select>
+				</td>
 			</tr>
+
+
+
 			<tr>
 				<td><input type="submit" value="Submit" /></td>
 			</tr>
 		</table>
-	</form:form>	
+	</form:form>
 </body>
 </html>

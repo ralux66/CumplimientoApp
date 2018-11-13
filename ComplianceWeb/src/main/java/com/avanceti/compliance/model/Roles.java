@@ -51,7 +51,7 @@ public class Roles implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idrol", fetch = FetchType.LAZY)
     private List<RolesUsuarios> rolesUsuariosList;
     @JoinColumn(name = "idmodulo", referencedColumnName = "idmodulo")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Modulos idmodulo;
 
     public Roles() {

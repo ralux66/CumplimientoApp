@@ -92,7 +92,7 @@ public class ReturnCaseConsulted implements Serializable {
 	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idrcc", fetch = FetchType.LAZY)
 	    private List<Tracking> trackingList;
 	    @JoinColumn(name = "idcc", referencedColumnName = "idcc")
-	    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+	    @ManyToOne(optional = false, fetch = FetchType.EAGER)
 	    private CaseConsulted idcc;
 
 	    public ReturnCaseConsulted() {

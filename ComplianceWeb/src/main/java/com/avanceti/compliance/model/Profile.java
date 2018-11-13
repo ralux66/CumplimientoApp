@@ -72,7 +72,7 @@ public class Profile implements Serializable {
 	    private Date modificadoel;
 	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idperfil", fetch = FetchType.LAZY)
 	    private List<ModulosPerfiles> modulosPerfilesList;
-	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idperfil", fetch = FetchType.EAGER)
+	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idperfil", fetch = FetchType.LAZY)
 	    private List<User> usuariosList;
 
 	    public Profile() {
@@ -217,9 +217,9 @@ public class Profile implements Serializable {
 	        return true;
 	    }
 
-	    @Override
-	    public String toString() {
-	        return "com.compliance.model.Perfiles[ idperfil=" + idperfil + " ]";
-	    }
-	
+		@Override
+		public String toString() {
+			return "Profile [idperfil=" + idperfil + ", descripcion=" + descripcion + "]";
+		}
+	 
 }

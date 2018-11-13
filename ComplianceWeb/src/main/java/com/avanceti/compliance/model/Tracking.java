@@ -75,13 +75,13 @@ public class Tracking implements Serializable {
 	    @Temporal(TemporalType.TIMESTAMP)
 	    private Date modificadoel;
 	    @JoinColumn(name = "idstatus2", referencedColumnName = "idstatus2")
-	    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+	    @ManyToOne(optional = false, fetch = FetchType.EAGER)
 	    private StatusTrackingTow idstatus2;
 	    @JoinColumn(name = "idstatus", referencedColumnName = "idstatus")
-	    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+	    @ManyToOne(optional = false, fetch = FetchType.EAGER)
 	    private StatusTrackingOne idstatus;
 	    @JoinColumn(name = "idrcc", referencedColumnName = "idrcc")
-	    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+	    @ManyToOne(optional = false, fetch = FetchType.EAGER)
 	    private ReturnCaseConsulted idrcc;
 
 	    public Tracking() {
