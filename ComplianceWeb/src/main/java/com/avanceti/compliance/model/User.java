@@ -128,7 +128,8 @@ public class User implements Serializable {
 	    @ManyToOne(optional = false, fetch = FetchType.EAGER)
 	    private Profile idperfil;
 	    @JoinColumn(name = "idcliente", referencedColumnName = "idcliente")
-	    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+	    //@ManyToOne(optional = false, fetch = FetchType.EAGER)
+	    @ManyToOne
 	    private Client idcliente;
 
 	    public User() {

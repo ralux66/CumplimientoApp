@@ -49,16 +49,16 @@
 			</tr>
 			<tr>
 				<td><form:label path="idcliente">idcliente</form:label></td>
-				<td><form:select path="idcliente">
-						<form:option value="-" label="--Please Select" />
-						<form:options items="${allClient}"
-							itemValue="${allClient.idcliente}" itemLabel="name" />
-					</form:select>
-				</td>
+				<td><form:select path="idcliente" items="${allClient}">
+
+					</form:select></td>
 			</tr>
+			<tr>
+				<td><form:label path="idperfil">idperfil</form:label></td>
+				<td><form:select path="idperfil" items="${allProfile}">
 
-
-
+					</form:select></td>
+			</tr>
 			<tr>
 				<td><input type="submit" value="Submit" /></td>
 			</tr>

@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -117,7 +118,9 @@ public class Client implements Serializable {
     @Column(name = "modificadoel")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modificadoel;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcliente", fetch = FetchType.LAZY)
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "idcliente", fetch = FetchType.LAZY)
+    @OneToMany
+    @JoinColumn(name="idcliente")
     private List<User> usuariosList;
 
     public Client() {

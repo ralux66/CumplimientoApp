@@ -51,7 +51,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/saveuser")
-	public String saveUser(@ModelAttribute("user") User user, Model model, BindingResult result, RedirectAttributes attributes) {
+	public String saveUser(@ModelAttribute("user") User user, @ModelAttribute("profile") Profile profile, @ModelAttribute("Client") Client client, Model model, BindingResult result, RedirectAttributes attributes) {
 		short variable = 1;  
 		System.out.println("SAVE USER");		
 //		try {
