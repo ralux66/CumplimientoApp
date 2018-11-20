@@ -12,7 +12,16 @@
 </head>
 <body>
 	<h3>Welcome, Enter The Employee Details</h3>
-	${message}
+	<spring:hasBindErrors name="user">
+		<div class='alert alert-danger' role='alert'>
+			Por favor corrija los siguientes errores:
+			<ul>
+				<c:forEach var="error" items="${errors.allErrors}">
+					<li><spring:message message="${error}" /></li>
+				</c:forEach>
+			</ul>			
+	</spring:hasBindErrors>
+	
 	<form:form method="POST" action="${urlForm}" modelAttribute="user">
 		<table>
 			<tr>
@@ -26,6 +35,10 @@
 			<tr>
 				<td><form:label path="apellido">Apellido</form:label></td>
 				<td><form:input path="apellido" /></td>
+			</tr>
+			<tr>
+				<td><form:label path="password">Contrasenia</form:label></td>
+				<td><form:input path="password" /></td>
 			</tr>
 			<tr>
 				<td><form:label path="email">Correo</form:label></td>
@@ -48,15 +61,17 @@
 				<td><form:input path="fechaNac" /></td>
 			</tr>
 			<tr>
-				<td><form:label path="idcliente">idcliente</form:label></td>
-				<td><form:select path="idcliente" items="${allClient}">
-
+				<td><label for="idcliente">idcliente</label></td>
+				<td><form:select path="idcliente.idcliente" id="idcliente">
+						<form:options items="${allClient}" itemLabel="nombrepropio1"
+							itemValue="idcliente" />
 					</form:select></td>
 			</tr>
 			<tr>
-				<td><form:label path="idperfil">idperfil</form:label></td>
-				<td><form:select path="idperfil" items="${allProfile}">
-
+				<td><label for="idperfil">idperfil</label></td>
+				<td><form:select path="idperfil.idperfil" id="idperfil">
+						<form:options items="${allProfile}" itemLabel="descripcion"
+							itemValue="idperfil" />
 					</form:select></td>
 			</tr>
 			<tr>

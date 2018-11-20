@@ -15,10 +15,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name = "perfiles", catalog = "busqueda", schema = "")
@@ -70,9 +74,16 @@ public class Profile implements Serializable {
 	    @Column(name = "modificadoel")
 	    @Temporal(TemporalType.TIMESTAMP)
 	    private Date modificadoel;
-	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idperfil", fetch = FetchType.LAZY)
+	   
+	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idperfil", fetch = FetchType.EAGER)
+	    @Fetch(value = FetchMode.SUBSELECT)
+	    //@OneToMany	    
 	    private List<ModulosPerfiles> modulosPerfilesList;
-	    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idperfil", fetch = FetchType.LAZY)
+	    
+	    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "idperfil", fetch = FetchType.EAGER)
+	    //@Fetch(value = FetchMode.SUBSELECT)
+	    //@OneToMany
+	    @Transient
 	    private List<User> usuariosList;
 
 	    public Profile() {
@@ -219,7 +230,15 @@ public class Profile implements Serializable {
 
 		@Override
 		public String toString() {
-			return "Profile [idperfil=" + idperfil + ", descripcion=" + descripcion + "]";
+			return "Profile [idperfil=" + idperfil + ", descripcion=" + descripcion + ", estado=" + estado
+					+ ", observacion=" + observacion + ", custom1=" + custom1 + ", custom2=" + custom2 + ", custom3="
+					+ custom3 + ", creadopor=" + creadopor + ", creadoel=" + creadoel + ", modificadopor="
+					+ modificadopor + ", modificadoel=" + modificadoel + ", modulosPerfilesList=" + modulosPerfilesList
+					+ ", usuariosList=" + usuariosList + "]";
 		}
+
+		
+
+		
 	 
 }

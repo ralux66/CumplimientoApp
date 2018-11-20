@@ -9,8 +9,7 @@ import com.avanceti.compliance.model.Ofac;
 
 @Repository
 public interface IOfacRepository extends JpaRepository<Ofac, Integer> {
-	
-	
+		
 	List<Ofac> findByCountry(String country);
 	
 	List<Ofac> findByCountryAndCountryCode(String country, String countryCode);

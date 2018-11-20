@@ -39,10 +39,12 @@ public class RolesUsuarios implements Serializable {
     @Column(name = "custom3")
     private String custom3;
     @JoinColumn(name = "idusr", referencedColumnName = "idusr")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    //@ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne
     private User idusr;
     @JoinColumn(name = "idrol", referencedColumnName = "idrol")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    //@ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne
     private Roles idrol;
 
     public RolesUsuarios() {

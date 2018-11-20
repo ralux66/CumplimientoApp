@@ -42,10 +42,12 @@ public class ModulosPerfiles implements Serializable {
     @Column(name = "custom3")
     private String custom3;
     @JoinColumn(name = "idperfil", referencedColumnName = "idperfil")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    //@ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne
     private Profile idperfil;
     @JoinColumn(name = "idmodulo", referencedColumnName = "idmodulo")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    //@ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne
     private Modulos idmodulo;
 
     public ModulosPerfiles() {

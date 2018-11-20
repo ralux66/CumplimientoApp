@@ -36,14 +36,15 @@ public class UserController {
 	private IProfileService profileService;
 	
 	@GetMapping(value = "/newuser")
-	public String homeUser(Model model) {		
-		model.addAttribute("user", new User());		
-		List<User> allUser = userService.allUser();
+	public String homeUser(Model model, @ModelAttribute("user") User user) {		
+		//model.addAttribute("user", new User());		
+		
+		//ist<User> allUser = userService.allUser();
 		List<Client> allClient = clientService.allClient();		
 		List<Profile> allProfile = profileService.allProfile();
 		
 		model.addAttribute("allClient", allClient);		
-		model.addAttribute("allUser", allUser);
+		//model.addAttribute("allUser", allUser);
 		model.addAttribute("allProfile", allProfile);
 		//System.out.println("allUser "+allUser);
 		//System.out.println("allClient"+allClient);
@@ -51,25 +52,30 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/saveuser")
-	public String saveUser(@ModelAttribute("user") User user, @ModelAttribute("profile") Profile profile, @ModelAttribute("Client") Client client, Model model, BindingResult result, RedirectAttributes attributes) {
-		short variable = 1;  
-		System.out.println("SAVE USER");		
-//		try {
-//			if (result.hasErrors()) {
-//				System.out.println("Error en el binding");
-//			}			
-//			user.setSolicitaEmail(variable);
-//			user.setCreadopor("rzepeda");
-//			user.setModificadopor("rzepeda");
-//			user.setCreadoel(new Date());
-//			user.setModificadoel(new Date());			
-//			userService.createUser(user);	
-//			model.addAttribute("message", "Success");						
-//		} catch (Exception e) {			
-//			System.out.println("on ERROR");
-//			model.addAttribute("message", "Error");		
-//		}
-//		
+	public String saveUser(@ModelAttribute("user") User user, Model model, BindingResult result, RedirectAttributes attributes) {
+		short variable = 1;
+		
+		System.out.println(user);
+		
+		if (result.hasErrors()) {
+			//System.out.println(result.);
+			return "user/formuser";
+		}
+		try {						
+			user.setSolicitaEmail(variable);
+			user.setCreadopor("rzepeda");
+			user.setModificadopor("rzepeda");
+			user.setEstado("A");
+			user.setCreadoel(new Date());
+			user.setModificadoel(new Date());
+			userService.createUser(user);	
+			model.addAttribute("message", "Success");						
+		} catch (Exception e) {			
+			System.out.println("on ERROR");
+			System.out.println(e.getMessage());
+			//model.addAttribute("message", "Error");		
+		}
+		
 		//model.addAttribute("allUser", userService.allUser());		
 		return "user/formuser";
 	}
@@ -80,3 +86,4 @@ public class UserController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	}
 }
+
