@@ -56,7 +56,7 @@ public class JaroWinklerDistance {
      * @throws IllegalArgumentException if either CharSequence input is {@code null}
      */
 
-    public Double apply(final CharSequence left, final CharSequence right) {
+    public static Double apply(final CharSequence left, final CharSequence right) {
         final double defaultScalingFactor = 0.1;
 
         if (left == null || right == null) {

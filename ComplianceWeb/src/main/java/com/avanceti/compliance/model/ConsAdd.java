@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -46,7 +47,8 @@ public class ConsAdd implements Serializable {
     @Column(name = "Add_remarks")
     private String addremarks;
     @JoinColumn(name = "Ent_num", referencedColumnName = "ent_num")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    //@Transient
     private ConsPrim entnum;
 
     public ConsAdd() {

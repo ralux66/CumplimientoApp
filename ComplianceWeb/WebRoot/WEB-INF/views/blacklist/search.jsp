@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,24 +46,33 @@
 			<table class="table">
 				<thead>
 					<tr>
-						<th scope="col">#</th>
 						<th scope="col">Name</th>
-						<th scope="col">Program</th>
+						<th scope="col">Alias</th>
+						<th scope="col">Address</th>
+						<th scope="col">City</th>
+						<th scope="col">Type</th>
+						<th scope="col">Programs</th>
+						<th scope="col">List</th>
 						<th scope="col">Score</th>
-						<th scope="col">Mas</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="allResultreturn" items="${allResultretur}">
+					<c:forEach var="allResultreturn" items="${allResultreturn}"
+						varStatus="loop">
 						<tr>
-							<td>${allResultreturn.entNum}</td>
 							<td>${allResultreturn.sDNName}</td>
+							<td>${allResultreturn.consAltList[loop.index].altName}</td>
+							<td>${allResultreturn.consAddList[loop.index].address}</td>
+							<td>${allResultreturn.consAddList[loop.index].city}</td>
+							<td>${allResultreturn.sDNType}</td>
 							<td>${allResultreturn.program}</td>
-							<td>${allResultreturn.score}</td>
+							<td>${allResultreturn.title}</td>
+							<td><fmt:formatNumber type = "percent" maxFractionDigits = "3" value = "${allResultreturn.score}" /></td>
+						 
 							<td>
 								<!-- Button trigger modal -->
-								<button type="button" class="btn btn-primary"
-									data-toggle="modal" data-target="#exampleModalCenter">
+								<button type="button" class="btn btn-primary" onclick=""
+									data-toggle="modal" data-target="#exampleModal">
 									More info</button>
 							</td>
 						</tr>
@@ -70,22 +80,18 @@
 				</tbody>
 			</table>
 			<!-- Modal -->
-			<div class="modal fade" id="exampleModalCenter" tabindex="-1"
-				role="dialog" aria-labelledby="exampleModalCenterTitle"
-				aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalCenterTitle">Other
-								info</h5>
+							<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<div class="modal-body">
-							...
-						</div>
+						<div class="modal-body">...</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">Close</button>
