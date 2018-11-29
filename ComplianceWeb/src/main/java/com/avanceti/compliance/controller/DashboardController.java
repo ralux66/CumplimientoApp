@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DashboardController {
 	@GetMapping("/")
 	public String goDashboard() {
-		return "dashboard/index";
+		return "dashboard/dashboard";
 	}
 }

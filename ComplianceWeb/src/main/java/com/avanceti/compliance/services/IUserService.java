@@ -7,4 +7,5 @@ import com.avanceti.compliance.model.User;
 public interface IUserService {
 	void createUser(User user);
 	List<User> allUser();
+	User findByUserLogin(String user, String password);
 }

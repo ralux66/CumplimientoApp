@@ -27,4 +27,8 @@ public class UserServiceImpl implements IUserService {
 		return userRepository.findAll();
 	}
 
+	@Override
+	public User findByUserLogin(String user, String password) {		
+		return userRepository.findByCodusrAndPassword(user, password);		
+	}
 }

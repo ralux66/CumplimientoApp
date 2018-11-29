@@ -6,5 +6,5 @@ import com.avanceti.compliance.model.User;
 
 @Repository
 public interface IUserRepository extends JpaRepository<User, Integer> {
-
+	User findByCodusrAndPassword(String user, String password);
 }
