@@ -27,9 +27,9 @@
 <title>Search | Blacklist</title>
 </head>
 <body>
+	<jsp:include page="../includes/menu.jsp"></jsp:include>
 	<form method="POST" action="${urlForm}">
 		<div class="container">
-
 			<c:if test="${not empty message}">
 				<div class="alert alert-success" role="alert">${message}</div>
 			</c:if>
@@ -72,8 +72,8 @@
 							<td>
 								<!-- Button trigger modal -->
 								<button type="button" class="btn btn-primary" onclick=""
-									data-toggle="modal" data-target="#myModal">
-									Launch demo modal</button>
+									data-toggle="modal" data-target="#myModal">Launch demo
+									modal</button>
 							</td>
 						</tr>
 					</c:forEach>
