@@ -1,21 +1,18 @@
 package com.avanceti.compliance.controller;
 
-import javax.servlet.http.HttpServletRequest;import org.eclipse.jdt.internal.compiler.lookup.ReductionResult;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.avanceti.compliance.model.User;
 import com.avanceti.compliance.services.IUserService;
 
 @Controller
-@RequestMapping(value = "/login")
 @SessionAttributes("user")
 public class LoginController {
 	@Autowired
@@ -29,15 +26,22 @@ public class LoginController {
 
 	@GetMapping(value = "/")
 	public String homeSearch() {
-		return "login/login";
+		return "login/index";
 	}
 
 	@PostMapping(value = "/gologin")
-	public String goLogin(Model model, @ModelAttribute("user") User user,	RedirectAttributes attributes, HttpServletRequest request) {
+	public String goLogin(Model model, @ModelAttribute("user") User user, BindingResult result) {
+
+		if (result.hasErrors()){
+			System.out.println("Existieron errores");
+			return "login/index";
+		}
+		
 		User resultUser = new User();
 		try {
 			resultUser = userService.findByUserLogin(user.getCodusr(), user.getPassword());
-			if (!resultUser.getApellido().isEmpty()) {
+			//if (!resultUser.getApellido().isEmpty()) {
+			if(!(resultUser==null)) {
 				user.setApellido(resultUser.getApellido());				
 				user.setCasoconsultaList(resultUser.getCasoconsultaList());
 				user.setCodusr(resultUser.getCodusr());
@@ -65,12 +69,13 @@ public class LoginController {
 				user.setTelefono(resultUser.getTelefono());
 			}else {
 				model.addAttribute("message", "Login failed. Try again.");
-				return "login/login";
+				return "redirect:/";
 			}
 		} catch (Exception e) {
 			System.out.println("Some Error");
 		}
 		return "redirect:/dashboard/";
+		//return "login/index";
 	}
 
 }

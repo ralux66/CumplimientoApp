@@ -86,4 +86,3 @@ public class UserController {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
 	}
 }
-

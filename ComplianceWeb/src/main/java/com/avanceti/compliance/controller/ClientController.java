@@ -26,15 +26,16 @@ public class ClientController {
 	private IClientService clientService;
 	
 	@GetMapping(value="/newclient")
-	public String homeCliente(Model model) {
+	public String homeCliente(Model model, @ModelAttribute("client") Client client) {
 		model.addAttribute("client", new Client());	
 		model.addAttribute("allClient", clientService.allClient());
-		return "client/newClient1";
+		return "client/newclient";
 	}
+	
 	
 	@PostMapping(value="/saveclient")
 	public String saveCliente(@ModelAttribute("client") Client client, Model model, BindingResult result, RedirectAttributes attributes) {
-		System.out.println("Save");
+		//System.out.println("Save");
 		try {
 			if (result.hasErrors()) {
 				System.out.println("Error en el binding");
@@ -45,17 +46,16 @@ public class ClientController {
 			client.setCreadoel(new Date());
 			client.setModificadoel(new Date());
 			clientService.createClient(client);	
-			model.addAttribute("message", "Success");
-			//attributes.addFlashAttribute("message", "Save Success!!");			
+			//model.addAttribute("message", "Success");
+			//attributes.addFlashAttribute("message", "Save Success!!");
+			model.addAttribute("allClient", clientService.allClient());
+			return "client/listclient";
 		} catch (Exception e) {
 			//System.out.println("newclient/save-->"+client);
 			System.out.println("on ERROR");
 			model.addAttribute("message", "Error");		
 		}
-		
-		model.addAttribute("allClient", clientService.allClient());
-		
-		return "client/newClient1";
+		return "client/newclient";
 	}
 	
 	@InitBinder

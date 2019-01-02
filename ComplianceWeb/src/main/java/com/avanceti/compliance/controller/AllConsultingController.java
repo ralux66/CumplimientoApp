@@ -33,16 +33,12 @@ public class AllConsultingController {
 	public String goConsulting(Model model, @RequestParam("nameSearch") String name) {
 		Double score;	
 		List<ResultSearchCustomized> resultSerachList = new LinkedList<>();	
-		ResultSearchCustomized resultSerach =  new ResultSearchCustomized();			
-		JaroWinklerDistance jaroSearch = new JaroWinklerDistance();
+		ResultSearchCustomized resultSerach =  new ResultSearchCustomized();
 		List<Ofac> allOfacList = new LinkedList<>();	
-		
-		
-			
 		allOfacList = ofacService.findByLikeName(name);
 		
 		for (Ofac ofac : allOfacList) {			
-			score = jaroSearch.apply(name, ofac.getName());
+			score = JaroWinklerDistance.apply(name, ofac.getName());
 			if (score > 0.70) {
 				resultSerach.setName(ofac.getName());
 				resultSerach.setAddress(ofac.getAddress());

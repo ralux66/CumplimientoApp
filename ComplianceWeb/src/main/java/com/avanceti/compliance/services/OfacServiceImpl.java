@@ -13,22 +13,19 @@ import com.avanceti.compliance.repository.IOfacRepository;
 @Service
 @Transactional
 public class OfacServiceImpl implements IOfacService {
-	List<Ofac> optionalOfac = null;
-	List<Ofac> allOfacByName = null;
-
+	
 	@Autowired
 	private IOfacRepository ofacDao;
 	
 	@Override
 	public List<Ofac> findAllOfac() {
-		optionalOfac = ofacDao.findAll();
-		return optionalOfac;
+		
+		return ofacDao.findAll();
 	}
 
 	@Override
-	public List<Ofac> findByLikeName(String name) {
-		allOfacByName = ofacDao.findByNameContaining(name);
-		return allOfacByName;
+	public List<Ofac> findByLikeName(String name) {		
+		return ofacDao.findByNameContaining(name);
 	}
 
 	
