@@ -3,6 +3,7 @@ package com.avanceti.compliance.model;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -80,7 +82,7 @@ public class Profile implements Serializable {
 	    //@OneToMany	    
 	    private List<ModulosPerfiles> modulosPerfilesList;
 	    
-	    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "idperfil", fetch = FetchType.EAGER)
+	    @OneToOne(cascade = CascadeType.ALL, mappedBy = "idperfil", fetch = FetchType.LAZY)
 	    //@Fetch(value = FetchMode.SUBSELECT)
 	    //@OneToMany
 	    @Transient

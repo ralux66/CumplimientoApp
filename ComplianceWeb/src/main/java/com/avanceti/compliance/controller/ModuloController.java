@@ -34,7 +34,7 @@ public class ModuloController {
 	@GetMapping(value = "/listamodulo")
 	public String listModulos(Model model) {		
 		model.addAttribute("modelList", modulosService.allModulos());
-		return "modulos/listmodulos";
+		return "modulos/listamodulos";
 	}
 	
 	@PostMapping(value="/savemodulo")
