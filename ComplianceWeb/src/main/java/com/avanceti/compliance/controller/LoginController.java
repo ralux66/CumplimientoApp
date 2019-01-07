@@ -26,7 +26,7 @@ public class LoginController {
 
 	@GetMapping(value = "/")
 	public String homeSearch() {
-		return "login/index";
+		return "login/index1";
 	}
 
 	@PostMapping(value = "/gologin")
@@ -72,7 +72,7 @@ public class LoginController {
 				return "redirect:/";
 			}
 		} catch (Exception e) {
-			System.out.println("Some Error");
+			System.out.println("Some Error "+e.getMessage());
 		}
 		return "redirect:/dashboard/";
 		//return "login/index";

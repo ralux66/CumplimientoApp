@@ -19,16 +19,21 @@ import com.avanceti.compliance.utility.JaroWinklerDistance;
 
 
 @Controller
-@RequestMapping(value = "/search")
+@RequestMapping(value = "/blacklist")
 public class BlackListController {
 	@Autowired
 	private ISdnConsolidatService isdnService;
 	
 	
 
-	@GetMapping(value = "/blacklist")
+	@GetMapping(value = "/searchblacklist")
 	public String homeSearch() {
 		return "blacklist/search";
+	}
+	
+	@GetMapping(value = "/newblacklist")
+	public String newBlackList() {
+		return "blacklist/newblacklist";
 	}
 
 	@PostMapping(value = "/gosearch")
