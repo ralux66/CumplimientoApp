@@ -52,9 +52,9 @@ public class MostWantedController {
 			return "mostwanted/listamostwanted";
 		} catch (Exception e) {
 			//System.out.println("newclient/save-->"+client);
-			System.out.println("on ERROR");
+			System.out.println("on ERROR "+e.getMessage());
 			model.addAttribute("message", "Error");		
 		}
-		return "client/newclient";
+		return "mostwanted/newmostwanted";
 	}
 }

@@ -151,16 +151,16 @@ public class Mostwanted implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+    
+    public String getNombreCompleto() {
+		return nombreCompleto;
+	}
 
-    public String getNombreCompreto() {
-        return nombreCompleto;
-    }
+	public void setNombreCompleto(String nombreCompleto) {
+		this.nombreCompleto = nombreCompleto;
+	}
 
-    public void setNombreCompreto(String nombreCompreto) {
-        this.nombreCompleto = nombreCompreto;
-    }
-
-    public String getPrimerNombre() {
+	public String getPrimerNombre() {
         return primerNombre;
     }
 
