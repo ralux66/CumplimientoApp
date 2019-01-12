@@ -27,7 +27,7 @@ public class MostWantedController {
 	public String formMostWanted(Model model, @ModelAttribute("mostwanted") Mostwanted mostwanted) {
 		return "mostwanted/newmostwanted";
 	}
-	@GetMapping(value = "/newmostwanted")
+	@GetMapping(value = "/listamostwanted")
 	public String formListaMostWanted(Model model) {
 		model.addAttribute("allMostWanted", mostwantedService.findMostwantedAll());
 		return "mostwanted/listamostwanted";

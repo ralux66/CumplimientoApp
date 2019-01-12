@@ -36,8 +36,8 @@ public class Mostwanted implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
-    @Column(name = "NombreCompreto")
-    private String nombreCompreto;
+    @Column(name = "NombreCompleto")
+    private String nombreCompleto;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -125,9 +125,9 @@ public class Mostwanted implements Serializable {
         this.id = id;
     }
 
-    public Mostwanted(Integer id, String nombreCompreto, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String apellidoCasada, String alias, String delito, String residencia, String estado, String masInformacion, String creadopor, Date creadoel, String modificadopor, Date modificadoel) {
+    public Mostwanted(Integer id, String nombreCompleto, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, String apellidoCasada, String alias, String delito, String residencia, String estado, String masInformacion, String creadopor, Date creadoel, String modificadopor, Date modificadoel) {
         this.id = id;
-        this.nombreCompreto = nombreCompreto;
+        this.nombreCompleto = nombreCompleto;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.primerApellido = primerApellido;
@@ -153,11 +153,11 @@ public class Mostwanted implements Serializable {
     }
 
     public String getNombreCompreto() {
-        return nombreCompreto;
+        return nombreCompleto;
     }
 
     public void setNombreCompreto(String nombreCompreto) {
-        this.nombreCompreto = nombreCompreto;
+        this.nombreCompleto = nombreCompreto;
     }
 
     public String getPrimerNombre() {
@@ -318,7 +318,7 @@ public class Mostwanted implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Mostwanted [id=" + id + ", nombreCompreto=" + nombreCompreto + ", primerNombre=" + primerNombre
+		return "Mostwanted [id=" + id + ", nombreCompleto=" + nombreCompleto + ", primerNombre=" + primerNombre
 				+ ", segundoNombre=" + segundoNombre + ", primerApellido=" + primerApellido + ", segundoApellido="
 				+ segundoApellido + ", apellidoCasada=" + apellidoCasada + ", alias=" + alias + ", delito=" + delito
 				+ ", residencia=" + residencia + ", estado=" + estado + ", masInformacion=" + masInformacion
