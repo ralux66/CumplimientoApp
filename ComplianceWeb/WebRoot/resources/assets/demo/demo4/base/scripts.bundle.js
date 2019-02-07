@@ -1479,7 +1479,19 @@ var KUtil = function() {
                 ps.destroy();
                 ps = KUtil.data(element).remove('ps');
             }
-        }
+        },
+
+        setHTML: function(el, html) {
+            if (KUtil.get(el)) {
+                KUtil.get(el).innerHTML = html;
+            }
+        },
+
+        getHTML: function(el) {
+            if (KUtil.get(el)) {
+                return KUtil.get(el).innerHTML;
+            }
+        } 
     }
 }();
 
@@ -1487,6 +1499,11 @@ var KUtil = function() {
 KUtil.ready(function() {
     KUtil.init();
 });
+
+// CSS3 Transitions only after page load(.k-page-loading class added to body tag and remove with JS on page load)
+window.onload = function() {    
+    KUtil.removeClass(KUtil.get('body'), 'k-page--loading');
+}
 "use strict";
 
 /**
@@ -2011,7 +2028,6 @@ $(document).ready(function() {
 			},
 
 			lockTable: function() {
-				// todo; revise lock table responsive
 				var lock = {
 					lockEnabled: false,
 					init: function() {
@@ -2101,7 +2117,6 @@ $(document).ready(function() {
 					Plugin.setHeadTitle(datatable.tableFoot);
 				}
 
-				// todo; full render datatable for specific condition only
 				Plugin.spinnerCallback(true);
 				$(datatable.wrap).removeClass(pfx + 'datatable--loaded');
 
@@ -2156,7 +2171,6 @@ $(document).ready(function() {
 
 						Plugin.scrollbar.call();
 
-						// Plugin.hoverColumn.call();
 						Plugin.spinnerCallback(false);
 						Plugin.sorting.call();
 					});
@@ -2915,7 +2929,6 @@ $(document).ready(function() {
 					rowProps = options.data.attr.rowProps.slice(start, end);
 				}
 
-				// todo; fix performance
 				var tableBody = document.createElement('tbody');
 				tableBody.style.visibility = 'hidden';
 				var colLength = options.columns.length;
@@ -3069,7 +3082,6 @@ $(document).ready(function() {
 						pg.meta.perpage = parseInt(pg.meta.perpage);
 						pg.meta.total = parseInt(pg.meta.total);
 
-						// todo; if meta object not exist will cause error
 						// always recount total pages
 						pg.meta.pages = Math.max(Math.ceil(pg.meta.total / pg.meta.perpage), 1);
 
@@ -3224,7 +3236,7 @@ $(document).ready(function() {
 						if (pageSizes.length == 0) pageSizes = [10, 20, 30, 50, 100];
 						$.each(pageSizes, function(i, size) {
 							var display = size;
-							if (size === -1) display = 'All';
+							if (size === -1) display = Plugin.getOption('translate.toolbar.pagination.items.default.all');
 							$('<option/>').attr('value', size).html(display).appendTo(pageSizeSelect);
 						});
 
@@ -3854,17 +3866,6 @@ $(document).ready(function() {
 			},
 
 			/**
-			 * todo; implement hover column
-			 */
-			hoverColumn: function() {
-				$(datatable.tableBody).on('mouseenter', '.' + pfx + 'datatable__cell', function() {
-					var colIdx = $(Plugin.cell(this).nodes()).index();
-					$(Plugin.cells().nodes()).removeClass(pfx + 'datatable__cell--hover');
-					$(Plugin.column(colIdx).nodes()).addClass(pfx + 'datatable__cell--hover');
-				});
-			},
-
-			/**
 			 * To enable auto columns features for remote data source
 			 */
 			setAutoColumns: function() {
@@ -4134,7 +4135,7 @@ $(document).ready(function() {
 
 						var column = Plugin.getColumnByField(meta.field);
 						// sort is disabled for this column
-						if (typeof column.sortable !== 'undefined' && column.sortable === false) return;
+						if (typeof column !== 'undefined' && typeof column.sortable !== 'undefined' && column.sortable === false) return;
 
 						// sort icon beside column header
 						var td = $(datatable.tableHead).find('.' + pfx + 'datatable__cell[data-field="' + meta.field + '"]').attr('data-sort', meta.sort);
@@ -4200,7 +4201,6 @@ $(document).ready(function() {
 			 * @returns {*|null}
 			 */
 			localDataUpdate: function() {
-				// todo; fix twice execution
 				var params = Plugin.getDataSourceParam();
 				if (typeof datatable.originalDataSet === 'undefined') {
 					datatable.originalDataSet = datatable.dataSet;
@@ -4237,7 +4237,9 @@ $(document).ready(function() {
 								}
 							}
 							else if (typeof obj[field] === 'object') {
-								return nestedSearch(obj[field]);
+								if (nestedSearch(obj[field])) {
+									return true;
+								}
 							}
 						}
 						return false;
@@ -4681,7 +4683,6 @@ $(document).ready(function() {
 			 * @param active
 			 */
 			setActiveAll: function(active) {
-				// todo; check if child table also will set active?
 				var checkboxes = $(datatable.table).
 					find('> tbody, > thead').
 					find('> tr:not(.' + pfx + 'datatable__row-subtable)').
@@ -5257,6 +5258,7 @@ $(document).ready(function() {
 							more: 'More pages',
 							input: 'Page number',
 							select: 'Select page size',
+							all: 'all'
 						},
 						info: 'Showing {{start}} - {{end}} of {{total}}',
 					},
@@ -5848,6 +5850,9 @@ var KMenu = function(elementId, options) {
 
             // build menu
             Plugin.build();
+
+            // reset submenu props
+            Plugin.resetSubmenuProps();
         },
 
         /**
@@ -5870,7 +5875,7 @@ var KMenu = function(elementId, options) {
             }
 
             // General link click
-            the.eventHandlers['event_6'] = KUtil.on(element, '.k-menu__item:not(.k-menu__item--submenu) > .k-menu__link:not(.k-menu__toggle):not(.k-menu__link--toggle-skip)', 'click', Plugin.handleLinkClick);
+            // the.eventHandlers['event_6'] = KUtil.on(element, '.k-menu__item:not(.k-menu__item--submenu) > .k-menu__link:not(.k-menu__toggle):not(.k-menu__link--toggle-skip)', 'click', Plugin.handleLinkClick);
 
             // Init scrollable menu
             if (the.options.scroll && the.options.scroll.height) {
@@ -5967,17 +5972,18 @@ var KMenu = function(elementId, options) {
             }
         },
 
+
         /**
-         * Handles menu link click
+         * Reset submenu attributes
          * @returns {KMenu}
          */
-        handleLinkClick: function(e) {
-            if ( Plugin.eventTrigger('linkClick', this) === false ) {
-                e.preventDefault();
-            };
-
-            if ( Plugin.getSubmenuMode(this) === 'dropdown' || Plugin.isConditionalSubmenuDropdown() ) {
-                Plugin.handleSubmenuDropdownClose(e, this);
+        resetSubmenuProps: function(e) {
+            var submenus = KUtil.findAll(element, '.k-menu__submenu');
+            if ( submenus ) {
+                for (var i = 0, len = submenus.length; i < len; i++) {
+                    KUtil.css(submenus[0], 'display', '');
+                    KUtil.css(submenus[0], 'overflow', '');                                        
+                }
             }
         },
 
@@ -5987,12 +5993,10 @@ var KMenu = function(elementId, options) {
          */
         handleSubmenuDrodownHoverEnter: function(e) {
             if ( Plugin.getSubmenuMode(this) === 'accordion' ) {
-                console.log('test111!');
                 return;
             }
 
             if ( the.resumeDropdownHover() === false ) {
-                console.log('test11111!');
                 return;
             }
 
@@ -6224,9 +6228,6 @@ var KMenu = function(elementId, options) {
                 }
             } 
 
-            // adjust submenu position
-            Plugin.adjustSubmenuDropdownArrowPos(item);
-
             // add submenu activation class
             KUtil.addClass(item, 'k-menu__item--hover');
             
@@ -6253,43 +6254,6 @@ var KMenu = function(elementId, options) {
                 KUtil.remove(this);
                 Plugin.hideSubmenuDropdown(el, true);
             });
-        },
-
-        /**
-         * Handles submenu click toggle
-         * @returns {KMenu}
-         */
-        adjustSubmenuDropdownArrowPos: function(item) {
-            var submenu = KUtil.child(item, '.k-menu__submenu');
-            var arrow = KUtil.child( submenu, '.k-menu__arrow.k-menu__arrow--adjust');
-            var subnav = KUtil.child( submenu, '.k-menu__subnav');
-
-            if ( arrow ) {
-                var pos = 0; 
-                var link = KUtil.child(item, '.k-menu__link');
-
-                if ( KUtil.hasClass(submenu, 'k-menu__submenu--classic') || KUtil.hasClass(submenu, 'k-menu__submenu--fixed') ) {
-                    if ( KUtil.hasClass(submenu, 'k-menu__submenu--right')) {
-                        pos = KUtil.outerWidth(item) / 2;
-                        if (KUtil.hasClass(submenu, 'k-menu__submenu--pull')) {
-                            pos = pos + Math.abs( parseFloat(KUtil.css(submenu, 'margin-right')) );
-                        }
-                        pos = parseInt(KUtil.css(submenu, 'width')) - pos;
-                    } else if ( KUtil.hasClass(submenu, 'k-menu__submenu--left') ) {
-                        pos = KUtil.outerWidth(item) / 2;
-                        if ( KUtil.hasClass(submenu, 'k-menu__submenu--pull')) {
-                            pos = pos + Math.abs( parseFloat(KUtil.css(submenu, 'margin-left')) );
-                        }
-                    }
-                } else {
-                    if ( KUtil.hasClass(submenu, 'k-menu__submenu--center') || KUtil.hasClass(submenu, 'k-menu__submenu--full') ) {
-                        pos = KUtil.offset(item).left - ((KUtil.getViewPort().width - parseInt(KUtil.css(submenu, 'width'))) / 2);
-                        pos = pos + (KUtil.outerWidth(item) / 2);
-                    }
-                }
-
-                KUtil.css(arrow, 'left', pos + 'px');  
-            }
         },
 
         /**
@@ -6862,7 +6826,11 @@ var KPortlet = function(elementId, options) {
                 expand: 'Expand'
             },
             reload: 'Reload',
-            remove: 'Remove'
+            remove: 'Remove',
+            fullscreen: {
+                on: 'Fullscreen',
+                off: 'Exit Fullscreen'
+            }
         },
         sticky: {
             offset: 300,
@@ -6942,6 +6910,15 @@ var KPortlet = function(elementId, options) {
                 KUtil.addEvent(toggle, 'click', function(e) {
                     e.preventDefault();
                     Plugin.toggle();
+                });
+            }
+
+            //== Fullscreen
+            var fullscreen = KUtil.find(the.head, '[data-kportlet-tool=fullscreen]');
+            if (fullscreen) {
+                KUtil.addEvent(fullscreen, 'click', function(e) {
+                    e.preventDefault();
+                    Plugin.fullscreen();
                 });
             }
 
@@ -7046,6 +7023,10 @@ var KPortlet = function(elementId, options) {
                 return;
             }
 
+            if (KUtil.hasClass(body, 'k-portlet--fullscreen') && KUtil.hasClass(element, 'k-portlet--fullscreen')) {
+                Plugin.fullscreen('off');
+            }
+
             Plugin.removeTooltips();
 
             KUtil.remove(element);
@@ -7082,16 +7063,18 @@ var KPortlet = function(elementId, options) {
         setupTooltips: function() {
             if (the.options.tooltips) {
                 var collapsed = KUtil.hasClass(element, 'k-portlet--collapse') || KUtil.hasClass(element, 'k-portlet--collapsed');
+                var fullscreenOn = KUtil.hasClass(body, 'k-portlet--fullscreen') && KUtil.hasClass(element, 'k-portlet--fullscreen');
 
-                // Remove
+                //== Remove
                 var remove = KUtil.find(the.head, '[data-kportlet-tool=remove]');
                 if (remove) {
+                    var placement = (fullscreenOn ? 'bottom' : 'top');
                     var tip = new Tooltip(remove, {
                         title: the.options.tools.remove,
-                        placement: 'top',
-                        offset: '0,5px',
+                        placement: placement,
+                        offset: (fullscreenOn ? '0,10px,0,0' : '0,5px'),
                         trigger: 'hover',
-                        template: '<div class="tooltip tooltip-portlet tooltip bs-tooltip-top" role="tooltip">\
+                        template: '<div class="tooltip tooltip-portlet tooltip bs-tooltip-' + placement + '" role="tooltip">\
                             <div class="tooltip-arrow arrow"></div>\
                             <div class="tooltip-inner"></div>\
                         </div>'
@@ -7100,15 +7083,16 @@ var KPortlet = function(elementId, options) {
                     KUtil.data(remove).set('tooltip', tip);
                 }
 
-                // Reload
+                //== Reload
                 var reload = KUtil.find(the.head, '[data-kportlet-tool=reload]');
                 if (reload) {
+                    var placement = (fullscreenOn ? 'bottom' : 'top');
                     var tip = new Tooltip(reload, {
                         title: the.options.tools.reload,
-                        placement: 'top',
-                        offset: '0,5px',
+                        placement: placement,
+                        offset: (fullscreenOn ? '0,10px,0,0' : '0,5px'),
                         trigger: 'hover',
-                        template: '<div class="tooltip tooltip-portlet tooltip bs-tooltip-top" role="tooltip">\
+                        template: '<div class="tooltip tooltip-portlet tooltip bs-tooltip-' + placement + '" role="tooltip">\
                             <div class="tooltip-arrow arrow"></div>\
                             <div class="tooltip-inner"></div>\
                         </div>'
@@ -7117,21 +7101,40 @@ var KPortlet = function(elementId, options) {
                     KUtil.data(reload).set('tooltip', tip);
                 }
 
-                // Toggle
+                //== Toggle
                 var toggle = KUtil.find(the.head, '[data-kportlet-tool=toggle]');
                 if (toggle) {
+                    var placement = (fullscreenOn ? 'bottom' : 'top');
                     var tip = new Tooltip(toggle, {
                         title: (collapsed ? the.options.tools.toggle.expand : the.options.tools.toggle.collapse),
-                        placement: 'top',
-                        offset: '0,5px',
+                        placement: placement,
+                        offset: (fullscreenOn ? '0,10px,0,0' : '0,5px'),
                         trigger: 'hover',
-                        template: '<div class="tooltip tooltip-portlet tooltip bs-tooltip-top" role="tooltip">\
+                        template: '<div class="tooltip tooltip-portlet tooltip bs-tooltip-' + placement + '" role="tooltip">\
                             <div class="tooltip-arrow arrow"></div>\
                             <div class="tooltip-inner"></div>\
                         </div>'
                     });
 
                     KUtil.data(toggle).set('tooltip', tip);
+                }
+
+                //== Fullscreen
+                var fullscreen = KUtil.find(the.head, '[data-kportlet-tool=fullscreen]');
+                if (fullscreen) {
+                    var placement = (fullscreenOn ? 'bottom' : 'top');
+                    var tip = new Tooltip(fullscreen, {
+                        title: (fullscreenOn ? the.options.tools.fullscreen.off : the.options.tools.fullscreen.on),
+                        placement: placement,
+                        offset: (fullscreenOn ? '0,10px,0,0' : '0,5px'),
+                        trigger: 'hover',
+                        template: '<div class="tooltip tooltip-portlet tooltip bs-tooltip-' + placement + '" role="tooltip">\
+                            <div class="tooltip-arrow arrow"></div>\
+                            <div class="tooltip-inner"></div>\
+                        </div>'
+                    });
+
+                    KUtil.data(fullscreen).set('tooltip', tip);
                 }
             }
         },
@@ -7141,22 +7144,28 @@ var KPortlet = function(elementId, options) {
          */
         removeTooltips: function() {
             if (the.options.tooltips) {
-                // Remove
+                //== Remove
                 var remove = KUtil.find(the.head, '[data-kportlet-tool=remove]');
                 if (remove && KUtil.data(remove).has('tooltip')) {
                     KUtil.data(remove).get('tooltip').dispose();
                 }
 
-                // Reload
+                //== Reload
                 var reload = KUtil.find(the.head, '[data-kportlet-tool=reload]');
                 if (reload && KUtil.data(reload).has('tooltip')) {
                     KUtil.data(reload).get('tooltip').dispose();
                 }
 
-                // Toggle
+                //== Toggle
                 var toggle = KUtil.find(the.head, '[data-kportlet-tool=toggle]');
                 if (toggle && KUtil.data(toggle).has('tooltip')) {
                     KUtil.data(toggle).get('tooltip').dispose();
+                }
+
+                //== Fullscreen
+                var fullscreen = KUtil.find(the.head, '[data-kportlet-tool=fullscreen]');
+                if (fullscreen && KUtil.data(fullscreen).has('tooltip')) {
+                    KUtil.data(fullscreen).get('tooltip').dispose();
                 }
             }
         },
@@ -7217,6 +7226,49 @@ var KPortlet = function(elementId, options) {
             var toggle = KUtil.find(the.head, '[data-kportlet-tool=toggle]');
             if (toggle && KUtil.data(toggle).has('tooltip')) {
                 KUtil.data(toggle).get('tooltip').updateTitleContent(the.options.tools.toggle.collapse);
+            }
+        },
+
+        /**
+         * fullscreen
+         */
+        fullscreen: function(mode) {
+            var d = {};
+            var speed = 300;
+
+            if (mode === 'off' || (KUtil.hasClass(body, 'k-portlet--fullscreen') && KUtil.hasClass(element, 'k-portlet--fullscreen'))) {
+                Plugin.eventTrigger('beforeFullscreenOff');
+
+                KUtil.removeClass(body, 'k-portlet--fullscreen');
+                KUtil.removeClass(element, 'k-portlet--fullscreen');
+
+                Plugin.removeTooltips();
+                Plugin.setupTooltips();
+
+                if (the.foot) {
+                    KUtil.css(the.body, 'margin-bottom', '');
+                    KUtil.css(the.foot, 'margin-top', '');
+                }
+
+                Plugin.eventTrigger('afterFullscreenOff');
+            } else {
+                Plugin.eventTrigger('beforeFullscreenOn');
+
+                KUtil.addClass(element, 'k-portlet--fullscreen');
+                KUtil.addClass(body, 'k-portlet--fullscreen');
+
+                Plugin.removeTooltips();
+                Plugin.setupTooltips();
+
+
+                if (the.foot) {
+                    var height1 = parseInt(KUtil.css(the.foot, 'height'));
+                    var height2 = parseInt(KUtil.css(the.foot, 'height')) + parseInt(KUtil.css(the.head, 'height'));
+                    KUtil.css(the.body, 'margin-bottom', height1 + 'px');
+                    KUtil.css(the.foot, 'margin-top', '-' + height2 + 'px');
+                }
+
+                Plugin.eventTrigger('afterFullscreenOn');
             }
         },
 
@@ -7342,6 +7394,22 @@ var KPortlet = function(elementId, options) {
      */
     the.expand = function() {
         return Plugin.expand();
+    };
+
+    /**
+     * Fullscreen portlet
+     * @returns {MPortlet}
+     */
+    the.fullscreen = function() {
+        return Plugin.fullscreen('on');
+    };
+
+    /**
+     * Fullscreen portlet
+     * @returns {MPortlet}
+     */
+    the.unFullscreen = function() {
+        return Plugin.fullscreen('off');
     };
 
     /**
@@ -7549,231 +7617,6 @@ var KScrolltop = function(elementId, options) {
     init = true;
 
     // Return plugin instance
-    return the;
-};
-"use strict";
-
-// plugin setup
-var KToggle = function(elementId, options) {
-    // Main object
-    var the = this;
-    var init = false;
-
-    // Get element object
-    var element = KUtil.get(elementId);
-    var body = KUtil.get('body');  
-
-    if (!element) {
-        return;
-    }
-
-    // Default options
-    var defaultOptions = {
-        togglerState: '',
-        targetState: ''
-    };    
-
-    ////////////////////////////
-    // ** Private Methods  ** //
-    ////////////////////////////
-
-    var Plugin = {
-        /**
-         * Construct
-         */
-
-        construct: function(options) {
-            if (KUtil.data(element).has('toggle')) {
-                the = KUtil.data(element).get('toggle');
-            } else {
-                // reset menu
-                Plugin.init(options);
-
-                // build menu
-                Plugin.build();
-
-                KUtil.data(element).set('toggle', the);
-            }
-
-            return the;
-        },
-
-        /**
-         * Handles subtoggle click toggle
-         */
-        init: function(options) {
-            the.element = element;
-            the.events = [];
-
-            // merge default and user defined options
-            the.options = KUtil.deepExtend({}, defaultOptions, options);
-
-            the.target = KUtil.get(the.options.target);
-            the.targetState = the.options.targetState;
-            the.togglerState = the.options.togglerState;
-
-            the.state = KUtil.hasClasses(the.target, the.targetState) ? 'on' : 'off';
-        },
-
-        /**
-         * Setup toggle
-         */
-        build: function() {
-            KUtil.addEvent(element, 'mouseup', Plugin.toggle);
-        },
-        
-        /**
-         * Handles offcanvas click toggle
-         */
-        toggle: function(e) {
-            Plugin.eventTrigger('beforeToggle');
-
-            if (the.state == 'off') {
-                Plugin.toggleOn();
-            } else {
-                Plugin.toggleOff();
-            }
-
-            Plugin.eventTrigger('afterToggle');
-
-            e.preventDefault();
-
-            return the;
-        },
-
-        /**
-         * Handles toggle click toggle
-         */
-        toggleOn: function() {
-            Plugin.eventTrigger('beforeOn');
-
-            KUtil.addClass(the.target, the.targetState);
-
-            if (the.togglerState) {
-                KUtil.addClass(element, the.togglerState);
-            }
-
-            the.state = 'on';
-
-            Plugin.eventTrigger('afterOn');
-
-            Plugin.eventTrigger('toggle');
-
-            return the;
-        },
-
-        /**
-         * Handles toggle click toggle
-         */
-        toggleOff: function() {
-            Plugin.eventTrigger('beforeOff');
-
-            KUtil.removeClass(the.target, the.targetState);
-
-            if (the.togglerState) {
-                KUtil.removeClass(element, the.togglerState);
-            }
-
-            the.state = 'off';
-
-            Plugin.eventTrigger('afterOff');
-
-            Plugin.eventTrigger('toggle');
-
-            return the;
-        },
-
-        /**
-         * Trigger events
-         */
-        eventTrigger: function(name) {
-            for (var i = 0; i < the.events.length; i++) {
-                var event = the.events[i];
-
-                if (event.name == name) {
-                    if (event.one == true) {
-                        if (event.fired == false) {
-                            the.events[i].fired = true;                            
-                            event.handler.call(this, the);
-                        }
-                    } else {
-                        event.handler.call(this, the);
-                    }
-                }
-            }
-        },
-
-        addEvent: function(name, handler, one) {
-            the.events.push({
-                name: name,
-                handler: handler,
-                one: one,
-                fired: false
-            });
-
-            return the;
-        }
-    };
-
-    //////////////////////////
-    // ** Public Methods ** //
-    //////////////////////////
-
-    /**
-     * Set default options 
-     */
-
-    the.setDefaults = function(options) {
-        defaultOptions = options;
-    };
-
-    /**
-     * Get toggle state 
-     */
-    the.getState = function() {
-        return the.state;
-    };
-
-    /**
-     * Toggle 
-     */
-    the.toggle = function() {
-        return Plugin.toggle();
-    };
-
-    /**
-     * Toggle on 
-     */
-    the.toggleOn = function() {
-        return Plugin.toggleOn();
-    };
-
-    /**
-     * Toggle off 
-     */
-    the.toggleOff = function() {
-        return Plugin.toggleOff();
-    };
-
-    /**
-     * Attach event
-     * @returns {KToggle}
-     */
-    the.on = function(name, handler) {
-        return Plugin.addEvent(name, handler);
-    };
-
-    /**
-     * Attach event that will be fired once
-     * @returns {KToggle}
-     */
-    the.one = function(name, handler) {
-        return Plugin.addEvent(name, handler, true);
-    };
-
-    // Construct plugin
-    Plugin.construct.apply(the, [options]);
-
     return the;
 };
 // plugin setup
@@ -8068,19 +7911,6 @@ var KWizard = function(elementId, options) {
             }            
         },
 
-        
-        /**
-         * Show/hide target content
-         */
-        handleTarget: function() {
-            var step = the.steps[the.currentStep - 1];
-            var target = KUtil.get(KUtil.attr(step, 'data-kwizard-target'));
-            var current = KUtil.find(element, '.k-wizard__form-step--current');
-            
-            KUtil.removeClass(current, 'k-wizard__form-step--current');
-            KUtil.addClass(target, 'k-wizard__form-step--current');
-        },
-
         /**
          * Get next step
          */
@@ -8226,6 +8056,231 @@ var KWizard = function(elementId, options) {
 
     /**
      * Attach event that will be fired once
+     */
+    the.one = function(name, handler) {
+        return Plugin.addEvent(name, handler, true);
+    };
+
+    // Construct plugin
+    Plugin.construct.apply(the, [options]);
+
+    return the;
+};
+"use strict";
+
+// plugin setup
+var KToggle = function(elementId, options) {
+    // Main object
+    var the = this;
+    var init = false;
+
+    // Get element object
+    var element = KUtil.get(elementId);
+    var body = KUtil.get('body');  
+
+    if (!element) {
+        return;
+    }
+
+    // Default options
+    var defaultOptions = {
+        togglerState: '',
+        targetState: ''
+    };    
+
+    ////////////////////////////
+    // ** Private Methods  ** //
+    ////////////////////////////
+
+    var Plugin = {
+        /**
+         * Construct
+         */
+
+        construct: function(options) {
+            if (KUtil.data(element).has('toggle')) {
+                the = KUtil.data(element).get('toggle');
+            } else {
+                // reset menu
+                Plugin.init(options);
+
+                // build menu
+                Plugin.build();
+
+                KUtil.data(element).set('toggle', the);
+            }
+
+            return the;
+        },
+
+        /**
+         * Handles subtoggle click toggle
+         */
+        init: function(options) {
+            the.element = element;
+            the.events = [];
+
+            // merge default and user defined options
+            the.options = KUtil.deepExtend({}, defaultOptions, options);
+
+            the.target = KUtil.get(the.options.target);
+            the.targetState = the.options.targetState;
+            the.togglerState = the.options.togglerState;
+
+            the.state = KUtil.hasClasses(the.target, the.targetState) ? 'on' : 'off';
+        },
+
+        /**
+         * Setup toggle
+         */
+        build: function() {
+            KUtil.addEvent(element, 'mouseup', Plugin.toggle);
+        },
+        
+        /**
+         * Handles offcanvas click toggle
+         */
+        toggle: function(e) {
+            Plugin.eventTrigger('beforeToggle');
+
+            if (the.state == 'off') {
+                Plugin.toggleOn();
+            } else {
+                Plugin.toggleOff();
+            }
+
+            Plugin.eventTrigger('afterToggle');
+
+            e.preventDefault();
+
+            return the;
+        },
+
+        /**
+         * Handles toggle click toggle
+         */
+        toggleOn: function() {
+            Plugin.eventTrigger('beforeOn');
+
+            KUtil.addClass(the.target, the.targetState);
+
+            if (the.togglerState) {
+                KUtil.addClass(element, the.togglerState);
+            }
+
+            the.state = 'on';
+
+            Plugin.eventTrigger('afterOn');
+
+            Plugin.eventTrigger('toggle');
+
+            return the;
+        },
+
+        /**
+         * Handles toggle click toggle
+         */
+        toggleOff: function() {
+            Plugin.eventTrigger('beforeOff');
+
+            KUtil.removeClass(the.target, the.targetState);
+
+            if (the.togglerState) {
+                KUtil.removeClass(element, the.togglerState);
+            }
+
+            the.state = 'off';
+
+            Plugin.eventTrigger('afterOff');
+
+            Plugin.eventTrigger('toggle');
+
+            return the;
+        },
+
+        /**
+         * Trigger events
+         */
+        eventTrigger: function(name) {
+            for (var i = 0; i < the.events.length; i++) {
+                var event = the.events[i];
+
+                if (event.name == name) {
+                    if (event.one == true) {
+                        if (event.fired == false) {
+                            the.events[i].fired = true;                            
+                            event.handler.call(this, the);
+                        }
+                    } else {
+                        event.handler.call(this, the);
+                    }
+                }
+            }
+        },
+
+        addEvent: function(name, handler, one) {
+            the.events.push({
+                name: name,
+                handler: handler,
+                one: one,
+                fired: false
+            });
+
+            return the;
+        }
+    };
+
+    //////////////////////////
+    // ** Public Methods ** //
+    //////////////////////////
+
+    /**
+     * Set default options 
+     */
+
+    the.setDefaults = function(options) {
+        defaultOptions = options;
+    };
+
+    /**
+     * Get toggle state 
+     */
+    the.getState = function() {
+        return the.state;
+    };
+
+    /**
+     * Toggle 
+     */
+    the.toggle = function() {
+        return Plugin.toggle();
+    };
+
+    /**
+     * Toggle on 
+     */
+    the.toggleOn = function() {
+        return Plugin.toggleOn();
+    };
+
+    /**
+     * Toggle off 
+     */
+    the.toggleOff = function() {
+        return Plugin.toggleOff();
+    };
+
+    /**
+     * Attach event
+     * @returns {KToggle}
+     */
+    the.on = function(name, handler) {
+        return Plugin.addEvent(name, handler);
+    };
+
+    /**
+     * Attach event that will be fired once
+     * @returns {KToggle}
      */
     the.one = function(name, handler) {
         return Plugin.addEvent(name, handler, true);
@@ -8623,26 +8678,34 @@ var KLayout = function() {
     var initPageStickyPortlet = function() {
         return new KPortlet('k_page_portlet', {
             sticky: {
-                offset: parseInt(KUtil.css( KUtil.get('k_header'), 'height')) + 200,
+                offset: parseInt(KUtil.css( KUtil.get('k_header'), 'height')),
                 zIndex: 90,
                 position: {
                     top: function() {
+                        var h = 0;
+
                         if (KUtil.isInResponsiveRange('desktop')) {
-                            return parseInt(KUtil.css( KUtil.get('k_header'), 'height') );
+                            if (KUtil.hasClass(body, 'k-header--fixed')) {
+                                h = h + parseInt(KUtil.css( KUtil.get('k_header'), 'height') );
+                            }
                         } else {
-                            return parseInt(KUtil.css( KUtil.get('k_header_mobile'), 'height') );
-                        }                        
+                            if (KUtil.hasClass(body, 'k-header-mobile--fixed')) {
+                                h = h + parseInt(KUtil.css( KUtil.get('k_header_mobile'), 'height') );
+                            }
+                        }    
+                        
+                        return h;                         
                     },
                     left: function() {
                         if (KUtil.isInResponsiveRange('tablet-and-mobile')) {    
-                            return parseInt(KUtil.css( KUtil.get('k_content_wrapper'), 'paddingLeft')); 
+                            return parseInt(KUtil.css( KUtil.get('k_body'), 'paddingLeft')); 
                         }
 
                         return;
                     },
                     right: function() {
                         if (KUtil.isInResponsiveRange('tablet-and-mobile')) {    
-                            return parseInt(KUtil.css( KUtil.get('k_content_wrapper'), 'paddingRight')); 
+                            return parseInt(KUtil.css( KUtil.get('k_body'), 'paddingRight')); 
                         }
 
                         return;
@@ -8661,12 +8724,10 @@ var KLayout = function() {
             this.initPageStickyPortlet();
 
             // Non functional links notice(can be removed in production)
-            $('#k_aside_menu, #k_header_menu').on('click', '.k-menu__link[href="#"]', function() {
-                if(location.hostname.match('keenthemes.com')) {
-                    swal("You have clicked on a dummy link!", "To browse the theme features please refer to the header menu.", "warning");
-                } else {
-                    swal("You have clicked on a dummy link!", "This demo shows only its unique layout features. <b>Keen's</b> all available features can be re-used in this and any other demos by refering to <b>the default demo</b>.", "warning");    
-                }
+            $('#k_aside_menu, #k_header_menu').on('click', '.k-menu__link[href="#"]', function(e) {
+                swal("", "You have clicked on a non-functional dummy link!");
+
+                e.preventDefault();
             });
         },
 

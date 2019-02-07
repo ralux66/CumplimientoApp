@@ -149,6 +149,17 @@ var DefaultDatatableDemo = function() {
 		$('#k_datatable_reload').on('click', function() {
 			datatable.reload();
 		});
+
+		$('#k_form_status').on('change', function() {
+			datatable.search($(this).val().toLowerCase(), 'status');
+		});
+
+		$('#k_form_type').on('change', function() {
+			datatable.search($(this).val().toLowerCase(), 'type');
+		});
+
+		$('#k_form_status,#k_form_type').selectpicker();
+
 	};
 
 	var eventsCapture = function() {

@@ -17,7 +17,8 @@ $k-media-breakpoints: (
 )!default;
 */
 .k-login-v2--enabled {
-  background-color: #fff; }
+  background-color: #fff;
+  padding: 0; }
 
 .k-login-v2 {
   padding: 3rem; }

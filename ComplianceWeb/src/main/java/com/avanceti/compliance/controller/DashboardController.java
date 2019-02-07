@@ -28,6 +28,6 @@ public class DashboardController {
 			}
 		}
 		model.addAttribute("user", user);
-		return "dashboard/indexTest1";
+		return "dashboard/index1";
 	}
 }

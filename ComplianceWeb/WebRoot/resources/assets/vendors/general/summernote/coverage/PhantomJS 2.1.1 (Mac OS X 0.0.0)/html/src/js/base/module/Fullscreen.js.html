@@ -1,48 +1,48 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<title>Code coverage report for src/js/base/module/Fullscreen.js</title>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="../../../../prettify.css" />
-		<link rel="stylesheet" href="../../../../base.css" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<style type='text/css'>
-			.coverage-summary .sorter {
-				background-image: url(../../../../sort-arrow-sprite.png);
-			}
-		</style>
-	</head>
-	<body>
-		<div class='wrapper'>
-			<div class='pad1'>
-				<h1>
-					<a href="../../../../index.html">all files</a> / <a href="index.html">src/js/base/module/</a> Fullscreen.js
-				</h1>
-				<div class='clearfix'>
-					<div class='fl pad1y space-right2'>
-						<span class="strong">96.67% </span>
-						<span class="quiet">Statements</span>
-						<span class='fraction'>29/30</span>
-					</div>
-					<div class='fl pad1y space-right2'>
-						<span class="strong">75% </span>
-						<span class="quiet">Branches</span>
-						<span class='fraction'>3/4</span>
-					</div>
-					<div class='fl pad1y space-right2'>
-						<span class="strong">100% </span>
-						<span class="quiet">Functions</span>
-						<span class='fraction'>6/6</span>
-					</div>
-					<div class='fl pad1y space-right2'>
-						<span class="strong">96.67% </span>
-						<span class="quiet">Lines</span>
-						<span class='fraction'>29/30</span>
-					</div>
-				</div>
-			</div>
-			<div class='status-line high'></div>
-			<pre><table class="coverage">
+<head>
+    <title>Code coverage report for src/js/base/module/Fullscreen.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../../prettify.css" />
+    <link rel="stylesheet" href="../../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../../index.html">all files</a> / <a href="index.html">src/js/base/module/</a> Fullscreen.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.97% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>32/33</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">75% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>3/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>6/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.97% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>32/33</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
 3
@@ -94,21 +94,24 @@
 49
 50
 51
-52</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+52
+53
+54
+55</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-yes">79×</span>
-<span class="cline-any cline-yes">78×</span>
+<span class="cline-any cline-yes">94×</span>
+<span class="cline-any cline-yes">93×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">78×</span>
-<span class="cline-any cline-yes">78×</span>
-<span class="cline-any cline-yes">78×</span>
-<span class="cline-any cline-yes">78×</span>
+<span class="cline-any cline-yes">93×</span>
+<span class="cline-any cline-yes">93×</span>
+<span class="cline-any cline-yes">93×</span>
+<span class="cline-any cline-yes">93×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">78×</span>
-<span class="cline-any cline-yes">78×</span>
+<span class="cline-any cline-yes">93×</span>
+<span class="cline-any cline-yes">93×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">78×</span>
+<span class="cline-any cline-yes">93×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -132,7 +135,10 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
@@ -181,11 +187,14 @@ export default class Fullscreen {
     this.$editor.toggleClass('fullscreen');
     if (this.isFullscreen()) {
       this.$editable.data('orgHeight', this.$editable.css('height'));
+      this.$editable.data('orgMaxHeight', this.$editable.css('maxHeight'));
+      this.$editable.css('maxHeight', '');
       this.$window.on('resize', this.onResize).trigger('resize');
       this.$scrollbar.css('overflow', 'hidden');
     } else {
       this.$window.off('resize', this.onResize);
       this.resizeTo({ h: this.$editable.data('orgHeight') });
+      this.$editable.css('maxHeight', this.$editable.css('orgMaxHeight'));
       this.$scrollbar.css('overflow', 'visible');
     }
 &nbsp;
@@ -196,27 +205,23 @@ export default class Fullscreen {
     return this.$editor.hasClass('fullscreen');
   }
 }
-&nbsp;</pre>
-			</td>
-			</tr>
-			</table>
-			</pre>
-			<div class='push'></div>
-<!-- for sticky footer -->
-		</div> <!-- /wrapper -->
-		<div class='footer quiet pad2 space-top1 center small'>
-			Code coverage
-			generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 20 2018 09:36:40 GMT+0900 (KST)
-		</div>
-		</div>
-		<script src="../../../../prettify.js"></script>
-		<script>
-			window.onload = function() {
-				if (typeof prettyPrint === 'function') {
-					prettyPrint();
-				}
-			};
-		</script>
-		<script src="../../../../sorter.js"></script>
-	</body>
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Nov 24 2018 21:14:15 GMT+0900 (KST)
+</div>
+</div>
+<script src="../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../sorter.js"></script>
+</body>
 </html>

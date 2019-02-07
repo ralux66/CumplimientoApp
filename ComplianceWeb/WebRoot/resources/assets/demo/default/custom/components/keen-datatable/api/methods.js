@@ -45,10 +45,10 @@ var DefaultDatatableDemo = function() {
 				{
 					field: 'id',
 					title: '#',
-					sortable: 'asc',
+					sortable: false,
 					width: 30,
 					type: 'number',
-					selector: false,
+					selector: {class: 'k-checkbox--solid k-checkbox--brand'},
 					textAlign: 'center',
 				}, {
 					field: 'employee_id',
@@ -56,6 +56,7 @@ var DefaultDatatableDemo = function() {
 				}, {
 					field: 'name',
 					title: 'Name',
+					sortable: 'asc',
 					template: function(row) {
 						return row.first_name + ' ' + row.last_name;
 					},
@@ -65,8 +66,8 @@ var DefaultDatatableDemo = function() {
 					type: 'date',
 					format: 'MM/DD/YYYY',
 				}, {
-					field: 'gender',
-					title: 'Gender',
+					field: 'email',
+					title: 'Email',
 				}, {
 					field: 'status',
 					title: 'Status',
@@ -195,6 +196,17 @@ var DefaultDatatableDemo = function() {
 		$('#k_datatable_remove_row').on('click', function() {
 			datatable.rows('.k-datatable__row--active').remove();
 		});
+
+		$('#k_form_status').on('change', function() {
+			datatable.search($(this).val().toLowerCase(), 'status');
+		});
+
+		$('#k_form_type').on('change', function() {
+			datatable.search($(this).val().toLowerCase(), 'type');
+		});
+
+		$('#k_form_status,#k_form_type').selectpicker();
+
 	};
 
 	return {

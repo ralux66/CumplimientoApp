@@ -105,6 +105,7 @@ $.summernote = $.extend($.summernote, {
 
     width: null,
     height: null,
+    linkTargetBlank: true,
 
     focus: false,
     tabSize: 4,
@@ -115,6 +116,7 @@ $.summernote = $.extend($.summernote, {
     tooltip: 'auto',
     container: 'body',
     maxTextLength: 0,
+    blockquoteBreakingLevel: 2,
 
     styleTags: ['p', 'pre', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
 
@@ -172,9 +174,9 @@ $.summernote = $.extend($.summernote, {
       onEnter: null,
       onKeyup: null,
       onKeydown: null,
-      onSubmit: null,
       onImageUpload: null,
-      onImageUploadError: null
+      onImageUploadError: null,
+      onImageLinkInsert: null
     },
 
     codemirror: {

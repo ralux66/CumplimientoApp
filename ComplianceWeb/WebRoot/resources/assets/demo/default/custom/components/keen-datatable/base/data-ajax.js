@@ -50,7 +50,7 @@ var DatatableRemoteAjaxDemo = function() {
 				{
 					field: 'id',
 					title: '#',
-					sortable: 'asc',
+					sortable: false,
 					width: 30,
 					type: 'number',
 					selector: false,

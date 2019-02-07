@@ -26,9 +26,9 @@ public class BlackListController {
 	
 	
 
-	@GetMapping(value = "/searchblacklist")
+	@GetMapping(value = "/listblacklist")
 	public String homeSearch() {
-		return "blacklist/search";
+		return "blacklist/search1";
 	}
 	
 	@GetMapping(value = "/newblacklist")

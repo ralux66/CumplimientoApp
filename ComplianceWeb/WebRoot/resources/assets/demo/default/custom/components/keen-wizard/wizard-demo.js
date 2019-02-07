@@ -88,21 +88,21 @@ var KWizardDemo = function () {
     }
 
     var initSubmit = function() {
-        var btn = formEl.find('[data-kwizard-action="action-submit"]');
+        var btn = formEl.find('[data-kwizard-type="action-submit"]');
 
         btn.on('click', function(e) {
             e.preventDefault();
 
             if (validator.form()) {
                 // See: src\js\framework\base\app.js
-                mApp.progress(btn);
-                //mApp.block(formEl); 
+                KApp.progress(btn);
+                //KApp.block(formEl);
 
                 // See: http://malsup.com/jquery/form/#ajaxSubmit
                 formEl.ajaxSubmit({
                     success: function() {
-                        mApp.unprogress(btn);
-                        //mApp.unblock(formEl);
+                        KApp.unprogress(btn);
+                        //KApp.unblock(formEl);
 
                         swal({
                             "title": "", 

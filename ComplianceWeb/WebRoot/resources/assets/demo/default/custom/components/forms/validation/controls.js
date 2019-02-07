@@ -119,7 +119,7 @@ var KFormControls = function () {
             invalidHandler: function(event, validator) {
                 swal({
                     "title": "", 
-                    "text": "1There are some errors in your submission. Please correct them.", 
+                    "text": "There are some errors in your submission. Please correct them.", 
                     "type": "error",
                     "confirmButtonClass": "btn btn-secondary k-btn k-btn--wide",
                     "onClose": function(e) {
@@ -136,7 +136,7 @@ var KFormControls = function () {
                     "title": "", 
                     "text": "Form validation passed. All good!", 
                     "type": "success",
-                    "confirmButtonClass": "btn btn-secondary k-btn k-btn--wide"
+                    "confirmButtonClass": "btn btn-secondary"
                 });
 
                 return false;

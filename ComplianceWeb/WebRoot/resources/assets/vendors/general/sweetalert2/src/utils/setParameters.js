@@ -38,6 +38,11 @@ export default function setParameters (params) {
     params.target = 'body'
   }
 
+  // Animation
+  if (typeof params.animation === 'function') {
+    params.animation = params.animation.call()
+  }
+
   let popup
   const oldPopup = dom.getPopup()
   let targetElement = typeof params.target === 'string' ? document.querySelector(params.target) : params.target
@@ -104,11 +109,6 @@ export default function setParameters (params) {
     }
   }
 
-  // Animation
-  if (typeof params.animation === 'function') {
-    params.animation = params.animation.call()
-  }
-
   // Close button
   if (params.showCloseButton) {
     closeButton.setAttribute('aria-label', params.closeButtonAriaLabel)
@@ -129,6 +129,10 @@ export default function setParameters (params) {
   // Custom Class
   if (params.customClass) {
     dom.addClass(popup, params.customClass)
+  }
+
+  if (params.customContainerClass) {
+    dom.addClass(container, params.customContainerClass)
   }
 
   // Progress steps

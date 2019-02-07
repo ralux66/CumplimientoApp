@@ -6,7 +6,7 @@ var KClipboardDemo = function () {
     // Private functions
     var demos = function () {
         // basic example
-        new Clipboard('[data-clipboard=true]').on('success', function(e) {
+        new ClipboardJS('[data-clipboard=true]').on('success', function(e) {
             e.clearSelection();
             alert('Copied!');
         });

@@ -27,15 +27,16 @@ public class ClientController {
 	
 	@GetMapping(value="/newclient")
 	public String homeCliente(Model model, @ModelAttribute("client") Client client) {
-		//model.addAttribute("client", new Client());	
-		//model.addAttribute("allClient", clientService.allClient());
-		return "client/newclient";
+		model.addAttribute("client", new Client());	
+		model.addAttribute("allClient", clientService.allClient());
+		return "client/newclient1";
 	}
 	
-	@GetMapping(value="/listaclient")
-	public String listaCliente(Model model) {		
+	@GetMapping(value="/listclient")
+	public String listCliente(Model model, @ModelAttribute("client") Client client) {
+		//model.addAttribute("client", new Client());	
 		model.addAttribute("allClient", clientService.allClient());
-		return "client/listaclient";
+		return "client/listclient1";
 	}
 	
 	
@@ -53,15 +54,15 @@ public class ClientController {
 			client.setModificadoel(new Date());
 			clientService.createClient(client);	
 			//model.addAttribute("message", "Success");
-			//attributes.addFlashAttribute("message", "Save Success!!");
+			attributes.addFlashAttribute("msg", "Cliente guardado exitosamente!!");
 			model.addAttribute("allClient", clientService.allClient());
-			return "client/listaclient";
+			return "redirect:/client/listclient";
 		} catch (Exception e) {
 			//System.out.println("newclient/save-->"+client);
 			System.out.println("on ERROR");
-			model.addAttribute("message", "Error");		
+			model.addAttribute("msg", "Error");		
 		}
-		return "client/newclient";
+		return "redirect:/client/listclient";
 	}
 	
 	@InitBinder

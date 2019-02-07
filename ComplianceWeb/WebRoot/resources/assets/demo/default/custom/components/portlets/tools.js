@@ -59,7 +59,7 @@ var KPortletTools = function () {
 
         // Reload event handlers
         portlet.on('reload', function(portlet) {
-            toastr.info('Leload event fired!');
+            toastr.info('Reload event fired!');
 
             KApp.block(portlet.getSelf(), {
                 overlayColor: '#ffffff',
@@ -122,7 +122,7 @@ var KPortletTools = function () {
 
         // Reload event handlers
         portlet.on('reload', function(portlet) {
-            toastr.info('Leload event fired!');
+            toastr.info('Reload event fired!');
 
             KApp.block(portlet.getSelf(), {
                 overlayColor: '#000000',
@@ -185,7 +185,7 @@ var KPortletTools = function () {
 
         // Reload event handlers
         portlet.on('reload', function(portlet) {
-            toastr.info('Leload event fired!');
+            toastr.info('Reload event fired!');
 
             KApp.block(portlet.getSelf(), {
                 type: 'loader',
@@ -246,7 +246,7 @@ var KPortletTools = function () {
 
         // Reload event handlers
         portlet.on('reload', function(portlet) {
-            toastr.info('Leload event fired!');
+            toastr.info('Reload event fired!');
 
             KApp.block(portlet.getSelf(), {
                 type: 'loader',
@@ -307,7 +307,7 @@ var KPortletTools = function () {
 
         // Reload event handlers
         portlet.on('reload', function(portlet) {
-            toastr.info('Leload event fired!');
+            toastr.info('Reload event fired!');
 
             KApp.block(portlet.getSelf(), {
                 type: 'loader',
@@ -377,7 +377,7 @@ var KPortletTools = function () {
 
         // Reload event handlers
         portlet.on('reload', function(portlet) {
-            toastr.info('Leload event fired!');
+            toastr.info('Reload event fired!');
 
             KApp.block(portlet.getSelf(), {
                 type: 'loader',

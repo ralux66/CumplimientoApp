@@ -1,48 +1,48 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<title>Code coverage report for src/js/bs4/ui.js</title>
-		<meta charset="utf-8" />
-		<link rel="stylesheet" href="../../../prettify.css" />
-		<link rel="stylesheet" href="../../../base.css" />
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<style type='text/css'>
-			.coverage-summary .sorter {
-				background-image: url(../../../sort-arrow-sprite.png);
-			}
-		</style>
-	</head>
-	<body>
-		<div class='wrapper'>
-			<div class='pad1'>
-				<h1>
-					<a href="../../../index.html">all files</a> / <a href="index.html">src/js/bs4/</a> ui.js
-				</h1>
-				<div class='clearfix'>
-					<div class='fl pad1y space-right2'>
-						<span class="strong">0% </span>
-						<span class="quiet">Statements</span>
-						<span class='fraction'>0/78</span>
-					</div>
-					<div class='fl pad1y space-right2'>
-						<span class="strong">0% </span>
-						<span class="quiet">Branches</span>
-						<span class='fraction'>0/50</span>
-					</div>
-					<div class='fl pad1y space-right2'>
-						<span class="strong">0% </span>
-						<span class="quiet">Functions</span>
-						<span class='fraction'>0/20</span>
-					</div>
-					<div class='fl pad1y space-right2'>
-						<span class="strong">0% </span>
-						<span class="quiet">Lines</span>
-						<span class='fraction'>0/78</span>
-					</div>
-				</div>
-			</div>
-			<div class='status-line low'></div>
-			<pre><table class="coverage">
+<head>
+    <title>Code coverage report for src/js/bs4/ui.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">all files</a> / <a href="index.html">src/js/bs4/</a> ui.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>0/76</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/54</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>0/76</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
 3
@@ -282,10 +282,7 @@
 237
 238
 239
-240
-241
-242
-243</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+240</td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -414,9 +411,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -531,7 +525,7 @@
 <span class="cstat-no" title="statement not covered" >import renderer from '../base/renderer';</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >const editor = renderer.create('&lt;div class="note-editor note-frame card"/&gt;');</span>
-<span class="cstat-no" title="statement not covered" >const toolbar = renderer.create('&lt;div class="note-toolbar-wrapper"&gt;&lt;div class="note-toolbar card-header" role="toolbar"&gt;&lt;/div&gt;&lt;/div&gt;');</span>
+<span class="cstat-no" title="statement not covered" >const toolbar = renderer.create('&lt;div class="note-toolbar card-header" role="toolbar"&gt;&lt;/div&gt;');</span>
 <span class="cstat-no" title="statement not covered" >const editingArea = renderer.create('&lt;div class="note-editing-area"/&gt;');</span>
 <span class="cstat-no" title="statement not covered" >const codable = renderer.create('&lt;textarea class="note-codable" role="textbox" aria-multiline="true"/&gt;');</span>
 <span class="cstat-no" title="statement not covered" >const editable = renderer.create('&lt;div class="note-editable card-block" contentEditable="true" role="textbox" aria-multiline="true"/&gt;');</span>
@@ -549,8 +543,8 @@
 &nbsp;
 <span class="cstat-no" title="statement not covered" >const airEditor = renderer.create('&lt;div class="note-editor"/&gt;');</span>
 <span class="cstat-no" title="statement not covered" >const airEditable = renderer.create([</span>
-  '&lt;output class="note-status-output" aria-live="polite"/&gt;',
-  '&lt;div class="note-editable" contentEditable="true" role="textbox" aria-multiline="true"/&gt;'
+  '&lt;div class="note-editable" contentEditable="true" role="textbox" aria-multiline="true"/&gt;',
+  '&lt;output class="note-status-output" aria-live="polite"/&gt;'
 ].join(''));
 &nbsp;
 <span class="cstat-no" title="statement not covered" >const buttonGroup = renderer.create('&lt;div class="note-btn-group btn-group"&gt;');</span>
@@ -566,7 +560,7 @@
 <span class="cstat-no" title="statement not covered" >    return '&lt;a class="dropdown-item" href="#" ' + (dataValue + dataOption) + ' role="listitem" aria-label="' + item + '"&gt;' + content + '&lt;/a&gt;';</span>
   }).join('') : options.items;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  $node.html(markup).attr({'aria-label': options.title});</span>
+<span class="cstat-no" title="statement not covered" >  $node.html(markup).attr({ 'aria-label': options.title });</span>
 });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >const dropdownButtonContents = <span class="fstat-no" title="function not covered" >function(contents)</span> {</span>
@@ -579,7 +573,7 @@
 <span class="cstat-no" title="statement not covered" >    const content = options.template ? options.template(item) : item;</span>
 <span class="cstat-no" title="statement not covered" >    return '&lt;a class="dropdown-item" href="#" data-value="' + value + '" role="listitem" aria-label="' + item + '"&gt;' + icon(options.checkClassName) + ' ' + content + '&lt;/a&gt;';</span>
   }).join('') : options.items;
-<span class="cstat-no" title="statement not covered" >  $node.html(markup).attr({'aria-label': options.title});</span>
+<span class="cstat-no" title="statement not covered" >  $node.html(markup).attr({ 'aria-label': options.title });</span>
 });
 &nbsp;
 <span class="cstat-no" title="statement not covered" >const palette = renderer.create('&lt;div class="note-color-palette"/&gt;', <span class="fstat-no" title="function not covered" >function($node, options)</span> {</span>
@@ -655,17 +649,14 @@
   }
 });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const checkbox = renderer.create('&lt;label class="custom-control custom-checkbox"&gt;&lt;/label&gt;', <span class="fstat-no" title="function not covered" >function($node, options)</span> {</span>
-<span class="cstat-no" title="statement not covered" >  if (options.id) {</span>
-<span class="cstat-no" title="statement not covered" >    $node.attr('for', options.id);</span>
-  }
+<span class="cstat-no" title="statement not covered" >const checkbox = renderer.create('&lt;div class="form-check"&gt;&lt;/div&gt;', <span class="fstat-no" title="function not covered" >function($node, options)</span> {</span>
 <span class="cstat-no" title="statement not covered" >  $node.html([</span>
-    ' &lt;input role="checkbox" type="checkbox" class="custom-control-input"' + (options.id ? ' id="' + options.id + '"' : ''),
+    '&lt;label class="form-check-label"' + (options.id ? ' for="' + options.id + '"' : '') + '&gt;',
+    ' &lt;input role="checkbox" type="checkbox" class="form-check-input"' + (options.id ? ' id="' + options.id + '"' : ''),
     (options.checked ? ' checked' : ''),
+    ' aria-label="' + (options.text ? options.text : '') + '"',
     ' aria-checked="' + (options.checked ? 'true' : 'false') + '"/&gt;',
-    ' &lt;span class="custom-control-indicator"&gt;&lt;/span&gt;',
-    ' &lt;span class="custom-control-description"&gt;' + (options.text ? options.text : '') + '&lt;/span&gt;',
-    '&lt;/label&gt;'
+    ' ' + (options.text ? options.text : '') + '&lt;/label&gt;'
   ].join(''));
 });
 &nbsp;
@@ -701,7 +692,7 @@
           title: options.tooltip,
           'aria-label': options.tooltip
         }).tooltip({
-          container: options.container,
+          container: (options.container !== undefined) ? options.container : 'body',
           trigger: 'hover',
           placement: 'bottom'
         });
@@ -769,27 +760,23 @@
 };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export default ui;</span>
-&nbsp;</pre>
-			</td>
-			</tr>
-			</table>
-			</pre>
-			<div class='push'></div>
-<!-- for sticky footer -->
-		</div> <!-- /wrapper -->
-		<div class='footer quiet pad2 space-top1 center small'>
-			Code coverage
-			generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 20 2018 09:36:40 GMT+0900 (KST)
-		</div>
-		</div>
-		<script src="../../../prettify.js"></script>
-		<script>
-			window.onload = function() {
-				if (typeof prettyPrint === 'function') {
-					prettyPrint();
-				}
-			};
-		</script>
-		<script src="../../../sorter.js"></script>
-	</body>
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Nov 24 2018 21:14:15 GMT+0900 (KST)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
 </html>

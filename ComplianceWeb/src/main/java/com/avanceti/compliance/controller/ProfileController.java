@@ -37,7 +37,7 @@ public class ProfileController {
 	@GetMapping(value = "/newprofile")
 	public String homeProfile(@ModelAttribute Profile profile, Model model) {
 		model.addAttribute("modulolista", modulosService.allModulos());		
-		return "profile/newprofile";
+		return "profile/newprofileTest";
 	}
 	
 	@GetMapping(value = "/listaprofile")

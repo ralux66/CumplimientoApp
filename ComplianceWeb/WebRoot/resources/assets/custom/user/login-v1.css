@@ -19,7 +19,8 @@ $k-media-breakpoints: (
 .k-login-v1--enabled {
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  padding: 0; }
 
 .k-login-v1 {
   webkit-background-size: cover;
