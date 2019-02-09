@@ -28,4 +28,9 @@ public class PepsEjecutivoServiceImpl implements IPepsEjecutivoService {
 		return pepsRepository.findAll();
 	}
 
+	@Override
+	public List<PepsEjecutivo> findByfuncionario(String nameToSearch) {		
+		return pepsRepository.findByfuncionarioLike(nameToSearch);
+	}
+
 }

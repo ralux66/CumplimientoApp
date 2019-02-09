@@ -14,6 +14,7 @@ import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -66,7 +67,19 @@ public class PepsEjecutivo implements Serializable {
     @Column(name = "fecha_finalizacion")
     private String fechaFinalizacion;
 
-    public PepsEjecutivo() {
+    @Transient
+    private Double score;
+    
+    
+    public Double getScore() {
+		return score;
+	}
+
+	public void setScore(Double score) {
+		this.score = score;
+	}
+
+	public PepsEjecutivo() {
     }
 
     public PepsEjecutivo(Integer id) {

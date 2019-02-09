@@ -203,7 +203,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                 <span class="k-menu__link"><span class="k-menu__link-text">Search List</span></span>
                                             </li>
                                             <li class="k-menu__item " aria-haspopup="true" >
-                                                <a href="${urlRoot}blacklist/search" class="k-menu__link ">
+                                                <a href="${urlRoot}peps/search" class="k-menu__link ">
                                                     <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                     <span class="k-menu__link-text">Peps</span>
                                                 </a>
@@ -330,13 +330,13 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                     <span class="k-menu__arrow"></span>
                                                     <ul class="k-menu__subnav">
                                                         <li class="k-menu__item " aria-haspopup="true" >
-                                                            <a href="${urlRoot}client/newclient" class="k-menu__link ">
+                                                            <a href="components_datatables_extensions_buttons.html" class="k-menu__link ">
                                                                 <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                                 <span class="k-menu__link-text">New Client</span>
                                                             </a>
                                                         </li>  
                                                          <li class="k-menu__item " aria-haspopup="true" >
-                                                            <a href="${urlRoot}client/listclient" class="k-menu__link ">
+                                                            <a href="components_datatables_extensions_buttons.html" class="k-menu__link ">
                                                                 <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                                 <span class="k-menu__link-text">List Client</span>
                                                             </a>
