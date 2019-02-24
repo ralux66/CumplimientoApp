@@ -34,25 +34,25 @@ public class MenuController {
 		try {
 			if (result.hasErrors()) {
 				System.out.println("Error en el binding");
-				return "menu/newmenu";
+				return "menu/newmenu1";
 			}	
 			model.addAttribute("moduloLista", modulosService.allModulos());
 			//menuService.createMenu(menu);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "menu/newmenu";
+		return "menu/newmenu1";
 	}	
 	
 	@GetMapping(value = "/listamenu")
-	public String listaMenu(Model model) {
+	public String listaMenu(Model model,@ModelAttribute("menu") Menu menu) {
 		try {			
 			model.addAttribute("menuLista", menuService.allMenu());
-			//menuService.createMenu(menu);
+			model.addAttribute("moduloLista", modulosService.allModulos());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return "menu/listamenu";
+		return "menu/listmenu1";
 	}
 	
 	@PostMapping(value="/savemenu")
@@ -72,7 +72,7 @@ public class MenuController {
 			System.out.println("On Error "+e.getMessage());				
 			return "menu/newmenu";
 		}
-		return "redirect:/menu/listamenu";
+		return "redirect:/menu/listamenu1";
 	}
 	
 	@InitBinder

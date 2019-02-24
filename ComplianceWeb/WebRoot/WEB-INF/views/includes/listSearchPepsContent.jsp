@@ -141,7 +141,7 @@
 											class="table table-striped- table-bordered table-hover table-checkable"
 											id="k_table_1">
 											<thead>
-												<tr>
+												<tr>0
 													<th scope="col">Name</th>
 													<th scope="col">Alias</th>
 													<th scope="col">Address</th>

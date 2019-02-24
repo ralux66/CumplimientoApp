@@ -59,6 +59,7 @@ public class PepsController {
 			//model.addAttribute("message", "Success");
 			//attributes.addFlashAttribute("message", "Save Success!!");
 			model.addAttribute("allPeps", pepsEjecutivoService.allPeps());
+			model.addAttribute("msg", "Succes!");	
 			return "peps/listapeps";
 		} catch (Exception e) {
 			//System.out.println("newclient/save-->"+client);

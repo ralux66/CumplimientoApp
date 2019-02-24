@@ -194,7 +194,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                     </h4>
                                     <i class="k-menu__section-icon flaticon-more-v2"></i> 
                                 </li>                               
-                                <li class="k-menu__item k-menu__item--submenu" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+                                <li class="k-menu__item k-menu__item--submenu k-menu__item--open k-menu__item--here" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                     <a href="javascript:;" class="k-menu__link k-menu__toggle"><i class="k-menu__link-icon flaticon2-layers-1"></i><span class="k-menu__link-text">Search</span><i class="k-menu__ver-arrow la la-angle-right"></i></a>
                                     <div class="k-menu__submenu ">
                                         <span class="k-menu__arrow"></span>
@@ -228,13 +228,10 @@ License: You must have a valid license purchased only from https://themes.getboo
                                             </li>
                                         </ul>
                                     </div>
-                                </li>
-                                <li class="k-menu__item " aria-haspopup="true" >
-                                    <a href="components_widgets.html" class="k-menu__link "><i class="k-menu__link-icon flaticon2-pie-chart-4"></i><span class="k-menu__link-text">Widgets</span></a>
-                                </li>
+                                </li>                               
                                 <li class="k-menu__section ">
                                     <h4 class="k-menu__section-text">
-                                        List Activity 
+                                        Create & Resum 
                                     </h4>
                                     <i class="k-menu__section-icon flaticon-more-v2"></i> 
                                 </li>                                 
@@ -247,7 +244,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                 <span class="k-menu__link"><span class="k-menu__link-text">Peps</span></span>
                                             </li>
                                             <li class="k-menu__item " aria-haspopup="true" >
-                                                <a href="${urlRoot}client/newclient" class="k-menu__link ">
+                                                <a href="${urlRoot}client/newclient" class="k-menu__link">
                                                     <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                     <span class="k-menu__link-text">New Peps</span>
                                                 </a>
@@ -313,7 +310,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                     </h4>
                                     <i class="k-menu__section-icon flaticon-more-v2"></i> 
                                 </li>
-                                <li class="k-menu__item k-menu__item--submenu" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+                                <li class="k-menu__item k-menu__item--submenu k-menu__item--submenu k-menu__item--open k-menu__item--here" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                     <a href="javascript:;" class="k-menu__link k-menu__toggle"><i class="k-menu__link-icon flaticon2-gear"></i><span class="k-menu__link-text">Configuration</span><i class="k-menu__ver-arrow la la-angle-right"></i></a>
                                     <div class="k-menu__submenu ">
                                         <span class="k-menu__arrow"></span>
@@ -330,13 +327,13 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                     <span class="k-menu__arrow"></span>
                                                     <ul class="k-menu__subnav">
                                                         <li class="k-menu__item " aria-haspopup="true" >
-                                                            <a href="components_datatables_extensions_buttons.html" class="k-menu__link ">
+                                                            <a href="${urlRoot}client/newclient" class="k-menu__link ">
                                                                 <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                                 <span class="k-menu__link-text">New Client</span>
                                                             </a>
                                                         </li>  
                                                          <li class="k-menu__item " aria-haspopup="true" >
-                                                            <a href="components_datatables_extensions_buttons.html" class="k-menu__link ">
+                                                            <a href="${urlRoot}client/listclient" class="k-menu__link ">
                                                                 <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                                 <span class="k-menu__link-text">List Client</span>
                                                             </a>
@@ -353,13 +350,13 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                     <span class="k-menu__arrow"></span>
                                                     <ul class="k-menu__subnav">
                                                         <li class="k-menu__item " aria-haspopup="true" >
-                                                            <a href="components_datatables_extensions_buttons.html" class="k-menu__link ">
+                                                            <a href="${urlRoot}modulos/newmodulo" class="k-menu__link ">
                                                                 <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                                 <span class="k-menu__link-text">New Modulo</span>
                                                             </a>
                                                         </li>  
                                                          <li class="k-menu__item " aria-haspopup="true" >
-                                                            <a href="components_datatables_extensions_buttons.html" class="k-menu__link ">
+                                                            <a href="${urlRoot}modulos/listamodulo" class="k-menu__link ">
                                                                 <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                                 <span class="k-menu__link-text">List Modulo</span>
                                                             </a>
@@ -376,13 +373,13 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                     <span class="k-menu__arrow"></span>
                                                     <ul class="k-menu__subnav">
                                                         <li class="k-menu__item " aria-haspopup="true" >
-                                                            <a href="components_datatables_extensions_buttons.html" class="k-menu__link ">
+                                                            <a href="${urlRoot}user/newuser" class="k-menu__link ">
                                                                 <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                                 <span class="k-menu__link-text">New User</span>
                                                             </a>
                                                         </li>  
                                                          <li class="k-menu__item " aria-haspopup="true" >
-                                                            <a href="components_datatables_extensions_buttons.html" class="k-menu__link ">
+                                                            <a href="${urlRoot}user/listuser" class="k-menu__link ">
                                                                 <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                                 <span class="k-menu__link-text">List User</span>
                                                             </a>
@@ -399,13 +396,13 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                     <span class="k-menu__arrow"></span>
                                                     <ul class="k-menu__subnav">
                                                         <li class="k-menu__item " aria-haspopup="true" >
-                                                            <a href="components_datatables_extensions_buttons.html" class="k-menu__link ">
+                                                            <a href="${urlRoot}profile/newprofile" class="k-menu__link ">
                                                                 <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                                 <span class="k-menu__link-text">New Profile</span>
                                                             </a>
                                                         </li>  
                                                          <li class="k-menu__item " aria-haspopup="true" >
-                                                            <a href="components_datatables_extensions_buttons.html" class="k-menu__link ">
+                                                            <a href="${urlRoot}profile/listaprofile" class="k-menu__link ">
                                                                 <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                                 <span class="k-menu__link-text">List Profile</span>
                                                             </a>
@@ -416,21 +413,21 @@ License: You must have a valid license purchased only from https://themes.getboo
                                             <li class="k-menu__item k-menu__item--submenu" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                                 <a href="javascript:;" class="k-menu__link k-menu__toggle">
                                                     <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
-                                                    <span class="k-menu__link-text">Invoices</span><i class="k-menu__ver-arrow la la-angle-right"></i>
+                                                    <span class="k-menu__link-text">Menus</span><i class="k-menu__ver-arrow la la-angle-right"></i>
                                                 </a>
                                                 <div class="k-menu__submenu ">
                                                     <span class="k-menu__arrow"></span>
                                                     <ul class="k-menu__subnav">
                                                         <li class="k-menu__item " aria-haspopup="true" >
-                                                            <a href="components_datatables_extensions_buttons.html" class="k-menu__link ">
+                                                            <a href="${urlRoot}menu/newmenu" class="k-menu__link ">
                                                                 <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
-                                                                <span class="k-menu__link-text">New Invoices</span>
+                                                                <span class="k-menu__link-text">New Menus</span>
                                                             </a>
                                                         </li>  
                                                          <li class="k-menu__item " aria-haspopup="true" >
-                                                            <a href="components_datatables_extensions_buttons.html" class="k-menu__link ">
+                                                            <a href="${urlRoot}menu/listamenu" class="k-menu__link ">
                                                                 <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
-                                                                <span class="k-menu__link-text">List Invoices</span>
+                                                                <span class="k-menu__link-text">List Menus</span>
                                                             </a>
                                                         </li>                                                      
                                                     </ul>

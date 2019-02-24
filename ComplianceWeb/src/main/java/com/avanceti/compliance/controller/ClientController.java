@@ -27,7 +27,7 @@ public class ClientController {
 	
 	@GetMapping(value="/newclient")
 	public String homeCliente(Model model, @ModelAttribute("client") Client client) {
-		model.addAttribute("client", new Client());	
+		//model.addAttribute("client", new Client());	
 		model.addAttribute("allClient", clientService.allClient());
 		return "client/newclient1";
 	}

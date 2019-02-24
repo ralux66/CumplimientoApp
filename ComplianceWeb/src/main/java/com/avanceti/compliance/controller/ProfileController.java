@@ -37,13 +37,14 @@ public class ProfileController {
 	@GetMapping(value = "/newprofile")
 	public String homeProfile(@ModelAttribute Profile profile, Model model) {
 		model.addAttribute("modulolista", modulosService.allModulos());		
-		return "profile/newprofileTest";
+		return "profile/newprofile1";
 	}
 	
 	@GetMapping(value = "/listaprofile")
-	public String listaProfile(Model model) {		
+	public String listaProfile(Model model,@ModelAttribute Profile profile) {		
 		model.addAttribute("profilelista", profileService.allProfile());
-		return "profile/listaprofile";
+		model.addAttribute("modulolista", modulosService.allModulos());	
+		return "profile/listprofile1";
 	}
 	
 	@PostMapping(value="/saveprofile")
@@ -59,6 +60,7 @@ public class ProfileController {
 			profile.setModificadoel(new Date());
 			
 			profileService.createProfile(profile);
+			model.addAttribute("msg", "Succes!");
 		} catch (Exception e) {			
 			System.out.println("On Error "+e.getMessage());
 			//model.addAttribute("message", "Error");	

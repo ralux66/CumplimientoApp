@@ -28,13 +28,13 @@ public class ModuloController {
 	
 	@GetMapping(value = "/newmodulo")
 	public String homeModulos(@ModelAttribute Modulos modulos) {
-		return "modulos/newmodulos";
+		return "modulos/newmodulos1";
 	}
 	
 	@GetMapping(value = "/listamodulo")
-	public String listModulos(Model model) {		
+	public String listModulos(Model model, @ModelAttribute Modulos modulos) {		
 		model.addAttribute("modelList", modulosService.allModulos());
-		return "modulos/listamodulos";
+		return "modulos/listmodulos1";
 	}
 	
 	@PostMapping(value="/savemodulo")
@@ -42,9 +42,10 @@ public class ModuloController {
 		try {
 			if (result.hasErrors()) {
 				System.out.println("Error en el binding");
-				return "modulos/newmodulos";
+				return "modulos/listmodulos1";
 			}			
 			modulosService.createModulo(modulos);
+			model.addAttribute("msg", "Guardado con exito");	
 		} catch (Exception e) {			
 			System.out.println("On Error");
 			model.addAttribute("message", "Error");		

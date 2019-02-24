@@ -12,6 +12,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -117,6 +118,11 @@ public class Mostwanted implements Serializable {
     @Column(name = "modificadoel")
     @Temporal(TemporalType.TIMESTAMP)
     private Date modificadoel;
+    
+    @Transient
+    private Double score;
+    
+    
 
     public Mostwanted() {
     }
@@ -143,8 +149,18 @@ public class Mostwanted implements Serializable {
         this.modificadopor = modificadopor;
         this.modificadoel = modificadoel;
     }
+    
+    
 
-    public Integer getId() {
+    public Double getScore() {
+		return score;
+	}
+
+	public void setScore(Double score) {
+		this.score = score;
+	}
+
+	public Integer getId() {
         return id;
     }
 

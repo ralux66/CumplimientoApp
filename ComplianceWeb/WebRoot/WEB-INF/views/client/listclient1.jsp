@@ -65,5 +65,5 @@
     </head>
     <!-- end::Head -->
 <jsp:include page="../includes/headertemplate.jsp"></jsp:include>
-<jsp:include page="../includes/listFormClientContent.jsp"></jsp:include>
+<jsp:include page="../includes/listClientContent.jsp"></jsp:include>
 <jsp:include page="../includes/footertemplate.jsp"></jsp:include>

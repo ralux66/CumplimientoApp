@@ -48,11 +48,23 @@ public class UserController {
 		model.addAttribute("allProfile", allProfile);
 		//System.out.println("allUser "+allUser);
 		//System.out.println("allClient"+allClient);
-		return "user/formuser";
+		return "user/newuser1";
+	}
+	
+	@GetMapping(value = "/listuser")
+	public String listUser(Model model, @ModelAttribute("user") User user) {	
+		List<User> allUser = userService.allUser();
+		List<Client> allClient = clientService.allClient();		
+		List<Profile> allProfile = profileService.allProfile();
+		model.addAttribute("allClient", allClient);
+		model.addAttribute("allProfile", allProfile);
+		model.addAttribute("allUser", allUser);
+		return "user/listuser1";
 	}
 	
 	@PostMapping(value = "/saveuser")
-	public String saveUser(@ModelAttribute("user") User user, Model model, BindingResult result, RedirectAttributes attributes) {
+	public String saveUser(@ModelAttribute("user") User user, 
+			Model model, BindingResult result, RedirectAttributes attributes) {
 		short variable = 1;
 		
 		System.out.println(user);

@@ -5,5 +5,6 @@ import com.avanceti.compliance.model.Mostwanted;
 
 public interface IMostwantedService {
 	List<Mostwanted> findMostwantedAll();
+	List<Mostwanted> findByName(String nameToSearch);
 	void createMostwanted(Mostwanted mostwanted);
 }

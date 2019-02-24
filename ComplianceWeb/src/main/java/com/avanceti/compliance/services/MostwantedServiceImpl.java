@@ -26,4 +26,10 @@ public class MostwantedServiceImpl implements IMostwantedService {
 		mostwantedRepository.save(mostwanted);		
 	}
 
+	@Override
+	public List<Mostwanted> findByName(String nameToSearch) {
+		
+		return mostwantedRepository.findBynombreCompletoLike(nameToSearch);
+	}
+
 }
