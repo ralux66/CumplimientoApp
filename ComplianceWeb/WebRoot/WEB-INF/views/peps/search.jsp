@@ -112,5 +112,5 @@
 	href="${urlForm}/assets/media/logos/favicon.ico" />
 </head>
 <jsp:include page="../includes/headertemplate.jsp"></jsp:include>
-<jsp:include page="../includes/listPepsContent.jsp"></jsp:include>
+<jsp:include page="../includes/listSearchPepsContent.jsp"></jsp:include>
 <jsp:include page="../includes/footertemplate.jsp"></jsp:include>
