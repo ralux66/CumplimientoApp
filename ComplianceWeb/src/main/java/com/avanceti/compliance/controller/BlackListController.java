@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.avanceti.compliance.model.ActiveMenu;
 import com.avanceti.compliance.model.ConsPrim;
 import com.avanceti.compliance.services.ISdnConsolidatService;
 import com.avanceti.compliance.utility.JaroWinklerDistance;
@@ -28,22 +29,33 @@ import com.avanceti.compliance.utility.JaroWinklerDistance;
 public class BlackListController {
 	@Autowired
 	private ISdnConsolidatService isdnService;
+	private ActiveMenu menuActive = new ActiveMenu();
 	
 	
 
 	@GetMapping(value = "/listblacklist")
-	public String homeSearch() {
+	public String homeSearch(Model model) {
+		//menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+		menuActive.setSearch("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
+		
 		return "blacklist/search1";
 	}
 	
 	@GetMapping(value = "/newblacklist")
-	public String newBlackList() {
+	public String newBlackList(Model model) {
+		
+		menuActive.setBlacklist("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
 		return "blacklist/newblacklist";
 	}
 
 	@PostMapping(value = "/gosearch")
 	public String goSearch(Model model, @RequestParam("nameToSearch") String nameToSearch,
 			RedirectAttributes attributes) {
+		menuActive.setSearch("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
+		
 		List<ConsPrim> resultQuery = new LinkedList<>();
 		List<ConsPrim> resultSearchBlacklist = new LinkedList<>();
 		Double score;		

@@ -194,7 +194,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                     </h4>
                                     <i class="k-menu__section-icon flaticon-more-v2"></i> 
                                 </li>                               
-                                <li class="k-menu__item k-menu__item--submenu k-menu__item--open k-menu__item--here" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+                                <li class="k-menu__item k-menu__item--submenu ${menuActive.search}" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                     <a href="javascript:;" class="k-menu__link k-menu__toggle"><i class="k-menu__link-icon flaticon2-layers-1"></i><span class="k-menu__link-text">Search</span><i class="k-menu__ver-arrow la la-angle-right"></i></a>
                                     <div class="k-menu__submenu ">
                                         <span class="k-menu__arrow"></span>
@@ -235,7 +235,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                     </h4>
                                     <i class="k-menu__section-icon flaticon-more-v2"></i> 
                                 </li>                                 
-                                <li class="k-menu__item k-menu__item--submenu" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+                                <li class="k-menu__item k-menu__item--submenu ${menuActive.pep}" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                     <a href="javascript:;" class="k-menu__link k-menu__toggle"><i class="k-menu__link-icon flaticon2-open-text-book"></i><span class="k-menu__link-text">Peps</span><i class="k-menu__ver-arrow la la-angle-right"></i></a>
                                     <div class="k-menu__submenu ">
                                         <span class="k-menu__arrow"></span>
@@ -244,13 +244,13 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                 <span class="k-menu__link"><span class="k-menu__link-text">Peps</span></span>
                                             </li>
                                             <li class="k-menu__item " aria-haspopup="true" >
-                                                <a href="${urlRoot}client/newclient" class="k-menu__link">
+                                                <a href="${urlRoot}peps/newpeps" class="k-menu__link">
                                                     <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                     <span class="k-menu__link-text">New Peps</span>
                                                 </a>
                                             </li>
                                             <li class="k-menu__item " aria-haspopup="true" >
-                                                <a href="${urlRoot}client/listclient" class="k-menu__link ">
+                                                <a href="${urlRoot}peps/listapeps" class="k-menu__link ">
                                                     <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                     <span class="k-menu__link-text">List Peps</span>
                                                 </a>
@@ -258,7 +258,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="k-menu__item k-menu__item--submenu" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+                                <li class="k-menu__item k-menu__item--submenu ${menuActive.blacklist}" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                     <a href="javascript:;" class="k-menu__link k-menu__toggle"><i class="k-menu__link-icon flaticon2-open-text-book"></i><span class="k-menu__link-text">BlackList</span><i class="k-menu__ver-arrow la la-angle-right"></i></a>
                                     <div class="k-menu__submenu ">
                                         <span class="k-menu__arrow"></span>
@@ -281,7 +281,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="k-menu__item k-menu__item--submenu" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+                                <li class="k-menu__item k-menu__item--submenu ${menuActive.mostwanted}" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                     <a href="javascript:;" class="k-menu__link k-menu__toggle"><i class="k-menu__link-icon flaticon2-open-text-book"></i><span class="k-menu__link-text">Most Wanted</span><i class="k-menu__ver-arrow la la-angle-right"></i></a>
                                     <div class="k-menu__submenu ">
                                         <span class="k-menu__arrow"></span>
@@ -310,7 +310,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                     </h4>
                                     <i class="k-menu__section-icon flaticon-more-v2"></i> 
                                 </li>
-                                <li class="k-menu__item k-menu__item--submenu k-menu__item--submenu k-menu__item--open k-menu__item--here" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+                                <li class="k-menu__item k-menu__item--submenu ${menuActive.configuration}" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                     <a href="javascript:;" class="k-menu__link k-menu__toggle"><i class="k-menu__link-icon flaticon2-gear"></i><span class="k-menu__link-text">Configuration</span><i class="k-menu__ver-arrow la la-angle-right"></i></a>
                                     <div class="k-menu__submenu ">
                                         <span class="k-menu__arrow"></span>
@@ -318,7 +318,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                             <li class="k-menu__item k-menu__item--parent" aria-haspopup="true" >
                                                 <span class="k-menu__link"><span class="k-menu__link-text">Configuration</span></span>
                                             </li>
-                                            <li class="k-menu__item k-menu__item--submenu" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+                                            <li class="k-menu__item k-menu__item--submenu ${menuActive.client}" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                                 <a href="javascript:;" class="k-menu__link k-menu__toggle">
                                                     <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                     <span class="k-menu__link-text">Client</span><i class="k-menu__ver-arrow la la-angle-right"></i>
@@ -341,7 +341,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                     </ul>
                                                 </div>                                                
                                             </li>
-                                            <li class="k-menu__item k-menu__item--submenu" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+                                            <li class="k-menu__item k-menu__item--submenu ${menuActive.modulos}" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                                 <a href="javascript:;" class="k-menu__link k-menu__toggle">
                                                     <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                     <span class="k-menu__link-text">Modulos</span><i class="k-menu__ver-arrow la la-angle-right"></i>
@@ -364,7 +364,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                     </ul>
                                                 </div>                                                
                                             </li>
-                                            <li class="k-menu__item k-menu__item--submenu" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+                                            <li class="k-menu__item k-menu__item--submenu ${menuActive.user}" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                                 <a href="javascript:;" class="k-menu__link k-menu__toggle">
                                                     <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                     <span class="k-menu__link-text">User</span><i class="k-menu__ver-arrow la la-angle-right"></i>
@@ -387,7 +387,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                     </ul>
                                                 </div>                                                
                                             </li>
-                                            <li class="k-menu__item k-menu__item--submenu" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+                                            <li class="k-menu__item k-menu__item--submenu  ${menuActive.profile}" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                                 <a href="javascript:;" class="k-menu__link k-menu__toggle">
                                                     <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                     <span class="k-menu__link-text">Profile</span><i class="k-menu__ver-arrow la la-angle-right"></i>
@@ -410,7 +410,7 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                     </ul>
                                                 </div>                                                
                                             </li>
-                                            <li class="k-menu__item k-menu__item--submenu" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
+                                            <li class="k-menu__item k-menu__item--submenu ${menuActive.menus}" aria-haspopup="true" data-kmenu-submenu-toggle="hover">
                                                 <a href="javascript:;" class="k-menu__link k-menu__toggle">
                                                     <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                     <span class="k-menu__link-text">Menus</span><i class="k-menu__ver-arrow la la-angle-right"></i>

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.avanceti.compliance.model.ActiveMenu;
 import com.avanceti.compliance.model.Menu;
 import com.avanceti.compliance.services.IMenuService;
 import com.avanceti.compliance.services.IModulosService;
@@ -28,6 +30,7 @@ public class MenuController {
 
 	@Autowired
 	private IModulosService modulosService;
+	private ActiveMenu menuActive = new ActiveMenu();
 	
 	@GetMapping(value = "/newmenu")
 	public String homeModulos(@ModelAttribute("menu") Menu menu,  Model model, BindingResult result, RedirectAttributes attributes) {
@@ -37,6 +40,9 @@ public class MenuController {
 				return "menu/newmenu1";
 			}	
 			model.addAttribute("moduloLista", modulosService.allModulos());
+			menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+			menuActive.setMenus("k-menu__item--open k-menu__item--here");
+			model.addAttribute("menuActive", menuActive);
 			//menuService.createMenu(menu);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -49,6 +55,9 @@ public class MenuController {
 		try {			
 			model.addAttribute("menuLista", menuService.allMenu());
 			model.addAttribute("moduloLista", modulosService.allModulos());
+			menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+			menuActive.setMenus("k-menu__item--open k-menu__item--here");
+			model.addAttribute("menuActive", menuActive);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -68,6 +77,9 @@ public class MenuController {
 			menu.setModificadoel(new Date());
 			
 			menuService.createMenu(menu);
+			menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+			menuActive.setMenus("k-menu__item--open k-menu__item--here");
+			model.addAttribute("menuActive", menuActive);
 		} catch (Exception e) {			
 			System.out.println("On Error "+e.getMessage());				
 			return "menu/newmenu";

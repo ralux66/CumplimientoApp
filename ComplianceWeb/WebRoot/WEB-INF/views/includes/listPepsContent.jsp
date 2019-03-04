@@ -167,23 +167,29 @@
 				id="k_table_1">
 				<thead>
 					<tr>
-						<th>Nombre Propio</th>
-						<th>Direccion</th>
-						<th>Tipo entidad</th>
-						<th>Telefono</th>
-						<th>Departamento</th>
-						<th>Ciudad</th>
+						<th>id_institucion</th>
+						<th>institucion</th>
+						<th>funcionario</th>
+						<th>gradoAcademico</th>
+						<th>cargo</th>
+						<th>numeroAcuerdo</th>
+						<th>fechaNombramiento</th>
+						<th>fechaFinalizacion</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="allClient" items="${allClient}">
+					<c:forEach var="allPeps" items="${allPeps}">
 						<tr>
-							<td>${allClient.nombrepropio1}</td>
-							<td>${allClient.direccion1}</td>
-							<td>${allClient.tipodeentidad}</td>
-							<td>${allClient.telefono1}</td>
-							<td>${allClient.departamento}</td>
-							<td>${allClient.ciudad}</td>
+							<td>${allClient.idInstitucion}</td>
+							<td>${allClient.institucion}</td>
+							<td>${allClient.funcionario}</td>
+							<td>${allClient.gradoAcademico}</td>
+							<td>${allClient.cargo}</td>
+							<td>${allClient.numeroAcuerdo}</td>
+							
+							<td>${allClient.fechaNombramiento}</td>
+							<td>${allClient.fechaFinalizacion}</td>
+							
 						</tr>
 					</c:forEach>
 				</tbody>

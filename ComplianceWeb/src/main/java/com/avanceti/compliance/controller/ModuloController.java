@@ -15,8 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.avanceti.compliance.model.ActiveMenu;
 import com.avanceti.compliance.model.Modulos;
-import com.avanceti.compliance.services.IMenuService;
 import com.avanceti.compliance.services.IModulosService;
 
 @Controller
@@ -25,15 +26,26 @@ public class ModuloController {
 
 	@Autowired
 	private IModulosService modulosService;
+	private ActiveMenu menuActive = new ActiveMenu();
+
+	 
+
+	
 	
 	@GetMapping(value = "/newmodulo")
-	public String homeModulos(@ModelAttribute Modulos modulos) {
+	public String homeModulos(@ModelAttribute Modulos modulos,Model model) {
+		menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+		menuActive.setModulos("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
 		return "modulos/newmodulos1";
 	}
 	
 	@GetMapping(value = "/listamodulo")
 	public String listModulos(Model model, @ModelAttribute Modulos modulos) {		
 		model.addAttribute("modelList", modulosService.allModulos());
+		menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+		menuActive.setModulos("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
 		return "modulos/listmodulos1";
 	}
 	
@@ -46,6 +58,9 @@ public class ModuloController {
 			}			
 			modulosService.createModulo(modulos);
 			model.addAttribute("msg", "Guardado con exito");	
+			menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+			menuActive.setModulos("k-menu__item--open k-menu__item--here");
+			model.addAttribute("menuActive", menuActive);
 		} catch (Exception e) {			
 			System.out.println("On Error");
 			model.addAttribute("message", "Error");		

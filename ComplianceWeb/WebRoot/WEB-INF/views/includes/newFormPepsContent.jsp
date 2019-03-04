@@ -1,7 +1,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<spring:url value="/client/saveclient" var="urlForm" />
+<spring:url value="/peps/savepeps" var="urlForm" />
 <spring:url value="/" var="urlRoot" />
 <spring:url value="../resources" var="urlPublic" />
      <!-- begin:: Subheader -->
@@ -26,7 +26,7 @@
                                         <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                             <ul class="k-nav k-nav--active-bg" role="tablist">
                                                 <li class="k-nav__item">
-                                                    <a href="${urlRoot}client/listclient" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-psd"></i> <span class="k-nav__link-text">Lista Cliente</span> </a>
+                                                    <a href="${urlRoot}peps/listapeps" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-psd"></i> <span class="k-nav__link-text">Lista Cliente</span> </a>
                                                 </li>
                                                 <li class="k-nav__item">
                                                     <a class="k-nav__link" role="tab" > <i class="k-nav__link-icon flaticon2-supermarket"></i> <span class="k-nav__link-text">Message</span> </a>
@@ -92,14 +92,14 @@
                                 <div class="k-portlet__head">
                                     <div class="k-portlet__head-label">
                                         <h3 class="k-portlet__head-title">
-                                            New Client
+                                            New Peps
                                         </h3>
                                     </div>
                                 </div>
                                 <!--begin::Form-->                                
                                     <div class="k-portlet__body">
                                         <form:form class="k-form k-form--label-right"
-											modelAttribute="client" action="${urlForm}" method="POST">
+											modelAttribute="peps" action="${urlForm}" method="POST">
 											<div class="modal-body">
 												<div class="k-section__body">
 													<h3 class="k-section__title k-section__title-lg">
@@ -107,92 +107,79 @@
 													<div
 														class="k-separator k-separator--border-dashed k-separator--space-lg"></div>
 													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Nombre
-															Propio:</label>
+														<label class="col-lg-3 col-form-label">idInstitucion:</label>
 														<div class="col-lg-6">
-															<form:input type="text" path="nombrepropio1"
+															<form:input type="text" path="idInstitucion"
 																class="form-control" placeholder=""></form:input>
 															<span class="form-text text-muted" required="required">Please
-																enter your Nombre Propio</span>
+																enter your idInstitucion</span>
 														</div>
 													</div>
 													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Email:</label>
+														<label class="col-lg-3 col-form-label">institucion:</label>
 														<div class="col-lg-6">
-															<form:input type="email" path="email"
+															<form:input type="text" path="institucion"
 																class="form-control" placeholder="" required="required"></form:input>
 															<span class="form-text text-muted">Please enter
-																your Email</span>
+																your institucion</span>
 														</div>
 													</div>
 													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Telefono:</label>
+														<label class="col-lg-3 col-form-label">funcionario:</label>
 														<div class="col-lg-6">
-															<form:input type="text" path="telefonocontacto1"
+															<form:input type="text" path="funcionario"
 																class="form-control" placeholder="" required="required"></form:input>
 															<span class="form-text text-muted">Please enter
-																your Telefono</span>
+																your funcionario</span>
 														</div>
 													</div>
 													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Direccion:</label>
+														<label class="col-lg-3 col-form-label">gradoAcademico:</label>
 														<div class="col-lg-6">
-															<form:input type="text" path="direccion1"
+															<form:input type="text" path="gradoAcademico"
 																class="form-control" placeholder="" required="required"></form:input>
 															<span class="form-text text-muted">Please enter
-																your Direccion</span>
+																your gradoAcademico</span>
 														</div>
 													</div>
 													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Tipo de
-															Entidad:</label>
+														<label class="col-lg-3 col-form-label">Cargo:</label>
 														<div class="col-lg-6">
-															<form:input type="text" path="tipodeentidad"
+															<form:input type="text" path="cargo"
 																class="form-control" placeholder="" required="required"></form:input>
 															<span class="form-text text-muted">Please enter
-																your Tipo de Entidad</span>
+																your cargo</span>
 														</div>
 													</div>
 													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Telefono:</label>
+														<label class="col-lg-3 col-form-label">numeroAcuerdo:</label>
 														<div class="col-lg-6">
-															<form:input type="text" path="telefono1"
+															<form:input type="text" path="numeroAcuerdo"
 																class="form-control" placeholder="" required="required"></form:input>
 															<span class="form-text text-muted">Please enter
-																your Telefono</span>
+																your numeroAcuerdo</span>
 														</div>
 													</div>
-													<div
-														class="k-separator k-separator--border-dashed k-separator--space-lg"></div>
-													<h3 class="k-section__title k-section__title-lg">
-														Direcciones:</h3>
+													<div class="k-separator k-separator--border-dashed k-separator--space-lg"></div>
+												
 													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Departamento:</label>
+														<label class="col-lg-3 col-form-label">fechaNombramiento:</label>
 														<div class="col-lg-6">
-															<form:input type="text" path="departamento"
+															<form:input type="text" path="fechaNombramiento"
 																class="form-control" placeholder=""></form:input>
 															<span class="form-text text-muted">Please enter
-																your Departamento</span>
+																your fechaNombramiento</span>
 														</div>
 													</div>
 													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Ciudad:</label>
+														<label class="col-lg-3 col-form-label">fechaFinalizacion:</label>
 														<div class="col-lg-6">
-															<form:input type="text" path="ciudad"
+															<form:input type="text" path="fechaFinalizacion"
 																class="form-control" placeholder=""></form:input>
 															<span class="form-text text-muted">Please enter
-																your Ciudad</span>
+																your fechaFinalizacion</span>
 														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Municipio:</label>
-														<div class="col-lg-6">
-															<form:input type="text" path="municipio"
-																class="form-control" placeholder=""></form:input>
-															<span class="form-text text-muted">Please enter
-																your Municipio</span>
-														</div>
-													</div>
+													</div>													
 												</div>
 											</div>
 											<div class="modal-footer">												

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.avanceti.compliance.model.ActiveMenu;
 import com.avanceti.compliance.model.Client;
 import com.avanceti.compliance.services.IClientService;
 
@@ -24,10 +25,15 @@ import com.avanceti.compliance.services.IClientService;
 public class ClientController {
 	@Autowired
 	private IClientService clientService;
+	private ActiveMenu menuActive = new ActiveMenu();
 	
 	@GetMapping(value="/newclient")
 	public String homeCliente(Model model, @ModelAttribute("client") Client client) {
 		//model.addAttribute("client", new Client());	
+		menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+		menuActive.setClient("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
+		
 		model.addAttribute("allClient", clientService.allClient());
 		return "client/newclient1";
 	}
@@ -36,6 +42,9 @@ public class ClientController {
 	public String listCliente(Model model, @ModelAttribute("client") Client client) {
 		//model.addAttribute("client", new Client());	
 		model.addAttribute("allClient", clientService.allClient());
+		menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+		menuActive.setClient("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
 		return "client/listclient1";
 	}
 	
@@ -56,6 +65,9 @@ public class ClientController {
 			//model.addAttribute("message", "Success");
 			attributes.addFlashAttribute("msg", "Cliente guardado exitosamente!!");
 			model.addAttribute("allClient", clientService.allClient());
+			menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+			menuActive.setClient("k-menu__item--open k-menu__item--here");
+			model.addAttribute("menuActive", menuActive);
 			return "redirect:/client/listclient";
 		} catch (Exception e) {
 			//System.out.println("newclient/save-->"+client);

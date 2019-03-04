@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.avanceti.compliance.model.ActiveMenu;
 import com.avanceti.compliance.model.Modulos;
 import com.avanceti.compliance.model.Profile;
 import com.avanceti.compliance.services.IModulosService;
@@ -30,13 +31,18 @@ public class ProfileController {
 
 	@Autowired
 	private IProfileService profileService;
+	private ActiveMenu menuActive = new ActiveMenu();
+	
 	
 	@Autowired
 	private IModulosService modulosService;
 	
 	@GetMapping(value = "/newprofile")
 	public String homeProfile(@ModelAttribute Profile profile, Model model) {
-		model.addAttribute("modulolista", modulosService.allModulos());		
+		model.addAttribute("modulolista", modulosService.allModulos());	
+		menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+		menuActive.setProfile("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
 		return "profile/newprofile1";
 	}
 	
@@ -44,6 +50,9 @@ public class ProfileController {
 	public String listaProfile(Model model,@ModelAttribute Profile profile) {		
 		model.addAttribute("profilelista", profileService.allProfile());
 		model.addAttribute("modulolista", modulosService.allModulos());	
+		menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+		menuActive.setProfile("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
 		return "profile/listprofile1";
 	}
 	
@@ -61,6 +70,9 @@ public class ProfileController {
 			
 			profileService.createProfile(profile);
 			model.addAttribute("msg", "Succes!");
+			menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+			menuActive.setProfile("k-menu__item--open k-menu__item--here");
+			model.addAttribute("menuActive", menuActive);
 		} catch (Exception e) {			
 			System.out.println("On Error "+e.getMessage());
 			//model.addAttribute("message", "Error");	

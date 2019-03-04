@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.avanceti.compliance.model.ActiveMenu;
 import com.avanceti.compliance.model.Client;
 import com.avanceti.compliance.model.Profile;
 import com.avanceti.compliance.model.User;
@@ -35,19 +36,20 @@ public class UserController {
 	@Autowired
 	private IProfileService profileService;
 	
+	private ActiveMenu menuActive = new ActiveMenu();
+	
 	@GetMapping(value = "/newuser")
 	public String homeUser(Model model, @ModelAttribute("user") User user) {		
-		//model.addAttribute("user", new User());		
 		
-		//ist<User> allUser = userService.allUser();
 		List<Client> allClient = clientService.allClient();		
 		List<Profile> allProfile = profileService.allProfile();
 		
 		model.addAttribute("allClient", allClient);		
-		//model.addAttribute("allUser", allUser);
+		
 		model.addAttribute("allProfile", allProfile);
-		//System.out.println("allUser "+allUser);
-		//System.out.println("allClient"+allClient);
+		menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+		menuActive.setUser("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
 		return "user/newuser1";
 	}
 	
@@ -59,6 +61,9 @@ public class UserController {
 		model.addAttribute("allClient", allClient);
 		model.addAttribute("allProfile", allProfile);
 		model.addAttribute("allUser", allUser);
+		menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+		menuActive.setUser("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
 		return "user/listuser1";
 	}
 	
@@ -81,7 +86,10 @@ public class UserController {
 			user.setCreadoel(new Date());
 			user.setModificadoel(new Date());
 			userService.createUser(user);	
-			model.addAttribute("message", "Success");						
+			model.addAttribute("message", "Success");
+			menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+			menuActive.setUser("k-menu__item--open k-menu__item--here");
+			model.addAttribute("menuActive", menuActive);
 		} catch (Exception e) {			
 			System.out.println("on ERROR");
 			System.out.println(e.getMessage());

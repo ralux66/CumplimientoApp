@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.avanceti.compliance.model.ActiveMenu;
 import com.avanceti.compliance.model.PepsEjecutivo;
 import com.avanceti.compliance.services.IPepsEjecutivoService;
 import com.avanceti.compliance.utility.JaroWinklerDistance;
@@ -24,20 +25,30 @@ public class PepsController {
 	
 	@Autowired
 	private IPepsEjecutivoService pepsEjecutivoService;
+	private ActiveMenu menuActive = new ActiveMenu();
+	
 	
 	@GetMapping(value = "/newpeps")
 	public String formMostWanted(Model model, @ModelAttribute("peps") PepsEjecutivo peps) {
+		//menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+		menuActive.setPep("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
 		return "peps/newpeps";
 	}
 	
 	@GetMapping(value = "/search")
-	public String homeSearch() {
+	public String homeSearch(Model model) {
+		menuActive.setSearch("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
 		return "peps/search";
 	}
 	
 	@GetMapping(value = "/listapeps")
 	public String formListaMostWanted(Model model) {
 		model.addAttribute("allPeps", pepsEjecutivoService.allPeps());
+		//menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+		menuActive.setPep("k-menu__item--open k-menu__item--here");
+		model.addAttribute("menuActive", menuActive);
 		return "peps/listapeps";
 	}
 	
@@ -60,6 +71,9 @@ public class PepsController {
 			//attributes.addFlashAttribute("message", "Save Success!!");
 			model.addAttribute("allPeps", pepsEjecutivoService.allPeps());
 			model.addAttribute("msg", "Succes!");	
+			//menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+			menuActive.setPep("k-menu__item--open k-menu__item--here");
+			model.addAttribute("menuActive", menuActive);
 			return "peps/listapeps";
 		} catch (Exception e) {
 			//System.out.println("newclient/save-->"+client);
@@ -85,6 +99,8 @@ public class PepsController {
 			}
 			model.addAttribute("allResultreturn", resultSearchPeps);			
 			attributes.addFlashAttribute("message", "Busqueda satisfactoria");
+			menuActive.setSearch("k-menu__item--open k-menu__item--here");
+			model.addAttribute("menuActive", menuActive);
 		} catch (Exception e) {
 			attributes.addFlashAttribute("message", e.getMessage());
 			System.out.println("Error "+e.getMessage());
