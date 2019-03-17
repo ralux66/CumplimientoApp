@@ -3,7 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <spring:url value="/" var="urlRoot" />
-<spring:url value="/client/saveclient" var="urlForm" />
+<spring:url value="/peps/savepeps" var="urlForm" />
 <!-- begin:: Subheader -->
 <div class="k-subheader k-grid__item" id="k_subheader">
 	<div class="k-subheader__main">
@@ -39,7 +39,8 @@
 				</a>
 				<div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
 					<ul class="k-nav k-nav--active-bg" role="tablist">
-						<li class="k-nav__item"><a href="${urlRoot}client/newclient" class="k-nav__link"> <i
+						<li class="k-nav__item"><a href="${urlRoot}client/newclient"
+							class="k-nav__link"> <i
 								class="k-nav__link-icon flaticon2-psd"></i> <span
 								class="k-nav__link-text">New Client</span>
 						</a></li>
@@ -139,7 +140,7 @@
 			</div>
 		</div>
 	</spring:hasBindErrors>
-	
+
 	<c:if test="${msg !=null }">
 		<div class="alert alert-primary fade show" role="alert">
 			<div class="alert-icon">
@@ -155,46 +156,53 @@
 		</div>
 	</c:if>
 	<div class="k-portlet k-portlet--mobile">
-		<div class="k-portlet__head">		
+		<div class="k-portlet__head">
 			<div class="k-portlet__head-label">
-				<h3 class="k-portlet__head-title">Listado de Cliente</h3>
+				<h3 class="k-portlet__head-title">Listado de Peps</h3>
 			</div>
 		</div>
 		<div class="k-portlet__body">
-			<!--begin: Datatable -->
-			<table
-				class="table table-striped- table-bordered table-hover table-checkable"
-				id="k_table_1">
-				<thead>
-					<tr>
-						<th>id_institucion</th>
-						<th>institucion</th>
-						<th>funcionario</th>
-						<th>gradoAcademico</th>
-						<th>cargo</th>
-						<th>numeroAcuerdo</th>
-						<th>fechaNombramiento</th>
-						<th>fechaFinalizacion</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="allPeps" items="${allPeps}">
-						<tr>
-							<td>${allClient.idInstitucion}</td>
-							<td>${allClient.institucion}</td>
-							<td>${allClient.funcionario}</td>
-							<td>${allClient.gradoAcademico}</td>
-							<td>${allClient.cargo}</td>
-							<td>${allClient.numeroAcuerdo}</td>
-							
-							<td>${allClient.fechaNombramiento}</td>
-							<td>${allClient.fechaFinalizacion}</td>
-							
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<!--end: Datatable -->
+			<div class="tab-content">
+				<div class="tab-pane active" id="k_portlet_tabs_1_1_content_result"
+					role="tabpanel">
+					<!--begin: Datatable -->
+					<table
+						class="table table-striped- table-bordered table-hover table-checkable"
+						id="k_table_1">
+						<thead>
+							<tr>
+								<th scope="col">Estructura</th>
+								<th scope="col">Dependencia</th>
+								<th scope="col">Funcionario</th>
+								<th scope="col">Conocido</th>								
+								<th scope="col">Dui</th>
+								<th scope="col">Estudio</th>
+								<th scope="col">Cargo</th>
+								<th scope="col">Fecha inicio</th>
+								<th scope="col">Fecha fin</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach var="allpeps" items="${allpeps}" varStatus="loop">
+								<tr>
+									<td>${allpeps.estructuraEstado}</td>
+									<td>${allpeps.institucionDependencia}</td>
+									<td>${allpeps.funcionario}</td>
+									<td>${allpeps.conocidoPor}</td>
+									<td>${allpeps.dui}</td>
+									<td>${allpeps.gradoAcademico}</td>
+									<td>${allpeps.cargo}</td>
+									<td>${allpeps.fechaNombramiento}</td>
+									<td>${allpeps.fechaFinalizacion}</td>
+									
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<!--end: Datatable -->
+				</div>
+			</div>
 		</div>
 		<div class="k-portlet__foot">
 			<div class="col k-align-right">
@@ -204,13 +212,12 @@
 						data-toggle="modal" data-target="#exampleModal">New
 						Client</button>
 					<!--begin::Modal-->
-					<div class="modal fade  bd-example-modal-xl" id="exampleModal" role="dialog"
-						aria-labelledby="" aria-hidden="true">
+					<div class="modal fade  bd-example-modal-xl" id="exampleModal"
+						role="dialog" aria-labelledby="" aria-hidden="true">
 						<div class="modal-dialog modal-lg" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="">New Client
-									</h5>
+									<h5 class="modal-title" id="">New Client</h5>
 									<button type="button" class="close" data-dismiss="modal"
 										aria-label="Close">
 										<span aria-hidden="true" class="la la-remove"></span>
@@ -218,109 +225,7 @@
 								</div>
 								<div class="modal-body">
 									<div class="k-scroll" data-scroll="true" style="height: 800px;">
-										<form:form class="k-form k-form--label-right"
-											modelAttribute="client" action="${urlForm}" method="POST">
-											<div class="modal-body">
-												<div class="k-section__body">
-													<h3 class="k-section__title k-section__title-lg">
-														Informacion General:</h3>
-													<div
-														class="k-separator k-separator--border-dashed k-separator--space-lg"></div>
-													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Nombre
-															Propio:</label>
-														<div class="col-lg-6">
-															<form:input type="text" path="nombrepropio1"
-																class="form-control" placeholder=""></form:input>
-															<span class="form-text text-muted" required="required">Please
-																enter your Nombre Propio</span>
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Email:</label>
-														<div class="col-lg-6">
-															<form:input type="email" path="email"
-																class="form-control" placeholder="" required="required"></form:input>
-															<span class="form-text text-muted">Please enter
-																your Email</span>
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Telefono:</label>
-														<div class="col-lg-6">
-															<form:input type="text" path="telefonocontacto1"
-																class="form-control" placeholder="" required="required"></form:input>
-															<span class="form-text text-muted">Please enter
-																your Telefono</span>
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Direccion:</label>
-														<div class="col-lg-6">
-															<form:input type="text" path="direccion1"
-																class="form-control" placeholder="" required="required"></form:input>
-															<span class="form-text text-muted">Please enter
-																your Direccion</span>
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Tipo de
-															Entidad:</label>
-														<div class="col-lg-6">
-															<form:input type="text" path="tipodeentidad"
-																class="form-control" placeholder="" required="required"></form:input>
-															<span class="form-text text-muted">Please enter
-																your Tipo de Entidad</span>
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Telefono:</label>
-														<div class="col-lg-6">
-															<form:input type="text" path="telefono1"
-																class="form-control" placeholder="" required="required"></form:input>
-															<span class="form-text text-muted">Please enter
-																your Telefono</span>
-														</div>
-													</div>
-													<div
-														class="k-separator k-separator--border-dashed k-separator--space-lg"></div>
-													<h3 class="k-section__title k-section__title-lg">
-														Direcciones:</h3>
-													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Departamento:</label>
-														<div class="col-lg-6">
-															<form:input type="text" path="departamento"
-																class="form-control" placeholder=""></form:input>
-															<span class="form-text text-muted">Please enter
-																your Departamento</span>
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Ciudad:</label>
-														<div class="col-lg-6">
-															<form:input type="text" path="ciudad"
-																class="form-control" placeholder=""></form:input>
-															<span class="form-text text-muted">Please enter
-																your Ciudad</span>
-														</div>
-													</div>
-													<div class="form-group row">
-														<label class="col-lg-3 col-form-label">Municipio:</label>
-														<div class="col-lg-6">
-															<form:input type="text" path="municipio"
-																class="form-control" placeholder=""></form:input>
-															<span class="form-text text-muted">Please enter
-																your Municipio</span>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-danger k-btn"
-													data-dismiss="modal">Close</button>
-												<button type="submit" class="btn btn-success k-btn">Submit</button>
-											</div>
-										</form:form>
+
 									</div>
 								</div>
 							</div>

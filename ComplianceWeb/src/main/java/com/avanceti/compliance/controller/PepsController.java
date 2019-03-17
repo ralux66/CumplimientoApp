@@ -1,5 +1,7 @@
 package com.avanceti.compliance.controller;
 
+
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.avanceti.compliance.model.ActiveMenu;
-import com.avanceti.compliance.model.PepsEjecutivo;
-import com.avanceti.compliance.services.IPepsEjecutivoService;
+import com.avanceti.compliance.model.Peps;
+import com.avanceti.compliance.services.IPepsService;
+//import com.avanceti.compliance.utility.JaroWinklerDistance;
 import com.avanceti.compliance.utility.JaroWinklerDistance;
 
 @Controller
@@ -24,12 +27,12 @@ import com.avanceti.compliance.utility.JaroWinklerDistance;
 public class PepsController {
 	
 	@Autowired
-	private IPepsEjecutivoService pepsEjecutivoService;
+	private IPepsService pepsServices;
 	private ActiveMenu menuActive = new ActiveMenu();
 	
 	
 	@GetMapping(value = "/newpeps")
-	public String formMostWanted(Model model, @ModelAttribute("peps") PepsEjecutivo peps) {
+	public String formNewPeps(Model model, @ModelAttribute("peps") Peps peps) {
 		//menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
 		menuActive.setPep("k-menu__item--open k-menu__item--here");
 		model.addAttribute("menuActive", menuActive);
@@ -44,16 +47,18 @@ public class PepsController {
 	}
 	
 	@GetMapping(value = "/listapeps")
-	public String formListaMostWanted(Model model) {
-		model.addAttribute("allPeps", pepsEjecutivoService.allPeps());
-		//menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+	public String formListaPeps(Model model) {
+		List<Peps> pepslist = new LinkedList<>();
+		pepslist = pepsServices.findAll();
+		model.addAttribute("allpeps", pepslist);
 		menuActive.setPep("k-menu__item--open k-menu__item--here");
 		model.addAttribute("menuActive", menuActive);
 		return "peps/listapeps";
 	}
 	
 	@PostMapping(value="/savepeps")
-	public String saveCliente(@ModelAttribute("peps") PepsEjecutivo peps, Model model, BindingResult result, RedirectAttributes attributes) {
+	public String savePeps(@ModelAttribute("peps") Peps peps, Model model,
+			BindingResult result, RedirectAttributes attributes) {
 		//System.out.println("Save");
 		try {
 			if (result.hasErrors()) {
@@ -64,12 +69,12 @@ public class PepsController {
 			//peps.setModificadopor("rzepeda");
 			//peps.setCreadoel(new Date());
 			//peps.setModificadoel(new Date());
-			peps.setId(92);
-			peps.setIdInstitucion(87);
-			pepsEjecutivoService.createPeps(peps);
+			//peps.setpe(92);
+			//peps.setIdInstitucion(87);
+			pepsServices.Save(peps);
 			//model.addAttribute("message", "Success");
 			//attributes.addFlashAttribute("message", "Save Success!!");
-			model.addAttribute("allPeps", pepsEjecutivoService.allPeps());
+			model.addAttribute("allPeps", pepsServices.findAll());
 			model.addAttribute("msg", "Succes!");	
 			//menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
 			menuActive.setPep("k-menu__item--open k-menu__item--here");
@@ -83,21 +88,23 @@ public class PepsController {
 		return "peps/newpeps";
 	}
 
+	
 	@PostMapping(value = "/gosearch")
 	public String goSearch(Model model, @RequestParam("nameToSearch") String nameToSearch,	RedirectAttributes attributes) {
-		List<PepsEjecutivo> resultQuery = new LinkedList<>();
-		List<PepsEjecutivo> resultSearchPeps = new LinkedList<>();
+		List<Peps> resultQuery = new LinkedList<>();
+		List<Peps> resultSearchPeps = new LinkedList<>();
 		Double score;		
 		try {
-			resultQuery = pepsEjecutivoService.findByfuncionario("%" + nameToSearch + "%");
-			for (PepsEjecutivo peps : resultQuery) {				
+			resultQuery = pepsServices.findByFuncionarioLike("%"+nameToSearch+"%");
+			for (Peps peps : resultQuery) {				
 				score = JaroWinklerDistance.apply(nameToSearch.trim(), peps.getFuncionario());
 				if (score > 0.70) {					
 					peps.setScore(score);
 					resultSearchPeps.add(peps);
+					
 				} 
 			}
-			model.addAttribute("allResultreturn", resultSearchPeps);			
+			model.addAttribute("AllResultreturn", resultSearchPeps);			
 			attributes.addFlashAttribute("message", "Busqueda satisfactoria");
 			menuActive.setSearch("k-menu__item--open k-menu__item--here");
 			model.addAttribute("menuActive", menuActive);
@@ -107,4 +114,5 @@ public class PepsController {
 		}
 		return "peps/search";
 	}
+	
 }

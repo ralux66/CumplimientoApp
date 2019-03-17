@@ -82,10 +82,10 @@
 						<ul
 							class="nav nav-tabs nav-tabs-bold nav-tabs-line nav-tabs-line-brand"
 							role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" data-toggle="tab" href="#k_portlet_tabs_1_1_content" role="tab">	Peps </a>
-							</li>
-							
+							<li class="nav-item"><a class="nav-link active"
+								data-toggle="tab" href="#k_portlet_tabs_1_1_content" role="tab">
+									Peps </a></li>
+
 						</ul>
 					</div>
 				</div>
@@ -141,31 +141,38 @@
 											class="table table-striped- table-bordered table-hover table-checkable"
 											id="k_table_1">
 											<thead>
-												<tr>0
-													<th scope="col">Name</th>
-													<th scope="col">Alias</th>
-													<th scope="col">Address</th>
-													<th scope="col">City</th>
-													<th scope="col">Type</th>
-													<th scope="col">Programs</th>
-													<th scope="col">List</th>
-													<th scope="col">Score</th>
+												<tr>
+													
+													<th scope="col">Dependencia</th>
+													<th scope="col">Funcionario</th>
+													<th scope="col">Conocido</th>
+													<th scope="col">Dui</th>
+													<th scope="col">Estudio</th>
+													<th scope="col">Cargo</th>
+													<th scope="col">Fecha inicio</th>
+													<th scope="col">Fecha fin</th>
+														<th scope="col">Score</th>
+
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="allResultreturn" items="${allResultreturn}"
+												<c:forEach var="AllResultreturn" items="${AllResultreturn}"
 													varStatus="loop">
+
 													<tr>
-														<td>${allResultreturn.sDNName}</td>
-														<td>${allResultreturn.consAltList[loop.index].altName}</td>
-														<td>${allResultreturn.consAddList[loop.index].address}</td>
-														<td>${allResultreturn.consAddList[loop.index].city}</td>
-														<td>${allResultreturn.sDNType}</td>
-														<td>${allResultreturn.program}</td>
-														<td>${allResultreturn.title}</td>
-														<td><fmt:formatNumber type="percent"
-																maxFractionDigits="3" value="${allResultreturn.score}" /></td>
+														
+														<td>${AllResultreturn.institucionDependencia}</td>
+														<td>${AllResultreturn.funcionario}</td>
+														<td>${AllResultreturn.conocidoPor}</td>
+														<td>${AllResultreturn.dui}</td>
+														<td>${AllResultreturn.gradoAcademico}</td>
+														<td>${AllResultreturn.cargo}</td>
+														<td>${AllResultreturn.fechaNombramiento}</td>
+														<td>${AllResultreturn.fechaFinalizacion}</td>
+														<td>${AllResultreturn.score}</td>
+
 													</tr>
+
 												</c:forEach>
 											</tbody>
 										</table>
