@@ -35,6 +35,12 @@ public class MostWantedController {
 	public String formMostWanted(Model model, @ModelAttribute("mostwanted") Mostwanted mostwanted) {
 		return "mostwanted/newmostwanted";
 	}
+	
+	@GetMapping(value = "/search")
+	public String search(Model model) {
+		return "mostwanted/search";
+	}
+	
 	@GetMapping(value = "/listamostwanted")
 	public String formListaMostWanted(Model model,@ModelAttribute("mostwanted") Mostwanted mostwanted) {
 		model.addAttribute("allMostWanted", mostwantedService.findMostwantedAll());
@@ -75,11 +81,11 @@ public class MostWantedController {
 		List<Mostwanted> resultSearchMostwanted = new LinkedList<>();
 		Double score;		
 		try {
-			resultQuery = mostwantedService.findByName("%" + nameToSearch + "%");
+			resultQuery = mostwantedService.findByLikeName("%" + nameToSearch + "%");
 			for (Mostwanted consPrim : resultQuery) {				
 				score = JaroWinklerDistance.apply(nameToSearch.trim(), 
 						consPrim.getNombreCompleto());
-				if (score > 0.70) {
+				if (score > 0.50) {
 					consPrim.setScore(score);
 					resultSearchMostwanted.add(consPrim);
 				} 
@@ -90,7 +96,7 @@ public class MostWantedController {
 			attributes.addFlashAttribute("message", e.getMessage());
 			System.out.println("Error "+e.getMessage());
 		}
-		return "blacklist/search";
+		return "mostwanted/search";
 	}
 	
 

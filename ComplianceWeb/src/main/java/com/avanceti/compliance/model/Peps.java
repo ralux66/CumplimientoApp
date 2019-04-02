@@ -31,7 +31,7 @@ public class Peps implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "Id")
+    @Column(name = "Idpeps")
     private Integer idpeps;
     @Column(name = "id_estructura")
     private Integer idEstructura;

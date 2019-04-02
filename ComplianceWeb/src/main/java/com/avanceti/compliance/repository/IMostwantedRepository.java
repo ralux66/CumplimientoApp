@@ -10,5 +10,5 @@ import com.avanceti.compliance.model.Mostwanted;
 
 @Repository
 public interface IMostwantedRepository extends JpaRepository<Mostwanted, Integer> {
-	List<Mostwanted> findBynombreCompletoLike(String name); 
+	List<Mostwanted> findBynombreCompletoLike(String nametosearch); 
 }

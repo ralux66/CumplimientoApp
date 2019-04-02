@@ -33,12 +33,11 @@ public class BlackListController {
 	
 	
 
-	@GetMapping(value = "/listblacklist")
+	@GetMapping(value = "/search")
 	public String homeSearch(Model model) {
 		//menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
 		menuActive.setSearch("k-menu__item--open k-menu__item--here");
-		model.addAttribute("menuActive", menuActive);
-		
+		model.addAttribute("menuActive", menuActive);		
 		return "blacklist/search1";
 	}
 	
@@ -63,9 +62,10 @@ public class BlackListController {
 			resultQuery = isdnService.findByName("%" + nameToSearch + "%");
 			for (ConsPrim consPrim : resultQuery) {				
 				score = JaroWinklerDistance.apply(nameToSearch.trim(), consPrim.getsDNName());
-				if (score > 0.70) {
+				if (score > 0.60) {
 					consPrim.setScore(score);
 					resultSearchBlacklist.add(consPrim);
+					System.out.println("Print "+consPrim.getsDNName());
 				} 
 			}
 			model.addAttribute("allResultreturn", resultSearchBlacklist);			
@@ -74,7 +74,7 @@ public class BlackListController {
 			attributes.addFlashAttribute("message", e.getMessage());
 			System.out.println("Error "+e.getMessage());
 		}
-		return "blacklist/search";
+		return "blacklist/search1";
 	}
 	
 

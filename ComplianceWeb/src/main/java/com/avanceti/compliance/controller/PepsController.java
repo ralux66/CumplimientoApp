@@ -98,7 +98,7 @@ public class PepsController {
 			resultQuery = pepsServices.findByFuncionarioLike("%"+nameToSearch+"%");
 			for (Peps peps : resultQuery) {				
 				score = JaroWinklerDistance.apply(nameToSearch.trim(), peps.getFuncionario());
-				if (score > 0.70) {					
+				if (score > 0.60) {					
 					peps.setScore(score);
 					resultSearchPeps.add(peps);
 					
