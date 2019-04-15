@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -16,12 +18,15 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.avanceti.compliance.model.ActiveMenu;
 import com.avanceti.compliance.model.ConsPrim;
+import com.avanceti.compliance.model.User;
 import com.avanceti.compliance.services.ISdnConsolidatService;
 import com.avanceti.compliance.utility.JaroWinklerDistance;
+import com.avanceti.compliance.utility.ValidateUrlRequest;
 
 
 @Controller
@@ -34,18 +39,30 @@ public class BlackListController {
 	
 
 	@GetMapping(value = "/search")
-	public String homeSearch(Model model) {
-		//menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+	public String homeSearch(Model model,@SessionAttribute("user") User user, HttpServletRequest request) {
+		//System.out.println("Print Url "+request.getRequestURL());	
+		System.out.println("Print Url "+request.getServletPath());	
 		menuActive.setSearch("k-menu__item--open k-menu__item--here");
-		model.addAttribute("menuActive", menuActive);		
+		model.addAttribute("menuActive", menuActive);	
+		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
+			return "redirect:/error/errorpage";
+		}
+		//System.out.println("Print Url "+request.getContextPath());
+		//System.out.println("Print Url "+request.getQueryString());
 		return "blacklist/search1";
+		
 	}
 	
 	@GetMapping(value = "/newblacklist")
-	public String newBlackList(Model model) {
+	public String newBlackList(Model model,@SessionAttribute("user") User user, HttpServletRequest request) {
 		
 		menuActive.setBlacklist("k-menu__item--open k-menu__item--here");
 		model.addAttribute("menuActive", menuActive);
+		
+		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
+			return "redirect:/error/errorpage";
+		}
+		
 		return "blacklist/newblacklist";
 	}
 

@@ -2,7 +2,6 @@ package com.avanceti.compliance.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,13 +16,15 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.avanceti.compliance.model.ActiveMenu;
-import com.avanceti.compliance.model.Modulos;
 import com.avanceti.compliance.model.Profile;
+import com.avanceti.compliance.model.User;
 import com.avanceti.compliance.services.IModulosService;
 import com.avanceti.compliance.services.IProfileService;
+import com.avanceti.compliance.utility.ValidateUrlRequest;
 
 @Controller
 @RequestMapping(value = "/profile")
@@ -38,7 +39,11 @@ public class ProfileController {
 	private IModulosService modulosService;
 	
 	@GetMapping(value = "/newprofile")
-	public String homeProfile(@ModelAttribute Profile profile, Model model) {
+	public String homeProfile(@ModelAttribute Profile profile, Model model,
+			@SessionAttribute("user") User user, HttpServletRequest request) {
+		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
+			return "redirect:/error/errorpage";
+		}
 		model.addAttribute("modulolista", modulosService.allModulos());	
 		menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
 		menuActive.setProfile("k-menu__item--open k-menu__item--here");
@@ -47,7 +52,11 @@ public class ProfileController {
 	}
 	
 	@GetMapping(value = "/listaprofile")
-	public String listaProfile(Model model,@ModelAttribute Profile profile) {		
+	public String listaProfile(Model model,@ModelAttribute Profile profile,
+			@SessionAttribute("user") User user, HttpServletRequest request) {	
+		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
+			return "redirect:/error/errorpage";
+		}
 		model.addAttribute("profilelista", profileService.allProfile());
 		model.addAttribute("modulolista", modulosService.allModulos());	
 		menuActive.setConfiguration("k-menu__item--open k-menu__item--here");

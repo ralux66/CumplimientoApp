@@ -3,6 +3,8 @@ package com.avanceti.compliance.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -14,11 +16,14 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.avanceti.compliance.model.ActiveMenu;
 import com.avanceti.compliance.model.Client;
+import com.avanceti.compliance.model.User;
 import com.avanceti.compliance.services.IClientService;
+import com.avanceti.compliance.utility.ValidateUrlRequest;
 
 @Controller
 @RequestMapping("/client")
@@ -28,22 +33,29 @@ public class ClientController {
 	private ActiveMenu menuActive = new ActiveMenu();
 	
 	@GetMapping(value="/newclient")
-	public String homeCliente(Model model, @ModelAttribute("client") Client client) {
+	public String homeCliente(Model model, @ModelAttribute("client") Client client,@SessionAttribute("user") User user, HttpServletRequest request) {
 		//model.addAttribute("client", new Client());	
 		menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
 		menuActive.setClient("k-menu__item--open k-menu__item--here");
 		model.addAttribute("menuActive", menuActive);
+		
+		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
+			return "redirect:/error/errorpage";
+		}
 		
 		model.addAttribute("allClient", clientService.allClient());
 		return "client/newclient1";
 	}
 	
 	@GetMapping(value="/listclient")
-	public String listCliente(Model model, @ModelAttribute("client") Client client) {
+	public String listCliente(Model model, @ModelAttribute("client") Client client,@SessionAttribute("user") User user, HttpServletRequest request) {
 		//model.addAttribute("client", new Client());	
 		model.addAttribute("allClient", clientService.allClient());
 		menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
 		menuActive.setClient("k-menu__item--open k-menu__item--here");
+		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
+			return "redirect:/error/errorpage";
+		}
 		model.addAttribute("menuActive", menuActive);
 		return "client/listclient1";
 	}

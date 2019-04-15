@@ -5,6 +5,8 @@ package com.avanceti.compliance.controller;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +16,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.avanceti.compliance.model.ActiveMenu;
 import com.avanceti.compliance.model.Peps;
+import com.avanceti.compliance.model.User;
 import com.avanceti.compliance.services.IPepsService;
 //import com.avanceti.compliance.utility.JaroWinklerDistance;
 import com.avanceti.compliance.utility.JaroWinklerDistance;
+import com.avanceti.compliance.utility.ValidateUrlRequest;
 
 @Controller
 @RequestMapping("/peps")
@@ -32,23 +37,32 @@ public class PepsController {
 	
 	
 	@GetMapping(value = "/newpeps")
-	public String formNewPeps(Model model, @ModelAttribute("peps") Peps peps) {
-		//menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
+	public String formNewPeps(Model model, @ModelAttribute("peps") Peps peps,
+			@SessionAttribute("user") User user, HttpServletRequest request) {
+		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
+			return "redirect:/error/errorpage";
+		}
 		menuActive.setPep("k-menu__item--open k-menu__item--here");
 		model.addAttribute("menuActive", menuActive);
 		return "peps/newpeps";
 	}
 	
 	@GetMapping(value = "/search")
-	public String homeSearch(Model model) {
+	public String homeSearch(Model model,@SessionAttribute("user") User user, HttpServletRequest request) {
+		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
+			return "redirect:/error/errorpage";
+		}
 		menuActive.setSearch("k-menu__item--open k-menu__item--here");
 		model.addAttribute("menuActive", menuActive);
 		return "peps/search";
 	}
 	
-	@GetMapping(value = "/listapeps")
-	public String formListaPeps(Model model) {
+	@GetMapping(value = "/listpeps")
+	public String formListaPeps(Model model,@SessionAttribute("user") User user, HttpServletRequest request) {
 		List<Peps> pepslist = new LinkedList<>();
+		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
+			return "redirect:/error/errorpage";
+		}
 		pepslist = pepsServices.findAll();
 		model.addAttribute("allpeps", pepslist);
 		menuActive.setPep("k-menu__item--open k-menu__item--here");

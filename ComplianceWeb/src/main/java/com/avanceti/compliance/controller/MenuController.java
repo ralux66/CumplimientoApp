@@ -3,6 +3,8 @@ package com.avanceti.compliance.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -14,12 +16,15 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.avanceti.compliance.model.ActiveMenu;
 import com.avanceti.compliance.model.Menu;
+import com.avanceti.compliance.model.User;
 import com.avanceti.compliance.services.IMenuService;
 import com.avanceti.compliance.services.IModulosService;
+import com.avanceti.compliance.utility.ValidateUrlRequest;
 
 @Controller
 @RequestMapping(value = "/menu")
@@ -33,12 +38,17 @@ public class MenuController {
 	private ActiveMenu menuActive = new ActiveMenu();
 	
 	@GetMapping(value = "/newmenu")
-	public String homeModulos(@ModelAttribute("menu") Menu menu,  Model model, BindingResult result, RedirectAttributes attributes) {
+	public String homeModulos(@ModelAttribute("menu") Menu menu,  
+			Model model, BindingResult result, RedirectAttributes attributes,
+			@SessionAttribute("user") User user, HttpServletRequest request) {
 		try {
 			if (result.hasErrors()) {
 				System.out.println("Error en el binding");
 				return "menu/newmenu1";
 			}	
+			if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
+				return "redirect:/error/errorpage";
+			}
 			model.addAttribute("moduloLista", modulosService.allModulos());
 			menuActive.setConfiguration("k-menu__item--open k-menu__item--here");
 			menuActive.setMenus("k-menu__item--open k-menu__item--here");
@@ -51,8 +61,12 @@ public class MenuController {
 	}	
 	
 	@GetMapping(value = "/listamenu")
-	public String listaMenu(Model model,@ModelAttribute("menu") Menu menu) {
-		try {			
+	public String listaMenu(Model model,@ModelAttribute("menu") Menu menu,
+			@SessionAttribute("user") User user, HttpServletRequest request) {
+		try {	
+			if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
+				return "redirect:/error/errorpage";
+			}
 			model.addAttribute("menuLista", menuService.allMenu());
 			model.addAttribute("moduloLista", modulosService.allModulos());
 			menuActive.setConfiguration("k-menu__item--open k-menu__item--here");

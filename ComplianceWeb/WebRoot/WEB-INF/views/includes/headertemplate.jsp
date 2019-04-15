@@ -290,13 +290,13 @@ License: You must have a valid license purchased only from https://themes.getboo
                                                 <span class="k-menu__link"><span class="k-menu__link-text">Most Wanted</span></span>
                                             </li>
                                             <li class="k-menu__item " aria-haspopup="true" >
-                                                <a href="${urlRoot}client/newclient" class="k-menu__link ">
+                                                <a href="${urlRoot}mostwanted/newmostwanted" class="k-menu__link ">
                                                     <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                     <span class="k-menu__link-text">New Most Wanted</span>
                                                 </a>
                                             </li>
                                             <li class="k-menu__item " aria-haspopup="true" >
-                                                <a href="${urlRoot}client/listclient" class="k-menu__link ">
+                                                <a href="${urlRoot}mostwanted/listamostwanted" class="k-menu__link ">
                                                     <i class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
                                                     <span class="k-menu__link-text">List Most Wanted</span>
                                                 </a>

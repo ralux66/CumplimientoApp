@@ -3,7 +3,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <spring:url value="/" var="urlRoot" />
-<spring:url value="/client/saveclient" var="urlForm" />
+<spring:url value="/mostwanted/savemostwanted" var="urlForm" />
 <!-- begin:: Subheader -->
 <div class="k-subheader k-grid__item" id="k_subheader">
 	<div class="k-subheader__main">
@@ -157,7 +157,7 @@
 	<div class="k-portlet k-portlet--mobile">
 		<div class="k-portlet__head">		
 			<div class="k-portlet__head-label">
-				<h3 class="k-portlet__head-title">Listado de Cliente</h3>
+				<h3 class="k-portlet__head-title">Listado de MostWanted</h3>
 			</div>
 		</div>
 		<div class="k-portlet__body">
@@ -167,23 +167,29 @@
 				id="k_table_1">
 				<thead>
 					<tr>
-						<th>Nombre Propio</th>
-						<th>Direccion</th>
-						<th>Tipo entidad</th>
-						<th>Telefono</th>
-						<th>Departamento</th>
-						<th>Ciudad</th>
+						<th>nombreCompleto</th>
+						<th>primerNombre</th>
+						<th>segundoNombre</th>
+						<th>primerApellido</th>
+						<th>segundoApellido</th>
+						<th>ciudad</th>
+						<th>delito</th>
+						<th>residencia</th>
+						<th>masInformacion</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="allClient" items="${allClient}">
+					<c:forEach var="allMostWanted" items="${allMostWanted}">
 						<tr>
-							<td>${allClient.nombrepropio1}</td>
-							<td>${allClient.direccion1}</td>
-							<td>${allClient.tipodeentidad}</td>
-							<td>${allClient.telefono1}</td>
-							<td>${allClient.departamento}</td>
-							<td>${allClient.ciudad}</td>
+							<td>${allMostWanted.nombreCompleto}</td>
+							<td>${allMostWanted.primerNombre}</td>
+							<td>${allMostWanted.segundoNombre}</td>
+							<td>${allMostWanted.primerApellido}</td>
+							<td>${allMostWanted.segundoApellido}</td>
+							<td>${allMostWanted.ciudad}</td>
+							<td>${allMostWanted.delito}</td>
+							<td>${allMostWanted.residencia}</td>
+							<td>${allMostWanted.masInformacion}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
