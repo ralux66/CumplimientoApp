@@ -147,15 +147,15 @@
                         <table class="table table-striped- table-bordered table-hover table-checkable" id="k_table_1">
                             <thead>
                                 <tr>
-                                    <th>nombreCompleto</th>
-                                    <th>primerNombre</th>
-                                    <th>segundoNombre</th>
-                                    <th>primerApellido</th>
-                                    <th>segundoApellido</th>
-                                    <th>ciudad</th>
-                                    <th>delito</th>
-                                    <th>residencia</th>
-                                    <th>masInformacion</th>
+                                    <th>Nombre Completo</th>
+                                    <th>Primer Nombre</th>
+                                    <th>Segundo Nombre</th>
+                                    <th>Primer Apellido</th>
+                                    <th>Segundo Apellido</th>
+                                    <th>Ciudad</th>
+                                    <th>Delito</th>
+                                    <th>Residencia</th>
+                                    <th>Mas Informacion</th>
                                 </tr>
                             </thead>
                             <tbody>

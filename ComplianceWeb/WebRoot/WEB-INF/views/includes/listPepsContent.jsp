@@ -10,8 +10,8 @@
                     <span class="k-subheader__separator k-hidden"></span>
                     <div class="k-subheader__breadcrumbs">
                         <a href="#" class="k-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a> <span class="k-subheader__breadcrumbs-separator"></span> <a href="" class="k-subheader__breadcrumbs-link">
-				Datatables.net </a> <span class="k-subheader__breadcrumbs-separator"></span> <a href="" class="k-subheader__breadcrumbs-link"> Base </a> <span class="k-subheader__breadcrumbs-separator"></span> <a href="" class="k-subheader__breadcrumbs-link">
-				Opciones de Paginacion </a>
+                Datatables.net </a> <span class="k-subheader__breadcrumbs-separator"></span> <a href="" class="k-subheader__breadcrumbs-link"> Base </a> <span class="k-subheader__breadcrumbs-separator"></span> <a href="" class="k-subheader__breadcrumbs-link">
+                Opciones de Paginacion </a>
                         <!-- <span class="k-subheader__breadcrumbs-link k-subheader__breadcrumbs-link--active">Active link</span> -->
                     </div>
                 </div>
@@ -25,67 +25,70 @@
                             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                 <ul class="k-nav k-nav--active-bg" role="tablist">
                                     <li class="k-nav__item">
-                                        <a href="${urlRoot}client/newclient" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-psd"></i> <span class="k-nav__link-text">New
-									Client</span>
+                                        <a href="${urlRoot}client/newclient" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-psd"></i> <span class="k-nav__link-text">Nuevo
+                                    Cliente</span>
                                         </a>
                                     </li>
                                     <li class="k-nav__item">
                                         <a class="k-nav__link" role="tab">
-                                            <i class="k-nav__link-icon flaticon2-supermarket"></i> <span class="k-nav__link-text">Message</span>
+                                            <i class="k-nav__link-icon flaticon2-supermarket"></i> <span class="k-nav__link-text">Mensaje</span>
                                         </a>
                                     </li>
                                     <li class="k-nav__item">
-                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-shopping-cart"></i> <span class="k-nav__link-text">Product</span>
+                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-shopping-cart"></i>
+                                            <span class="k-nav__link-text">Producto</span>
                                         </a>
                                     </li>
                                     <li class="k-nav__item">
                                         <a class="k-nav__link" role="tab">
-                                            <i class="k-nav__link-icon flaticon2-chart2"></i> <span class="k-nav__link-text">Report</span> <span class="k-nav__link-badge"> <span
-										class="k-badge k-badge--danger k-badge--inline k-badge--rounded">pdf</span>
+                                            <i class="k-nav__link-icon flaticon2-chart2"></i> <span class="k-nav__link-text">Reporte</span> <span class="k-nav__link-badge"> <span
+                                        class="k-badge k-badge--danger k-badge--inline k-badge--rounded">pdf</span>
                                             </span>
                                         </a>
                                     </li>
                                     <li class="k-nav__item">
-                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-sms"></i> <span class="k-nav__link-text">Post</span>
+                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-sms"></i> <span class="k-nav__link-text">Publicar</span>
                                         </a>
                                     </li>
                                     <li class="k-nav__item">
-                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-avatar"></i> <span class="k-nav__link-text">Customer</span>
+                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-avatar"></i> <span class="k-nav__link-text">Cliente</span>
                                         </a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                         <div class="dropdown dropdown-inline" data-toggle="k-tooltip" title="Quick actions" data-placement="top">
-                            <a href="#" class="btn btn btn-label btn-label-brand btn-bold btn-elevate" data-toggle="dropdown" data-offset="0 0" aria-haspopup="true" aria-expanded="false"> Reports </a>
+                            <a href="#" class="btn btn btn-label btn-label-brand btn-bold btn-elevate" data-toggle="dropdown" data-offset="0 0" aria-haspopup="true" aria-expanded="false"> Reportes </a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <ul class="k-nav k-nav--active-bg" id="k_nav_1" role="tablist">
                                     <li class="k-nav__item">
-                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-psd"></i> <span class="k-nav__link-text">Products</span>
+                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-psd"></i> <span class="k-nav__link-text">Productos</span>
                                         </a>
                                     </li>
                                     <li class="k-nav__item">
-                                        <a class="k-nav__link" role="tab" id="k_nav_link_1"> <i class="k-nav__link-icon flaticon2-supermarket"></i> <span class="k-nav__link-text">Customers</span> <span class="k-nav__link-badge"> <span
-										class="k-badge k-badge--success k-badge--inline k-badge--rounded">6</span>
+                                        <a class="k-nav__link" role="tab" id="k_nav_link_1"> <i class="k-nav__link-icon flaticon2-supermarket"></i> <span class="k-nav__link-text">Clientes</span> <span class="k-nav__link-badge"> <span
+                                        class="k-badge k-badge--success k-badge--inline k-badge--rounded">6</span>
                                             </span>
                                         </a>
                                     </li>
                                     <li class="k-nav__item">
-                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-shopping-cart"></i> <span class="k-nav__link-text">Orders</span>
+                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-shopping-cart"></i>
+                                            <span class="k-nav__link-text">Ordenes</span>
                                         </a>
                                     </li>
                                     <li class="k-nav__item">
-                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-shopping-cart"></i> <span class="k-nav__link-text">Reports</span>
+                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-shopping-cart"></i>
+                                            <span class="k-nav__link-text">Reportes</span>
                                         </a>
                                     </li>
                                     <li class="k-nav__item">
-                                        <a class="k-nav__link" role="tab" id="k_nav_link_2"> <i class="k-nav__link-icon flaticon2-chart2"></i> <span class="k-nav__link-text">Console</span> <span class="k-nav__link-badge"> <span
-										class="k-badge k-badge--danger k-badge--inline k-badge--rounded">new</span>
+                                        <a class="k-nav__link" role="tab" id="k_nav_link_2"> <i class="k-nav__link-icon flaticon2-chart2"></i> <span class="k-nav__link-text">Consola</span> <span class="k-nav__link-badge"> <span
+                                        class="k-badge k-badge--danger k-badge--inline k-badge--rounded">new</span>
                                             </span>
                                         </a>
                                     </li>
                                     <li class="k-nav__item">
-                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-sms"></i> <span class="k-nav__link-text">Settings</span>
+                                        <a href="" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-sms"></i> <span class="k-nav__link-text">Ajustes</span>
                                         </a>
                                     </li>
                                 </ul>
@@ -114,8 +117,8 @@
                         </div>
                         <div class="alert-close">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true"><i class="la la-close"></i></span>
-				</button>
+                    <span aria-hidden="true"><i class="la la-close"></i></span>
+                </button>
                         </div>
                     </div>
                 </spring:hasBindErrors>
@@ -128,8 +131,8 @@
                         <div class="alert-text">${msg}</div>
                         <div class="alert-close">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true"><i class="la la-close"></i></span>
-				</button>
+                    <span aria-hidden="true"><i class="la la-close"></i></span>
+                </button>
                         </div>
                     </div>
                 </c:if>
@@ -183,17 +186,17 @@
                         <div class="col k-align-right">
                             <div class="k-section__content k-section__content--border">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-success k-btn" data-toggle="modal" data-target="#exampleModal">New
-						Client</button>
+                                <button type="button" class="btn btn-success k-btn" data-toggle="modal" data-target="#exampleModal">Nuevo
+                        Cliente</button>
                                 <!--begin::Modal-->
                                 <div class="modal fade  bd-example-modal-xl" id="exampleModal" role="dialog" aria-labelledby="" aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="">New Client</h5>
+                                                <h5 class="modal-title" id="">Nuevo Cliente</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true" class="la la-remove"></span>
-									</button>
+                                        <span aria-hidden="true" class="la la-remove"></span>
+                                    </button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="k-scroll" data-scroll="true" style="height: 800px;">

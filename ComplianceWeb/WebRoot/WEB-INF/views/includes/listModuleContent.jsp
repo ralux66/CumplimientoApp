@@ -10,8 +10,8 @@
                     <span class="k-subheader__separator k-hidden"></span>
                     <div class="k-subheader__breadcrumbs">
                         <a href="#" class="k-subheader__breadcrumbs-home"><i class="flaticon2-shelter"></i></a> <span class="k-subheader__breadcrumbs-separator"></span> <a href="" class="k-subheader__breadcrumbs-link">
-				Datatables.net </a> <span class="k-subheader__breadcrumbs-separator"></span> <a href="" class="k-subheader__breadcrumbs-link"> Base </a> <span class="k-subheader__breadcrumbs-separator"></span> <a href="" class="k-subheader__breadcrumbs-link">
-				Opciones de paginacion </a>
+                Datatables.net </a> <span class="k-subheader__breadcrumbs-separator"></span> <a href="" class="k-subheader__breadcrumbs-link"> Base </a> <span class="k-subheader__breadcrumbs-separator"></span> <a href="" class="k-subheader__breadcrumbs-link">
+                Opciones de paginacion </a>
                         <!-- <span class="k-subheader__breadcrumbs-link k-subheader__breadcrumbs-link--active">Active link</span> -->
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                                 <ul class="k-nav k-nav--active-bg" role="tablist">
                                     <li class="k-nav__item">
                                         <a href="${urlRoot}client/newclient" class="k-nav__link"> <i class="k-nav__link-icon flaticon2-psd"></i> <span class="k-nav__link-text">Nuevo
-									Cliente</span>
+                                    Cliente</span>
                                         </a>
                                     </li>
                                     <li class="k-nav__item">
@@ -42,7 +42,7 @@
                                     <li class="k-nav__item">
                                         <a class="k-nav__link" role="tab">
                                             <i class="k-nav__link-icon flaticon2-chart2"></i> <span class="k-nav__link-text">Reporte</span> <span class="k-nav__link-badge"> <span
-										class="k-badge k-badge--danger k-badge--inline k-badge--rounded">pdf</span>
+                                        class="k-badge k-badge--danger k-badge--inline k-badge--rounded">pdf</span>
                                             </span>
                                         </a>
                                     </li>
@@ -67,7 +67,7 @@
                                     </li>
                                     <li class="k-nav__item">
                                         <a class="k-nav__link" role="tab" id="k_nav_link_1"> <i class="k-nav__link-icon flaticon2-supermarket"></i> <span class="k-nav__link-text">Clientes</span> <span class="k-nav__link-badge"> <span
-										class="k-badge k-badge--success k-badge--inline k-badge--rounded">6</span>
+                                        class="k-badge k-badge--success k-badge--inline k-badge--rounded">6</span>
                                             </span>
                                         </a>
                                     </li>
@@ -83,7 +83,7 @@
                                     </li>
                                     <li class="k-nav__item">
                                         <a class="k-nav__link" role="tab" id="k_nav_link_2"> <i class="k-nav__link-icon flaticon2-chart2"></i> <span class="k-nav__link-text">Consola</span> <span class="k-nav__link-badge"> <span
-										class="k-badge k-badge--danger k-badge--inline k-badge--rounded">new</span>
+                                        class="k-badge k-badge--danger k-badge--inline k-badge--rounded">new</span>
                                             </span>
                                         </a>
                                     </li>
@@ -117,8 +117,8 @@
                         </div>
                         <div class="alert-close">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true"><i class="la la-close"></i></span>
-				</button>
+                    <span aria-hidden="true"><i class="la la-close"></i></span>
+                </button>
                         </div>
                     </div>
                 </spring:hasBindErrors>
@@ -131,8 +131,8 @@
                         <div class="alert-text">${msg}</div>
                         <div class="alert-close">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true"><i class="la la-close"></i></span>
-				</button>
+                    <span aria-hidden="true"><i class="la la-close"></i></span>
+                </button>
                         </div>
                     </div>
                 </c:if>
@@ -147,7 +147,7 @@
                         <table class="table table-striped- table-bordered table-hover table-checkable" id="k_table_1">
                             <thead>
                                 <tr>
-                                    <th>idmodulo</th>
+                                    <th>Correlativo</th>
                                     <th>nombre</th>
                                     <th>descripcion</th>
                                     <th>custom1</th>
@@ -175,7 +175,7 @@
                             <div class="k-section__content k-section__content--border">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-success k-btn" data-toggle="modal" data-target="#exampleModal">Nuevo
-						Cliente</button>
+                        Cliente</button>
                                 <!--begin::Modal-->
                                 <div class="modal fade  bd-example-modal-xl" id="exampleModal" role="dialog" aria-labelledby="" aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document">
@@ -184,8 +184,8 @@
                                                 <h5 class="modal-title" id="">Nuevo Modulo
                                                 </h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true" class="la la-remove"></span>
-									</button>
+                                        <span aria-hidden="true" class="la la-remove"></span>
+                                    </button>
                                             </div>
                                             <div class="modal-body">
                                                 <div class="k-scroll" data-scroll="true" style="height: 800px;">
@@ -201,7 +201,7 @@
                                                                     <div class="col-lg-6">
                                                                         <form:input type="text" path="idmodulo" class="form-control" placeholder=""></form:input>
                                                                         <span class="form-text text-muted" required="required">Favor
-																ingrese su Id Module</span>
+                                                                ingrese su Id Module</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
@@ -209,7 +209,7 @@
                                                                     <div class="col-lg-6">
                                                                         <form:input type="text" path="nombre" class="form-control" placeholder="" required="required"></form:input>
                                                                         <span class="form-text text-muted">Favor ingrese
-																el nombre del Modulo</span>
+                                                                el nombre del Modulo</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
@@ -218,7 +218,7 @@
                                                                         <form:input type="text" path="descripcion" class="form-control" placeholder="" required="required">
                                                                         </form:input>
                                                                         <span class="form-text text-muted">Favor ingrese la
-																Descripcion</span>
+                                                                Descripcion</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
@@ -226,7 +226,7 @@
                                                                     <div class="col-lg-6">
                                                                         <form:input type="text" path="custom1" class="form-control" placeholder="" required="required"></form:input>
                                                                         <span class="form-text text-muted">Favor ingrese el valor
-																opcional1</span>
+                                                                opcional1</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
@@ -234,7 +234,7 @@
                                                                     <div class="col-lg-6">
                                                                         <form:input type="text" path="custom2" class="form-control" placeholder="" required="required"></form:input>
                                                                         <span class="form-text text-muted">Favor ingrese el valor
-																opcional2</span>
+                                                                opcional2</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group row">
@@ -242,7 +242,7 @@
                                                                     <div class="col-lg-6">
                                                                         <form:input type="text" path="custom3" class="form-control" placeholder="" required="required"></form:input>
                                                                         <span class="form-text text-muted">Favor ingrese el valor
-																opcional3</span>
+                                                                opcional3</span>
                                                                     </div>
                                                                 </div>
                                                             </div>

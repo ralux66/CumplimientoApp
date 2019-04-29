@@ -83,7 +83,7 @@
                                     </li>
                                     <li class="k-nav__item">
                                         <a class="k-nav__link" role="tab" id="k_nav_link_2"> <i class="k-nav__link-icon flaticon2-chart2"></i> <span class="k-nav__link-text">Consola</span> <span class="k-nav__link-badge"> <span
-                                        class="k-badge k-badge--danger k-badge--inline k-badge--rounded">new</span>
+                                        class="k-badge k-badge--danger k-badge--inline k-badge--rounded">nuevo</span>
                                             </span>
                                         </a>
                                     </li>
