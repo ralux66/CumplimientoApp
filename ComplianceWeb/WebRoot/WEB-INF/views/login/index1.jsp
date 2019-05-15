@@ -150,10 +150,19 @@ License: You must have a valid license purchased only from https://themes.getboo
 		<div
 			class="k-grid__item   k-grid__item--fluid k-grid  k-grid k-grid--hor k-login-v1"
 			id="k_login_v1">
-
+			<c:if test="${message != null}">
+				<div class="alert alert-warning alert-dismissible fade show"
+					role="alert">
+					<strong>${message}</strong> You should check in on some of
+					those fields below.
+					<button type="button" class="close" data-dismiss="alert"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</c:if>
 			<!--begin::Item-->
 			<div class="k-grid__item  k-grid--hor">
-
 				<!--begin::Heade-->
 				<div class="k-login-v1__head">
 					<div class="k-login-v1__head-logo">
@@ -228,7 +237,6 @@ License: You must have a valid license purchased only from https://themes.getboo
 									<span></span> <span>OR</span> <span></span>
 								</div>
 							</div>
-
 							<!--end::Divider-->
 
 							<!--begin::Options-->
@@ -241,10 +249,10 @@ License: You must have a valid license purchased only from https://themes.getboo
 									Google
 								</a>
 							</div>
-
 							<!--end::Options-->
 						</div>
 					</div>
+
 
 					<!--end::Wrapper-->
 				</div>
@@ -675,8 +683,12 @@ License: You must have a valid license purchased only from https://themes.getboo
 	<!--begin::Global App Bundle -->
 	<script src="${urlPublic}/assets/app/scripts/bundle/app.bundle.js"
 		type="text/javascript"></script>
-
 	<!--end::Global App Bundle -->
+
+
+
+
+
 </body>
 
 <!-- end::Body -->

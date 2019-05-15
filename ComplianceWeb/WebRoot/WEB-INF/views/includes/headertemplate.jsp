@@ -920,7 +920,7 @@ License: You must have a valid license purchased only from https://themes.getboo
 											<span class="k-nav__link-text">Ajustes</span>
 									</a></li>
 									<li class="k-nav__item k-nav__item--custom k-margin-t-15">
-										<a href="custom_user_login-v2.html" target="_blank"
+										<a href="${urlRoot}" target="_blank"
 										class="btn btn-outline-metal btn-hover-brand btn-upper btn-font-dark btn-sm btn-bold">Salir</a>
 									</li>
 								</ul>

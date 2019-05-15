@@ -1,6 +1,5 @@
 package com.avanceti.compliance.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +16,9 @@ import com.avanceti.compliance.services.IUserService;
 public class LoginController {
 	@Autowired
 	private IUserService userService;
-	
-	
+
 	@ModelAttribute("user")
-	public User setUpUserForm() {		
+	public User setUpUserForm() {
 		return new User();
 	}
 
@@ -32,17 +30,16 @@ public class LoginController {
 	@PostMapping(value = "/gologin")
 	public String goLogin(Model model, @ModelAttribute("user") User user, BindingResult result) {
 
-		if (result.hasErrors()){
+		if (result.hasErrors()) {
 			System.out.println("Existieron errores");
-			return "login/index";
+			return "login/index1";
 		}
-		
+
 		User resultUser = new User();
 		try {
-			resultUser = userService.findByUserLogin(user.getCodusr(), user.getPassword());
-			//if (!resultUser.getApellido().isEmpty()) {
-			if(!(resultUser==null)) {
-				user.setApellido(resultUser.getApellido());				
+			resultUser = userService.findByUserLogin(user.getCodusr(), user.getPassword());			
+			if (resultUser != null) {
+				user.setApellido(resultUser.getApellido());
 				user.setCasoconsultaList(resultUser.getCasoconsultaList());
 				user.setCodusr(resultUser.getCodusr());
 				user.setCreadoel(resultUser.getCreadoel());
@@ -67,15 +64,20 @@ public class LoginController {
 				user.setSexo(resultUser.getSexo());
 				user.setSolicitaEmail(resultUser.getSolicitaEmail());
 				user.setTelefono(resultUser.getTelefono());
-			}else {
+			} else {
 				model.addAttribute("message", "Login failed. Try again.");
-				return "redirect:/";
+				return "login/index1";
 			}
 		} catch (Exception e) {
-			System.out.println("Some Error "+e.getMessage());
+			System.out.println("Some Error " + e.getMessage());
 		}
-		return "redirect:/dashboard/";
-		//return "login/index";
+		return "redirect:dashboard/";		
 	}
+
+//	@PostMapping(value = "/gologout")
+//	public String logout() {
+//		
+//		return "dashboard/index1";
+//	}
 
 }
