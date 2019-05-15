@@ -15,21 +15,19 @@ public class MostwantedServiceImpl implements IMostwantedService {
 
 	@Autowired
 	private IMostwantedRepository mostwantedRepository;
-	
-	@Override
-	public List<Mostwanted> findMostwantedAll() {		
+
+	public List<Mostwanted> findMostwantedAll() {
+		// TODO Auto-generated method stub
 		return mostwantedRepository.findAll();
 	}
 
-	@Override
-	public void createMostwanted(Mostwanted mostwanted) {
-		mostwantedRepository.save(mostwanted);		
-	}
-
-	@Override
 	public List<Mostwanted> findByLikeName(String nameToSearch) {
-		
-		return mostwantedRepository.findBynombreCompletoLike(nameToSearch);
+		// TODO Auto-generated method stub
+		return mostwantedRepository.findBynombreCompletoLike(nameToSearch);		
 	}
 
+	public void createMostwanted(Mostwanted mostwanted) {
+		// TODO Auto-generated method stub
+		mostwantedRepository.save(mostwanted);
+	}
 }

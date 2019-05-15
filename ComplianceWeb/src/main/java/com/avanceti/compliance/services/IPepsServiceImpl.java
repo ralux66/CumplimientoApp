@@ -16,22 +16,21 @@ public class IPepsServiceImpl implements IPepsService {
 	@Autowired
 	private IPepsRepository pepsRepository;
 
-	
-	@Override
-	public List<Peps> findAll() {
-		// TODO Auto-generated method stub		
-		return pepsRepository.findAll();
-	}
-
-	@Override
-	public void Save(Peps peps) {
-		pepsRepository.save(peps);		
-	}
-
-	@Override
 	public List<Peps> findByFuncionarioLike(String nameToSearch) {
 		// TODO Auto-generated method stub
 		return pepsRepository.findByfuncionarioContaining(nameToSearch);
 	}
+
+	public List<Peps> findAll() {
+		// TODO Auto-generated method stub
+		return pepsRepository.findAll();
+	}
+
+	public void Save(Peps peps) {
+		// TODO Auto-generated method stub
+		pepsRepository.save(peps);	
+	}
+
+	
 
 }

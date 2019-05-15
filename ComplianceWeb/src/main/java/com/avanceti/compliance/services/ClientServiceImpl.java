@@ -16,22 +16,23 @@ public class ClientServiceImpl implements IClientService {
 	@Autowired
 	IClientRepository clientRepository;
 
-	@Override
 	public void createClient(Client client) {
-		//if (!clientRepository.existsById(client.getIdcliente())) {
-			clientRepository.save(client);	
-		//}		
+		// TODO Auto-generated method stub
+		clientRepository.save(client);
+		
 	}
 
-	@Override
-	public List<Client> allClient() {		
+	public List<Client> allClient() {
+		// TODO Auto-generated method stub
 		return clientRepository.findAll();
 	}
 
-	@Override
-	public Optional<Client> findByIdClient(Integer idclient) {		
-		return clientRepository.findById(idclient);		
+	public Optional<Client> findByIdClient(Integer idclient) {
+		// TODO Auto-generated method stub
+		return clientRepository.findById(idclient);
 	}
+
+	
 	
 	
 }

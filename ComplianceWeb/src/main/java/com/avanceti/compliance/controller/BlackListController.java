@@ -72,8 +72,8 @@ public class BlackListController {
 		menuActive.setSearch("k-menu__item--open k-menu__item--here");
 		model.addAttribute("menuActive", menuActive);
 		
-		List<ConsPrim> resultQuery = new LinkedList<>();
-		List<ConsPrim> resultSearchBlacklist = new LinkedList<>();
+		List<ConsPrim> resultQuery = new LinkedList<ConsPrim>();
+		List<ConsPrim> resultSearchBlacklist = new LinkedList<ConsPrim>();
 		Double score;		
 		try {
 			resultQuery = isdnService.findByName("%" + nameToSearch + "%");

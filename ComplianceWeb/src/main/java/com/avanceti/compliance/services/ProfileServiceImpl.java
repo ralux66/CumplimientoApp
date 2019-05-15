@@ -17,21 +17,22 @@ public class ProfileServiceImpl implements IProfileService {
 
 	@Autowired
 	private IProfileRepository profielRepository;
-	
-	@Override
+
 	public void createProfile(Profile profile) {
+		// TODO Auto-generated method stub
 		profielRepository.save(profile);
-		
 	}
 
-	@Override
 	public List<Profile> allProfile() {
+		// TODO Auto-generated method stub
 		return profielRepository.findAll();
 	}
 
-	@Override
 	public Optional<Profile> findByIdProfile(Profile profile) {
+		// TODO Auto-generated method stub
 		return profielRepository.findById(profile.getIdperfil());
 	}
+	
+	
 
 }

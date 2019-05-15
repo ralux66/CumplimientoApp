@@ -15,10 +15,9 @@ import com.avanceti.compliance.utility.ValidateUrlRequest;
 @RequestMapping(value = "/dashboard")
 public class DashboardController {
 	@GetMapping(value = "/")
-	public String goDashboard(@SessionAttribute("user") User user, Model model,
-			HttpServletRequest request) {			
+	public String goDashboard(@SessionAttribute("user") User user, Model model, HttpServletRequest request) {
 		model.addAttribute("user", user);
-		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
+		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {
 			return "redirect:/error/errorpage";
 		}
 		return "dashboard/index1";

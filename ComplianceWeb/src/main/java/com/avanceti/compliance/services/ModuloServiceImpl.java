@@ -13,21 +13,22 @@ public class ModuloServiceImpl implements IModulosService {
 	
 	@Autowired
 	private IModulosRepository moduloRepository;
-	
 
-	@Override
 	public void createModulo(Modulos modulos) {
+		// TODO Auto-generated method stub
 		moduloRepository.save(modulos);	
 	}
 
-	@Override
-	public List<Modulos> allModulos() {		
+	public List<Modulos> allModulos() {
+		// TODO Auto-generated method stub
 		return moduloRepository.findAll();
 	}
 
-	@Override
-	public Modulos findByIdmodulo(Integer idmodulo) {		
-		return moduloRepository.findByidmodulo(idmodulo);
+	public Modulos findByIdmodulo(Integer moduloId) {
+		// TODO Auto-generated method stub
+		return moduloRepository.findByidmodulo(moduloId);
 	}
+	
+
 
 }

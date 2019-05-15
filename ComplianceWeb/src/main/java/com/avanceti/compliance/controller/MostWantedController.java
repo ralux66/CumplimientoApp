@@ -97,8 +97,8 @@ public class MostWantedController {
 	@PostMapping(value = "/gosearch")
 	public String goSearch(Model model, @RequestParam("nameToSearch") String nameToSearch,
 			RedirectAttributes attributes) {
-		List<Mostwanted> resultQuery = new LinkedList<>();
-		List<Mostwanted> resultSearchMostwanted = new LinkedList<>();
+		List<Mostwanted> resultQuery = new LinkedList<Mostwanted>();
+		List<Mostwanted> resultSearchMostwanted = new LinkedList<Mostwanted>();
 		Double score;
 		try {
 			resultQuery = mostwantedService.findByLikeName("%" + nameToSearch + "%");

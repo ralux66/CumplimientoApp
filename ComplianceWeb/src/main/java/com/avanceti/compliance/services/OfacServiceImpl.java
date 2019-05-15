@@ -16,17 +16,14 @@ public class OfacServiceImpl implements IOfacService {
 	
 	@Autowired
 	private IOfacRepository ofacDao;
-	
-	@Override
+
 	public List<Ofac> findAllOfac() {
-		
+		// TODO Auto-generated method stub
 		return ofacDao.findAll();
 	}
 
-	@Override
-	public List<Ofac> findByLikeName(String name) {		
+	public List<Ofac> findByLikeName(String name) {
+		// TODO Auto-generated method stub
 		return ofacDao.findByNameContaining(name);
-	}
-
-	
+	}	
 }

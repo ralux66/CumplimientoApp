@@ -16,19 +16,22 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IUserRepository userRepository;
-	
-	@Override
+
 	public void createUser(User user) {
-		userRepository.save(user);		
+		// TODO Auto-generated method stub
+		userRepository.save(user);
+		
 	}
 
-	@Override
-	public List<User> allUser() {		
+	public List<User> allUser() {
+		// TODO Auto-generated method stub
 		return userRepository.findAll();
 	}
 
-	@Override
-	public User findByUserLogin(String user, String password) {		
-		return userRepository.findByCodusrAndPassword(user, password);		
+	public User findByUserLogin(String user, String password) {
+		// TODO Auto-generated method stub
+		return userRepository.findByCodusrAndPassword(user, password);
 	}
+	
+	
 }

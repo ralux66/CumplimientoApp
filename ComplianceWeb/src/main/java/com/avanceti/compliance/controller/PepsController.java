@@ -59,7 +59,7 @@ public class PepsController {
 	
 	@GetMapping(value = "/listpeps")
 	public String formListaPeps(Model model,@SessionAttribute("user") User user, HttpServletRequest request) {
-		List<Peps> pepslist = new LinkedList<>();
+		List<Peps> pepslist = new LinkedList<Peps>();
 		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
 			return "redirect:/error/errorpage";
 		}
@@ -105,8 +105,8 @@ public class PepsController {
 	
 	@PostMapping(value = "/gosearch")
 	public String goSearch(Model model, @RequestParam("nameToSearch") String nameToSearch,	RedirectAttributes attributes) {
-		List<Peps> resultQuery = new LinkedList<>();
-		List<Peps> resultSearchPeps = new LinkedList<>();
+		List<Peps> resultQuery = new LinkedList<Peps>();
+		List<Peps> resultSearchPeps = new LinkedList<Peps>();
 		Double score;		
 		try {
 			resultQuery = pepsServices.findByFuncionarioLike("%"+nameToSearch+"%");

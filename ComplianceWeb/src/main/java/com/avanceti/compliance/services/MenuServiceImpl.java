@@ -17,13 +17,15 @@ public class MenuServiceImpl implements IMenuService {
 	@Autowired
 	private IMenuRepository menuRepository;
 
-	@Override
 	public void createMenu(Menu menu) {
+		// TODO Auto-generated method stub
 		menuRepository.save(menu);
+		
 	}
 
-	@Override
 	public List<Menu> allMenu() {
+		// TODO Auto-generated method stub
 		return menuRepository.findAll();
 	}
+
 }

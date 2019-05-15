@@ -16,15 +16,14 @@ public class SdnConsolidatServiceImpl implements ISdnConsolidatService  {
 	@Autowired
 	private ISdnConsolidatRepository sdnConsolidateRepo;
 
-	@Override
 	public List<ConsPrim> findAllSdnConsolidat() {
 		return sdnConsolidateRepo.findAll();
 	}
 
-	@Override
-	public List<ConsPrim> findByName(String nameToSearch) {		
+	public List<ConsPrim> findByName(String nameToSearch) {
+		// TODO Auto-generated method stub
 		return sdnConsolidateRepo.findBysDNNameLike(nameToSearch);
 	}
-	
 
+	
 }

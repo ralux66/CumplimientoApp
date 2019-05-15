@@ -15,14 +15,11 @@
 	<jpa:repositories
 		base-package="com.avanceti.compliance.repository" />
 
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName"
-			value="com.mysql.jdbc.Driver" />
-		<property name="url"
-			value="jdbc:mysql://localhost:3306/busqueda?useSSL=false" />
-		<property name="username" value="ralux88" />
-		<property name="password" value="ragu77" />
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/busqueda?useSSL=false" />
+		<property name="username" value="root" />
+		<property name="password" value="" />
 	</bean>
 	<bean id="jpaVendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">

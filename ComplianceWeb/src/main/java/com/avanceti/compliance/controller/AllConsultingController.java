@@ -32,9 +32,9 @@ public class AllConsultingController {
 	@PostMapping(value = "/goSearch")
 	public String goConsulting(Model model, @RequestParam("nameSearch") String name) {
 		Double score;	
-		List<ResultSearchCustomized> resultSerachList = new LinkedList<>();	
+		List<ResultSearchCustomized> resultSerachList = new LinkedList<ResultSearchCustomized>();	
 		ResultSearchCustomized resultSerach =  new ResultSearchCustomized();
-		List<Ofac> allOfacList = new LinkedList<>();	
+		List<Ofac> allOfacList = new LinkedList<Ofac>();	
 		allOfacList = ofacService.findByLikeName(name);
 		
 		for (Ofac ofac : allOfacList) {			
