@@ -186,8 +186,7 @@
                         <div class="col k-align-right">
                             <div class="k-section__content k-section__content--border">
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-success k-btn" data-toggle="modal" data-target="#exampleModal">Nuevo
-                        Cliente</button>
+                                <button type="button" class="btn btn-success k-btn" data-toggle="modal" data-target="#exampleModal">Nuevo Cliente</button>
                                 <!--begin::Modal-->
                                 <div class="modal fade  bd-example-modal-xl" id="exampleModal" role="dialog" aria-labelledby="" aria-hidden="true">
                                     <div class="modal-dialog modal-lg" role="document">

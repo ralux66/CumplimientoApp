@@ -20,8 +20,8 @@ import com.avanceti.compliance.utility.JaroWinklerDistance;
 
 
 @Controller
-@RequestMapping(value = "/abogado")
-public class AbogadoController {
+@RequestMapping(value = "/abogado-suspen")
+public class AbogadoSuspenController {
 	@Autowired
 	private IAbogadosService abogadoSevices;
 	private ActiveMenu menuActive = new ActiveMenu();

@@ -1,6 +1,5 @@
 package com.avanceti.compliance.controller;
 
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,29 +12,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import com.avanceti.compliance.model.Abynotsus;
 import com.avanceti.compliance.model.ActiveMenu;
-import com.avanceti.compliance.services.IAbogadosService;
+import com.avanceti.compliance.model.Notaut;
+import com.avanceti.compliance.services.INotariosService;
 import com.avanceti.compliance.utility.JaroWinklerDistance;
 
-
 @Controller
-@RequestMapping(value = "/notario")
-public class NotariosController {
-	@Autowired
-	private IAbogadosService abogadoSevices;
+@RequestMapping("/notario-auto")
+public class NotarioAutoController {
+	
 	private ActiveMenu menuActive = new ActiveMenu();
-
+	@Autowired
+	private INotariosService notarioService;
+	
 	@GetMapping(value = "/search")
 	public String homeSearch() {
 		menuActive.setSearch("k-menu__item--open k-menu__item--here");			
 		return "notario/search";
 	}
-
-	@GetMapping(value = "/listanotario")
+	
+	@GetMapping(value = "/listanotario-auto")
 	public String listBlacklist(Model model) {
-		model.addAttribute("allAbogados", abogadoSevices.allAbogados());	
+		model.addAttribute("allnotario", notarioService.allNotarios());	
 		menuActive.setSearch("k-menu__item--open k-menu__item--here");
 		return "notario/listnotario";
 	}
@@ -44,16 +42,16 @@ public class NotariosController {
 	public String goSearch(Model model, @RequestParam("nameToSearch") String nameToSearch,
 			RedirectAttributes attributes) {
 		menuActive.setSearch("k-menu__item--open k-menu__item--here");
-		List<Abynotsus> resultQuery = new LinkedList<Abynotsus>();
-		List<Abynotsus> resultSearchBlacklist = new LinkedList<Abynotsus>();
+		List<Notaut> resultQuery = new LinkedList<Notaut>();
+		List<Notaut> resultSearchBlacklist = new LinkedList<Notaut>();
 		Double score;		
 		try {
-			resultQuery = abogadoSevices.findByName("%" + nameToSearch + "%").stream().filter(b->b.getSancionadoComo().equals("NOTARIO")).collect(Collectors.toList());
-			for (Abynotsus abynotsus : resultQuery) {				
-				score = JaroWinklerDistance.apply(nameToSearch.trim(), abynotsus.getNombre());
+			resultQuery = notarioService.findByName("%" + nameToSearch + "%").stream().filter(b->b.getTitulo().equals("NOTARIO")).collect(Collectors.toList());
+			for (Notaut notaut : resultQuery) {				
+				score = JaroWinklerDistance.apply(nameToSearch.trim(), notaut.getNombres());
 				if (score > 0.70) {
-					abynotsus.setScore(score);
-					resultSearchBlacklist.add(abynotsus);
+					notaut.setScore(score);
+					resultSearchBlacklist.add(notaut);
 				} 
 			}
 			model.addAttribute("allResultreturn", resultSearchBlacklist);			
