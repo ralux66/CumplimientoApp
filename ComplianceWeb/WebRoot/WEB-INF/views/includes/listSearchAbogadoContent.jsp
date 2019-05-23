@@ -1,7 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<spring:url value="/abogado/gosearch" var="urlForm" />
+<spring:url value="/abogado-suspen/gosearch" var="urlForm" />
 <!-- begin:: Subheader -->
 <div class="k-subheader k-grid__item" id="k_subheader">
 	<div class="k-subheader__main">
