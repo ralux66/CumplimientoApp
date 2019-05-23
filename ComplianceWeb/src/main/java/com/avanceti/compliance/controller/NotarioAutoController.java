@@ -28,14 +28,14 @@ public class NotarioAutoController {
 	@GetMapping(value = "/search")
 	public String homeSearch() {
 		menuActive.setSearch("k-menu__item--open k-menu__item--here");			
-		return "notario/search";
+		return "notario/search-auto";
 	}
 	
 	@GetMapping(value = "/listanotario-auto")
 	public String listBlacklist(Model model) {
 		model.addAttribute("allnotario", notarioService.allNotarios());	
 		menuActive.setSearch("k-menu__item--open k-menu__item--here");
-		return "notario/listnotario";
+		return "notario/listnotario-auto";
 	}
 	
 	@PostMapping(value = "/gosearch")
@@ -60,6 +60,6 @@ public class NotarioAutoController {
 			attributes.addFlashAttribute("message", e.getMessage());
 			System.out.println("Error "+e.getMessage());
 		}
-		return "notario/search";
+		return "notario/search-auto";
 	}
 }
