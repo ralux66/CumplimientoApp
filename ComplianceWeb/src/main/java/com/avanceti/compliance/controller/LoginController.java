@@ -71,7 +71,7 @@ public class LoginController {
 		} catch (Exception e) {
 			System.out.println("Some Error " + e.getMessage());
 		}
-		return "redirect:dashboard/";		
+		return "redirect:blacklist/search";		
 	}
 
 //	@PostMapping(value = "/gologout")
