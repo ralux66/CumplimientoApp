@@ -238,7 +238,7 @@ License: You must have a valid license purchased only from https://themes.getboo
 												<span class="k-menu__link-text">Abogados Suspendidos</span>
 										</a></li>
 										<li class="k-menu__item " aria-haspopup="true"><a
-											href="${urlRoot}abogado/search" class="k-menu__link "> <i
+											href="${urlRoot}menciones/search" class="k-menu__link "> <i
 												class="k-menu__link-bullet k-menu__link-bullet--dot"><span></span></i>
 												<span class="k-menu__link-text">Menciones</span>
 										</a></li>

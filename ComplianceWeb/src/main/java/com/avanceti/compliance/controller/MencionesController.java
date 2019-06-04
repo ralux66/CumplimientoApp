@@ -2,7 +2,10 @@ package com.avanceti.compliance.controller;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.avanceti.compliance.model.ActiveMenu;
+import com.avanceti.compliance.model.Menciones;
 import com.avanceti.compliance.model.User;
 import com.avanceti.compliance.utility.ExecuteShellCommand;
 import com.avanceti.compliance.utility.ValidateUrlRequest;
@@ -43,11 +47,12 @@ public class MencionesController {
 		
 
 	@PostMapping(value = "/gosearch")
-	public String goSearch(Model model, @RequestParam("nameToSearch") String nameToSearch,
-			RedirectAttributes attributes) {
+	public String goSearch(Model model, @RequestParam("nameToSearch") String nameToSearch) {
 		menuActive.setSearch("k-menu__item--open k-menu__item--here");
 		model.addAttribute("menuActive", menuActive);
-		ExecuteShellCommand.processShellCommand(nameToSearch);		
+		List<Menciones> listaMenciones = new ArrayList<Menciones>();
+		listaMenciones=ExecuteShellCommand.processShellCommand(nameToSearch);
+		model.addAttribute("listamenciones", listaMenciones);
 		return "menciones/search";
 	}
 	
