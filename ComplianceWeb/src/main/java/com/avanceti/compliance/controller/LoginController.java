@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+
 import com.avanceti.compliance.model.User;
 import com.avanceti.compliance.services.IUserService;
 
@@ -74,10 +76,10 @@ public class LoginController {
 		return "redirect:blacklist/search";		
 	}
 
-//	@PostMapping(value = "/gologout")
-//	public String logout() {
-//		
-//		return "dashboard/index1";
-//	}
+	@GetMapping(value = "/gologout")
+	public String logout(SessionStatus status) {
+		status.isComplete();
+		return "login/index1";
+	}
 
 }

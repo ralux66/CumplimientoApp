@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <spring:url value="/" var="urlRoot" />
+<spring:url value="/gologout" var="urlOut" />
 <!-- 
 Theme: Keen - The Ultimate Bootstrap Admin Theme
 Author: KeenThemes
@@ -931,7 +932,7 @@ License: You must have a valid license purchased only from https://themes.getboo
 											<span class="k-nav__link-text">Ajustes</span>
 									</a></li>
 									<li class="k-nav__item k-nav__item--custom k-margin-t-15">
-										<a href="${urlRoot}" target="_blank"
+										<a href="${urlOut}" 
 										class="btn btn-outline-metal btn-hover-brand btn-upper btn-font-dark btn-sm btn-bold">Salir</a>
 									</li>
 								</ul>

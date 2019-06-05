@@ -48,7 +48,8 @@ public class PepsController {
 	}
 	
 	@GetMapping(value = "/search")
-	public String homeSearch(Model model,@SessionAttribute("user") User user, HttpServletRequest request) {
+	public String homeSearch(Model model,@SessionAttribute("user") User user, 
+			HttpServletRequest request) {
 		if (!ValidateUrlRequest.validateUrlMenus(user, request.getServletPath())) {					
 			return "redirect:/error/errorpage";
 		}
