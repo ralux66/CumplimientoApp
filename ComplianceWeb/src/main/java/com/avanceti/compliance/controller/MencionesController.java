@@ -29,8 +29,6 @@ import com.avanceti.compliance.utility.ValidateUrlRequest;
 @RequestMapping(value = "/menciones")
 public class MencionesController {	
 	private ActiveMenu menuActive = new ActiveMenu();
-	
-	
 
 	@GetMapping(value = "/search")
 	public String homeSearch(Model model,@SessionAttribute("user") User user, HttpServletRequest request) {
