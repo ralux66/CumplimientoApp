@@ -15,7 +15,7 @@ import org.json.simple.parser.ParseException;
 public class JsonUrlConext {
 	
 	
-	public void ImportPep() {
+	public void ImportPep(String urlImport) {
 		JSONParser parser = new JSONParser();
 	
 	  try {         
