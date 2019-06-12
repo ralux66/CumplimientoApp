@@ -147,17 +147,17 @@ public class Instituciones implements Serializable {
     private String youtubeUrl;
     @Size(max = 255)
     private String slug;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "institutionId", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "institutionId", fetch = FetchType.LAZY)
     private List<Comites> comitesList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "institutionId", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "institutionId", fetch = FetchType.LAZY)
     private List<Funcionarios> funcionariosList;
     @JoinColumn(name = "standard_category_id", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private EstandarCategorias standardCategoryId;
     @JoinColumn(name = "institution_type_id", referencedColumnName = "id")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private TipoInstitucion institutionTypeId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "institutionId", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "institutionId", fetch = FetchType.LAZY)
     private List<Dependencias> dependenciasList;
 
     public Instituciones() {

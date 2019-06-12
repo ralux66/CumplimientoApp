@@ -51,7 +51,7 @@ public class Dependencias implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "institutionDependencyId", fetch = FetchType.EAGER)
     private List<Funcionarios> funcionariosList;
     @JoinColumn(name = "institution_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Instituciones institutionId;
 
     public Dependencias() {

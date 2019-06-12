@@ -64,13 +64,13 @@ public class Funcionarios implements Serializable {
     private Date updatedAt;
     private Integer priority;
     @JoinColumn(name = "institution_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Instituciones institutionId;
     @JoinColumn(name = "institution_dependency_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Dependencias institutionDependencyId;
     @JoinColumn(name = "committee_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Comites committeeId;
 
     public Funcionarios() {

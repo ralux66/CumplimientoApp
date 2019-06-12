@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<spring:url value="/import/goimport" var="urlForm" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,17 +15,10 @@
 </head>
 <body>
 	<div class="container">
-
-		<div class="dropdown">
-			<button class="btn btn-secondary dropdown-toggle" type="button"
-				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false">Dropdown button</button>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a class="dropdown-item" href="#">Action</a> <a
-					class="dropdown-item" href="#">Another action</a> <a
-					class="dropdown-item" href="#">Something else here</a>
-			</div>
-		</div>
+		<form:form action="${urlForm}" method="POST">
+			<button type="submit" class="btn btn-primary btn-lg">Large
+				button</button>
+		</form:form>
 		<!-- Content here -->
 	</div>
 

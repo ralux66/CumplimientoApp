@@ -46,7 +46,7 @@ public class EstandarCategorias implements Serializable {
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @OneToMany(mappedBy = "standardCategoryId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "standardCategoryId", fetch = FetchType.LAZY)
     private List<Instituciones> institucionesList;
 
     public EstandarCategorias() {

@@ -49,9 +49,9 @@ public class Comites implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
     @JoinColumn(name = "institution_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Instituciones institutionId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "committeeId", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "committeeId", fetch = FetchType.LAZY)
     private List<Funcionarios> funcionariosList;
 
     public Comites() {
