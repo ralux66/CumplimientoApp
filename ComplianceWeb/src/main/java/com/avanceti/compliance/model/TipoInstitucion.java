@@ -41,19 +41,21 @@ public class TipoInstitucion implements Serializable {
 	@Size(max = 255)
 	private String name;
 	@Column(name = "created_at")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date createdAt;
+	//@Temporal(TemporalType.TIMESTAMP)
+	private String createdAt;
 	@Column(name = "updated_at")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date updatedAt;
+	//@Temporal(TemporalType.TIMESTAMP)
+	private String updatedAt;
 	@OneToMany(mappedBy = "institutionTypeId", fetch = FetchType.LAZY)
 	private List<Instituciones> institucionesList;
 
 	public TipoInstitucion() {
 	}
 
+	
+
 	public TipoInstitucion(@NotNull Long id, Boolean enabled, Long priority, @Size(max = 255) String name,
-			Date createdAt, Date updatedAt) {
+			String createdAt, String updatedAt) {
 		super();
 		this.id = id;
 		this.enabled = enabled;
@@ -62,6 +64,8 @@ public class TipoInstitucion implements Serializable {
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+
+
 
 	public Boolean getEnabled() {
 		return enabled;
@@ -93,23 +97,25 @@ public class TipoInstitucion implements Serializable {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public Date getCreatedAt() {
+	}		
+	
+	public String getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(String createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public Date getUpdatedAt() {
+	public String getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(Date updatedAt) {
+	public void setUpdatedAt(String updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+
 
 	public List<Instituciones> getInstitucionesList() {
 		return institucionesList;

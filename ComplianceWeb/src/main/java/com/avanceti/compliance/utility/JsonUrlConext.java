@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+import java.math.BigDecimal;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -18,6 +18,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.avanceti.compliance.model.EstandarCategorias;
+import com.avanceti.compliance.model.Instituciones;
 import com.avanceti.compliance.model.TipoInstitucion;
 
 public class JsonUrlConext {
@@ -35,15 +37,16 @@ public class JsonUrlConext {
 			while ((inputLine = in.readLine()) != null) {
 				JSONArray arrayJson = (JSONArray) parser.parse(inputLine);
 				for (Object objectMap : arrayJson) {
-					JSONObject jsonObject = (JSONObject) objectMap;					
-					//intitucion.setId((Long) jsonObject.get("id"));
-					Long id = (Long) jsonObject.get("id");					
-					Boolean enabled = (Boolean) jsonObject.get("enabled");					
-					Long priority= (Long) jsonObject.get("priority");
-					String name =(String) jsonObject.get("name");
-					Date createdAt = ((Date) jsonObject.get("createdAt"));
-					Date updatedAt=((Date) jsonObject.get("updatedAt"));
-					listaintitucion.add(new TipoInstitucion(id,enabled, priority, name,	createdAt, updatedAt));				}
+					JSONObject jsonObject = (JSONObject) objectMap;
+					listaintitucion.add(new TipoInstitucion(
+							(Long) jsonObject.get("id"),
+							(Boolean) jsonObject.get("enabled"), 
+							(Long) jsonObject.get("priority"), 
+							(String) jsonObject.get("name"),	
+							(String) jsonObject.get("created_at"), 
+							(String) jsonObject.get("updated_at")));	
+					System.out.println("Generado");
+					}
 			}
 			in.close();
 		} catch (FileNotFoundException e) {
@@ -56,4 +59,114 @@ public class JsonUrlConext {
 		}
 		return listaintitucion;
 	}
+
+	public List<EstandarCategorias> ImportStandarCategories(String urlImport){
+		JSONParser parser = new JSONParser();
+		List<EstandarCategorias> listacategorias = new ArrayList<EstandarCategorias>();
+		try {
+			URL oracle = new URL(urlImport); // URL to Parse
+			URLConnection yc = oracle.openConnection();
+			yc.addRequestProperty("User-Agent", "Mozilla/4.0");
+			yc.setRequestProperty("Content-Type", "application/json");
+			BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream(), "UTF-8"));
+			String inputLine;
+			while ((inputLine = in.readLine()) != null) {
+				JSONArray arrayJson = (JSONArray) parser.parse(inputLine);
+				for (Object objectMap : arrayJson) {
+					JSONObject jsonObject = (JSONObject) objectMap;
+					listacategorias.add(new EstandarCategorias(
+							(Long) jsonObject.get("id"),
+							//(Boolean) jsonObject.get("enabled"), 
+							//(Long) jsonObject.get("priority"), 
+							(String) jsonObject.get("name"),	
+							(String) jsonObject.get("created_at"), 
+							(String) jsonObject.get("updated_at")));	
+					System.out.println("Generado");
+					}
+			}
+			in.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listacategorias;		
+	}
+	
+	public List<Instituciones> ImportInsittuciones(String urlImport){
+		JSONParser parser = new JSONParser();
+		List<Instituciones> listainstituciones = new ArrayList<Instituciones>();
+		try {
+			URL oracle = new URL(urlImport); // URL to Parse
+			URLConnection yc = oracle.openConnection();
+			yc.addRequestProperty("User-Agent", "Mozilla/4.0");
+			yc.setRequestProperty("Content-Type", "application/json");
+			BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream(), "UTF-8"));
+			String inputLine;
+			while ((inputLine = in.readLine()) != null) {
+				JSONArray arrayJson = (JSONArray) parser.parse(inputLine);
+				for (Object objectMap : arrayJson) {
+					JSONObject jsonObject = (JSONObject) objectMap;
+					listainstituciones.add(new Instituciones(
+							(Long) jsonObject.get("id"),
+							(String) jsonObject.get("name"),
+							(String) jsonObject.get("acronym"),
+							(String) jsonObject.get("avatar_file_name"),
+							(String) jsonObject.get("avatar_content_type"),
+							(Long) jsonObject.get("avatar_file_size"),
+							(String) jsonObject.get("avatar_updated_at"),
+							(String) jsonObject.get("created_at"),
+							(String) jsonObject.get("updated_at"),							
+							(Boolean) jsonObject.get("enabled"),
+							(Boolean) jsonObject.get("accepts_online_requests"),
+							(String) jsonObject.get("administrative_document_type"),
+							(String) jsonObject.get("certification_amount"),
+							(String) jsonObject.get("reproduction_amount"),
+							(String) jsonObject.get("external_transparency_site_url"),
+							(String) jsonObject.get("facebook_url"),
+							(String) jsonObject.get("facebook_username"),
+							(String) jsonObject.get("officer_email"),
+							(String) jsonObject.get("officer_name"),
+							(String) jsonObject.get("twitter_url"),
+							(String) jsonObject.get("twitter_username"),
+							(String) jsonObject.get("website_url"),
+							(String) jsonObject.get("officer_designation_date"),
+							(String) jsonObject.get("administrative_document_file_name"),
+							(String) jsonObject.get("administrative_document_content_type"),
+							(Long) jsonObject.get("administrative_document_file_size"),
+							(String) jsonObject.get("administrative_document_updated_at"),
+							(String) jsonObject.get("officer_designation_file_name"),
+							(String) jsonObject.get("officer_designation_content_type"),
+							(Long) jsonObject.get("officer_designation_file_size"),
+							(String) jsonObject.get("officer_designation_updated_at"),
+							(String) jsonObject.get("score"),
+							(String) jsonObject.get("rating_report_file_name"),
+							(String) jsonObject.get("rating_report_content_type"),
+							(Long) jsonObject.get("rating_report_file_size"),
+							(String) jsonObject.get("rating_report_updated_at"),
+							(String) jsonObject.get("flickr_username"),
+							(String) jsonObject.get("flickr_url"),
+							(String) jsonObject.get("youtube_username"),
+							(String) jsonObject.get("youtube_url"),
+							(String) jsonObject.get("slug"),
+							(Long) jsonObject.get("institution_type_id"),
+							(Long) jsonObject.get("standard_category_id")));	
+					System.out.println("Generado");
+					}
+			}
+			in.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listainstituciones;		
+	}
+	
 }

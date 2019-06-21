@@ -30,7 +30,7 @@ import javax.validation.constraints.Size;
  * @author rzepeda
  */
 @Entity
-@Table(catalog = "busqueda", schema = "")
+@Table(name = "comites",catalog = "busqueda", schema = "")
 @NamedQueries({
     @NamedQuery(name = "Comites.findAll", query = "SELECT c FROM Comites c")})
 public class Comites implements Serializable {
