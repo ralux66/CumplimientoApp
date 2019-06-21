@@ -18,6 +18,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import com.avanceti.compliance.model.Dependencias;
 import com.avanceti.compliance.model.EstandarCategorias;
 import com.avanceti.compliance.model.Instituciones;
 import com.avanceti.compliance.model.TipoInstitucion;
@@ -169,4 +170,39 @@ public class JsonUrlConext {
 		return listainstituciones;		
 	}
 	
+	public List<Dependencias> ImportDependencias(String urlImport) {
+		JSONParser parser = new JSONParser();
+		List<Dependencias> listadependencias = new ArrayList<Dependencias>();
+		try {
+			URL oracle = new URL(urlImport); // URL to Parse
+			URLConnection yc = oracle.openConnection();
+			yc.addRequestProperty("User-Agent", "Mozilla/4.0");
+			yc.setRequestProperty("Content-Type", "application/json");
+			BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream(), "UTF-8"));
+			String inputLine;
+			while ((inputLine = in.readLine()) != null) {
+				JSONArray arrayJson = (JSONArray) parser.parse(inputLine);
+				for (Object objectMap : arrayJson) {
+					JSONObject jsonObject = (JSONObject) objectMap;
+					listadependencias.add(new Dependencias(							
+							  (Long) jsonObject.get("id"),			                  
+			                  (String) jsonObject.get("name"),
+			                   (String) jsonObject.get("created_at"),
+			                   (String) jsonObject.get("updated_at"),
+			                   (Long) jsonObject.get("institution_id")
+							));	
+					System.out.println("Generado");
+					}
+			}
+			in.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listadependencias;
+	}
 }

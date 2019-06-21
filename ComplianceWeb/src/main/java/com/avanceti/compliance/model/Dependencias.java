@@ -39,37 +39,41 @@ public class Dependencias implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    private Integer id;
+    private Long id;
     @Size(max = 255)
     private String name;
     @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
+    //@Temporal(TemporalType.TIMESTAMP)
+    private String createdAt;
     @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
+    //@Temporal(TemporalType.TIMESTAMP)
+    private String updatedAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "institutionDependencyId", fetch = FetchType.EAGER)
     private List<Funcionarios> funcionariosList;
-    @JoinColumn(name = "institution_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Instituciones institutionId;
+//    @JoinColumn(name = "institution_id", referencedColumnName = "id")
+//    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+//    private Instituciones institutionId;
+    @Column(name = "institution_id")
+    private Long institutionId;
 
     public Dependencias() {
     }
 
-    public Dependencias(Integer id) {
-        this.id = id;
-    }
+    
 
-    public Integer getId() {
-        return id;
-    }
+    public Dependencias(@NotNull Long id, @Size(max = 255) String name, String createdAt, String updatedAt,
+			Long institutionId) {
+		
+		this.id = id;
+		this.name = name;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+		this.institutionId = institutionId;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public String getName() {
+
+	public String getName() {
         return name;
     }
 
@@ -77,22 +81,7 @@ public class Dependencias implements Serializable {
         this.name = name;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
+    
     public List<Funcionarios> getFuncionariosList() {
         return funcionariosList;
     }
@@ -101,11 +90,11 @@ public class Dependencias implements Serializable {
         this.funcionariosList = funcionariosList;
     }
 
-    public Instituciones getInstitutionId() {
+    public Long getInstitutionId() {
         return institutionId;
     }
 
-    public void setInstitutionId(Instituciones institutionId) {
+    public void setInstitutionId(Long institutionId) {
         this.institutionId = institutionId;
     }
 

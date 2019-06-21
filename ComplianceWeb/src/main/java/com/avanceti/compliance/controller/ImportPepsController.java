@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.avanceti.compliance.model.Dependencias;
 import com.avanceti.compliance.model.EstandarCategorias;
 import com.avanceti.compliance.model.Instituciones;
 import com.avanceti.compliance.model.TipoInstitucion;
+import com.avanceti.compliance.services.IDependenciasService;
 import com.avanceti.compliance.services.IInstitutionsService;
 import com.avanceti.compliance.services.IStandarCategoriesService;
 import com.avanceti.compliance.services.ITypesIntitutionService;
@@ -26,9 +28,12 @@ public class ImportPepsController {
 
 	@Autowired
 	private IStandarCategoriesService standarServices;
-	
+
 	@Autowired
 	private IInstitutionsService institutionsService;
+
+	@Autowired
+	private IDependenciasService dependenciasService;
 
 	@GetMapping("/peps")
 	public String homeimport() {
@@ -40,11 +45,12 @@ public class ImportPepsController {
 		List<TipoInstitucion> listaintitucion = new ArrayList<TipoInstitucion>();
 		List<EstandarCategorias> listacategorias = new ArrayList<EstandarCategorias>();
 		List<Instituciones> listainstituciones = new ArrayList<Instituciones>();
-		String[] urls = { 
-				"https://www.transparencia.gob.sv/api/v1/institution_types.json",
+		List<Dependencias> listadependencias = new ArrayList<Dependencias>();
+		
+		String[] urls = { "https://www.transparencia.gob.sv/api/v1/institution_types.json",
 				"https://www.transparencia.gob.sv/api/v1/standard_categories.json",
-				"https://www.transparencia.gob.sv/api/v1/institutions.json" };
-//		"https://www.transparencia.gob.sv/api/v1/dependencies.json",
+				"https://www.transparencia.gob.sv/api/v1/institutions.json",
+				"https://www.transparencia.gob.sv/api/v1/dependencies.json" };
 //		"https://www.transparencia.gob.sv/api/v1/committees.json",
 //		"https://www.transparencia.gob.sv/api/v1/officials.json"
 		JsonUrlConext urlconext = new JsonUrlConext();
@@ -67,9 +73,17 @@ public class ImportPepsController {
 			if (i == 2) {
 				listainstituciones = urlconext.ImportInsittuciones(urls[i]);
 				for (Instituciones instituciones : listainstituciones) {
-					 System.out.println("Valores de la lista "+instituciones.getName());
-					
+					System.out.println("Valores de la lista " + instituciones.getName());
+
 					institutionsService.save(instituciones);
+				}
+			}
+			if (i == 3) {
+				listadependencias = urlconext.ImportDependencias(urls[i]);
+				for (Dependencias dependencias : listadependencias) {
+					System.out.println("Valores de la lista " + dependencias.getName());
+
+					dependenciasService.save(dependencias);
 				}
 			}
 		}
