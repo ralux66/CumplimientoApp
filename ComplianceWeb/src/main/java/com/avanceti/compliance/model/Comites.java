@@ -30,108 +30,117 @@ import javax.validation.constraints.Size;
  * @author rzepeda
  */
 @Entity
-@Table(name = "comites",catalog = "busqueda", schema = "")
-@NamedQueries({
-    @NamedQuery(name = "Comites.findAll", query = "SELECT c FROM Comites c")})
+@Table(name = "comites", catalog = "busqueda", schema = "")
+@NamedQueries({ @NamedQuery(name = "Comites.findAll", query = "SELECT c FROM Comites c") })
 public class Comites implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    private Integer id;
-    @Size(max = 255)
-    private String name;
-    @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-    @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-    @JoinColumn(name = "institution_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Instituciones institutionId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "committeeId", fetch = FetchType.LAZY)
-    private List<Funcionarios> funcionariosList;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@Basic(optional = false)
+	@NotNull
+	private Long id;
+	@Size(max = 255)
+	private String name;
+	@Column(name = "created_at")
+	// @Temporal(TemporalType.TIMESTAMP)
+	private String createdAt;
+	@Column(name = "updated_at")
+	// @Temporal(TemporalType.TIMESTAMP)
+	private String updatedAt;
+//    @JoinColumn(name = "institution_id", referencedColumnName = "id")
+//    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+//    private Instituciones institutionId;
+	@Column(name = "institution_id")
+	private Long institutionId;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "committeeId", fetch = FetchType.LAZY)
+	private List<Funcionarios> funcionariosList;
 
-    public Comites() {
-    }
+	public Comites() {
+	}
+	
+	
 
-    public Comites(Integer id) {
-        this.id = id;
-    }
+	public Comites(@NotNull Long id,Long institutionId, @Size(max = 255) String name, String createdAt, String updatedAt) {		
+		this.id = id;
+		this.institutionId = institutionId;
+		this.name = name;		
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;		
+	}
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+	public String getCreatedAt() {
+		return createdAt;
+	}
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
+	}
 
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
+	public String getUpdatedAt() {
+		return updatedAt;
+	}
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
-    public Instituciones getInstitutionId() {
-        return institutionId;
-    }
+	public Long getInstitutionId() {
+		return institutionId;
+	}
 
-    public void setInstitutionId(Instituciones institutionId) {
-        this.institutionId = institutionId;
-    }
+	public void setInstitutionId(Long institutionId) {
+		this.institutionId = institutionId;
+	}
 
-    public List<Funcionarios> getFuncionariosList() {
-        return funcionariosList;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setFuncionariosList(List<Funcionarios> funcionariosList) {
-        this.funcionariosList = funcionariosList;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+	public List<Funcionarios> getFuncionariosList() {
+		return funcionariosList;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Comites)) {
-            return false;
-        }
-        Comites other = (Comites) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
+	public void setFuncionariosList(List<Funcionarios> funcionariosList) {
+		this.funcionariosList = funcionariosList;
+	}
 
-    @Override
-    public String toString() {
-        return "com.compliance.model.Comites[ id=" + id + " ]";
-    }
-    
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof Comites)) {
+			return false;
+		}
+		Comites other = (Comites) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "com.compliance.model.Comites[ id=" + id + " ]";
+	}
+
 }

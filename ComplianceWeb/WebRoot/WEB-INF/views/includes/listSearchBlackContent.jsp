@@ -190,6 +190,20 @@
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
+                                                 <c:forEach var="allResultreturnOfac" items="${allResultreturnOfac}" varStatus="loop">
+                                                    <tr>
+                                                        <td>${allResultreturnOfac.name}</td>
+                                                        <td>${allResultreturnOfac.vesName}</td>
+                                                        <td>${allResultreturnOfac.address}</td>
+                                                        <td>${allResultreturnOfac.city}</td>
+                                                        <td>${allResultreturnOfac.fromFile}</td>
+                                                        <td>${allResultreturnOfac.program}</td>
+                                                        <td>${allResultreturnOfac.entName}</td>
+                                                        <td>
+                                                            <fmt:formatNumber type="percent" maxFractionDigits="3" value="${allResultreturnOfac.score}" />
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
                                             </tbody>
                                         </table>
                                         <!--end: Datatable -->

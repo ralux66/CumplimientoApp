@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.avanceti.compliance.model.ActiveMenu;
+import com.avanceti.compliance.model.Funcionarios;
 import com.avanceti.compliance.model.Peps;
 import com.avanceti.compliance.model.User;
+import com.avanceti.compliance.services.IFuncionariosService;
 import com.avanceti.compliance.services.IPepsService;
 //import com.avanceti.compliance.utility.JaroWinklerDistance;
 import com.avanceti.compliance.utility.JaroWinklerDistance;
@@ -33,6 +35,10 @@ public class PepsController {
 	
 	@Autowired
 	private IPepsService pepsServices;
+	
+	@Autowired
+	private IFuncionariosService funcionariosService;
+	
 	private ActiveMenu menuActive = new ActiveMenu();
 	
 	
@@ -107,10 +113,13 @@ public class PepsController {
 	@PostMapping(value = "/gosearch")
 	public String goSearch(Model model, @RequestParam("nameToSearch") String nameToSearch,	RedirectAttributes attributes) {
 		List<Peps> resultQuery = new LinkedList<Peps>();
+		List<Funcionarios> resultQueryfuncionarios = new LinkedList<Funcionarios>();
+		List<Funcionarios> resultSearchfuncionarios = new LinkedList<Funcionarios>();
 		List<Peps> resultSearchPeps = new LinkedList<Peps>();
 		Double score;		
 		try {
 			resultQuery = pepsServices.findByFuncionarioLike("%"+nameToSearch+"%");
+			resultQueryfuncionarios = funcionariosService.findByName("%"+nameToSearch+"%");
 			for (Peps peps : resultQuery) {				
 				score = JaroWinklerDistance.apply(nameToSearch.trim(), peps.getFuncionario());
 				if (score > 0.60) {					
@@ -119,7 +128,17 @@ public class PepsController {
 					
 				} 
 			}
-			model.addAttribute("AllResultreturn", resultSearchPeps);			
+			
+			for (Funcionarios funcionarios : resultQueryfuncionarios) {				
+				score = JaroWinklerDistance.apply(nameToSearch.trim(), funcionarios.getName());
+				if (score > 0.60) {
+					funcionarios.setScore(score);
+					resultSearchfuncionarios.add(funcionarios);
+				} 
+			}
+			
+			model.addAttribute("AllResultreturn", resultSearchPeps);
+			model.addAttribute("AllResultreturnfuncionarios", resultSearchfuncionarios);
 			attributes.addFlashAttribute("message", "Busqueda satisfactoria");
 			menuActive.setSearch("k-menu__item--open k-menu__item--here");
 			model.addAttribute("menuActive", menuActive);

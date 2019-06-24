@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.avanceti.compliance.model.Comites;
 import com.avanceti.compliance.model.Dependencias;
 import com.avanceti.compliance.model.EstandarCategorias;
+import com.avanceti.compliance.model.Funcionarios;
 import com.avanceti.compliance.model.Instituciones;
 import com.avanceti.compliance.model.TipoInstitucion;
+import com.avanceti.compliance.services.IComitesService;
 import com.avanceti.compliance.services.IDependenciasService;
+import com.avanceti.compliance.services.IFuncionariosService;
 import com.avanceti.compliance.services.IInstitutionsService;
 import com.avanceti.compliance.services.IStandarCategoriesService;
 import com.avanceti.compliance.services.ITypesIntitutionService;
@@ -34,6 +38,12 @@ public class ImportPepsController {
 
 	@Autowired
 	private IDependenciasService dependenciasService;
+	
+	@Autowired
+	private IComitesService comitesService;
+	
+	@Autowired
+	private IFuncionariosService funcionariosService;
 
 	@GetMapping("/peps")
 	public String homeimport() {
@@ -46,13 +56,15 @@ public class ImportPepsController {
 		List<EstandarCategorias> listacategorias = new ArrayList<EstandarCategorias>();
 		List<Instituciones> listainstituciones = new ArrayList<Instituciones>();
 		List<Dependencias> listadependencias = new ArrayList<Dependencias>();
+		List<Comites> listadepcomites = new ArrayList<Comites>();
+		List<Funcionarios> listafuncionarios = new ArrayList<Funcionarios>();
 		
 		String[] urls = { "https://www.transparencia.gob.sv/api/v1/institution_types.json",
 				"https://www.transparencia.gob.sv/api/v1/standard_categories.json",
 				"https://www.transparencia.gob.sv/api/v1/institutions.json",
-				"https://www.transparencia.gob.sv/api/v1/dependencies.json" };
-//		"https://www.transparencia.gob.sv/api/v1/committees.json",
-//		"https://www.transparencia.gob.sv/api/v1/officials.json"
+				"https://www.transparencia.gob.sv/api/v1/dependencies.json" ,
+				"https://www.transparencia.gob.sv/api/v1/committees.json",
+		"https://www.transparencia.gob.sv/api/v1/officials.json"};
 		JsonUrlConext urlconext = new JsonUrlConext();
 
 		for (int i = 0; i < urls.length; i++) {
@@ -82,9 +94,21 @@ public class ImportPepsController {
 				listadependencias = urlconext.ImportDependencias(urls[i]);
 				for (Dependencias dependencias : listadependencias) {
 					System.out.println("Valores de la lista " + dependencias.getName());
-
-					dependenciasService.save(dependencias);
-				}
+					dependenciasService.save(dependencias);				}
+			}
+			
+			if (i == 4) {
+				listadepcomites = urlconext.ImportComites(urls[i]);
+				for (Comites comites : listadepcomites) {
+					System.out.println("Valores de la lista " + comites.getName());
+					comitesService.save(comites);				}
+			}
+			
+			if (i == 5) {
+				listafuncionarios = urlconext.ImportFuncionarios(urls[i]);
+				for (Funcionarios funcionarios : listafuncionarios) {
+					System.out.println("Valores de la lista " + funcionarios.getName());
+					funcionariosService.createFuncionario(funcionarios);				}
 			}
 		}
 		return "redirect:/peps";

@@ -23,7 +23,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.avanceti.compliance.model.ActiveMenu;
 import com.avanceti.compliance.model.ConsPrim;
+import com.avanceti.compliance.model.Ofac;
 import com.avanceti.compliance.model.User;
+import com.avanceti.compliance.services.IOfacService;
 import com.avanceti.compliance.services.ISdnConsolidatService;
 import com.avanceti.compliance.utility.JaroWinklerDistance;
 import com.avanceti.compliance.utility.ValidateUrlRequest;
@@ -34,6 +36,10 @@ import com.avanceti.compliance.utility.ValidateUrlRequest;
 public class BlackListController {
 	@Autowired
 	private ISdnConsolidatService isdnService;
+	
+	@Autowired
+	private IOfacService ofacService;
+	
 	private ActiveMenu menuActive = new ActiveMenu();
 	
 	
@@ -67,28 +73,40 @@ public class BlackListController {
 	}
 
 	@PostMapping(value = "/gosearch")
-	public String goSearch(Model model, @RequestParam("nameToSearch") String nameToSearch,
-			RedirectAttributes attributes) {
+	public String goSearch(Model model, @RequestParam("nameToSearch") String nameToSearch) {
 		menuActive.setSearch("k-menu__item--open k-menu__item--here");
 		model.addAttribute("menuActive", menuActive);
 		
 		List<ConsPrim> resultQuery = new LinkedList<ConsPrim>();
 		List<ConsPrim> resultSearchBlacklist = new LinkedList<ConsPrim>();
+		
+		List<Ofac> resultQueryOfac = new LinkedList<Ofac>();
+		List<Ofac> resultSearchOfac = new LinkedList<Ofac>();
 		Double score;		
 		try {
-			resultQuery = isdnService.findByName("%" + nameToSearch + "%");
+			resultQuery = isdnService.findByName("%" + nameToSearch.trim() + "%");
+			resultQueryOfac = ofacService.findByLikeName("%" + nameToSearch.trim() + "%");
 			for (ConsPrim consPrim : resultQuery) {				
 				score = JaroWinklerDistance.apply(nameToSearch.trim(), consPrim.getsDNName());
 				if (score > 0.60) {
 					consPrim.setScore(score);
 					resultSearchBlacklist.add(consPrim);
-					System.out.println("Print "+consPrim.getsDNName());
+					//System.out.println("Print "+consPrim.getsDNName());
 				} 
 			}
-			model.addAttribute("allResultreturn", resultSearchBlacklist);			
-			attributes.addFlashAttribute("message", "Sucess");
+			for (Ofac ofac : resultQueryOfac) {				
+				score = JaroWinklerDistance.apply(nameToSearch.trim(), ofac.getName());
+				if (score > 0.60) {
+					ofac.setScore(score);
+					resultSearchOfac.add(ofac);
+					//System.out.println("Print "+consPrim.getsDNName());
+				} 
+			}
+			model.addAttribute("allResultreturn", resultSearchBlacklist);	
+			model.addAttribute("allResultreturnOfac", resultSearchOfac);	
+			//attributes.addFlashAttribute("message", "Sucess");
 		} catch (Exception e) {
-			attributes.addFlashAttribute("message", e.getMessage());
+			//attributes.addFlashAttribute("message", e.getMessage());
 			System.out.println("Error "+e.getMessage());
 		}
 		return "blacklist/search1";

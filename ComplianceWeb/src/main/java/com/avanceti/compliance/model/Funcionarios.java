@@ -19,6 +19,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -27,218 +28,260 @@ import javax.validation.constraints.Size;
  * @author rzepeda
  */
 @Entity
-@Table(name = "funcionarios",catalog = "busqueda", schema = "")
-@NamedQueries({
-    @NamedQuery(name = "Funcionarios.findAll", query = "SELECT f FROM Funcionarios f")})
+@Table(name = "funcionarios", catalog = "busqueda", schema = "")
+@NamedQueries({ @NamedQuery(name = "Funcionarios.findAll", query = "SELECT f FROM Funcionarios f") })
 public class Funcionarios implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    private Integer id;
-    private Short enabled;
-    private Short active;
-    private Short marked;
-    @Size(max = 255)
-    private String name;
-    @Size(max = 255)
-    private String position;
-    // @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$", message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field contains phone or fax number consider using this annotation to enforce field validation
-    @Size(max = 255)
-    private String phone;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 255)
-    private String email;
-    @Size(max = 500)
-    private String address;
-    @Size(max = 500)
-    private String functions;
-    @Size(max = 500)
-    private String curriculum;
-    @Column(name = "created_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date createdAt;
-    @Column(name = "updated_at")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updatedAt;
-    private Integer priority;
-    @JoinColumn(name = "institution_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Instituciones institutionId;
-    @JoinColumn(name = "institution_dependency_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Dependencias institutionDependencyId;
-    @JoinColumn(name = "committee_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Comites committeeId;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@Basic(optional = false)
+	@NotNull
+	private Long id;
+	private Boolean enabled;
+	private Boolean active;
+	private Boolean marked;
+	// @Size(max = 255)
+	private String name;
+	// @Size(max = 255)
+	private String position;
+	// @Pattern(regexp="^\\(?(\\d{3})\\)?[- ]?(\\d{3})[- ]?(\\d{4})$",
+	// message="Invalid phone/fax format, should be as xxx-xxx-xxxx")//if the field
+	// contains phone or fax number consider using this annotation to enforce field
+	// validation
+	// @Size(max = 255)
+	private String phone;
+	// @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+	// message="Invalid email")//if the field contains email address consider using
+	// this annotation to enforce field validation
+	// @Size(max = 255)
+	private String email;
+	// @Size(max = 500)
+	private String address;
+	// @Size(max = 500)
+	private String functions;
+	// @Size(max = 500)
+	private String curriculum;
+	@Column(name = "created_at")
+	// @Temporal(TemporalType.TIMESTAMP)
+	private String createdAt;
+	@Column(name = "updated_at")
+	// @Temporal(TemporalType.TIMESTAMP)
+	private String updatedAt;
+	private Long priority;
+//    @JoinColumn(name = "institution_id", referencedColumnName = "id")
+//    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+//    private Instituciones institutionId;
+	@Column(name = "institution_id")
+	private Long institutionId;
+//    @JoinColumn(name = "institution_dependency_id", referencedColumnName = "id")
+//    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+//    private Dependencias institutionDependencyId;
+	@Column(name = "institution_dependency_id")
+	private Long institutionDependencyId;
+//    @JoinColumn(name = "committee_id", referencedColumnName = "id")
+//    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+//    private Comites committeeId;
+	@Column(name = "committee_id")
+	private Long committeeId;
 
-    public Funcionarios() {
-    }
+	@Transient
+	private double score;
 
-    public Funcionarios(Integer id) {
-        this.id = id;
-    }
+	public Funcionarios() {
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Funcionarios(@NotNull Long id, Boolean enabled, Boolean active, Boolean marked, @Size(max = 255) String name,
+			@Size(max = 255) String position, @Size(max = 255) String phone, @Size(max = 255) String email,
+			@Size(max = 500) String address, @Size(max = 500) String functions, @Size(max = 500) String curriculum,
+			String createdAt, String updatedAt, Long priority, Long institutionId, Long institutionDependencyId,
+			Long committeeId) {
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+		this.id = id;
+		this.enabled = enabled;
+		this.active = active;
+		this.marked = marked;
+		this.name = name;
+		this.position = position;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
+		this.functions = functions;
+		this.curriculum = curriculum;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+		this.priority = priority;
+		this.institutionId = institutionId;
+		this.institutionDependencyId = institutionDependencyId;
+		this.committeeId = committeeId;
+	}
 
-    public Short getEnabled() {
-        return enabled;
-    }
+	public double getScore() {
+		return score;
+	}
 
-    public void setEnabled(Short enabled) {
-        this.enabled = enabled;
-    }
+	public void setScore(double score) {
+		this.score = score;
+	}
 
-    public Short getActive() {
-        return active;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setActive(Short active) {
-        this.active = active;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Short getMarked() {
-        return marked;
-    }
+	public String getPosition() {
+		return position;
+	}
 
-    public void setMarked(Short marked) {
-        this.marked = marked;
-    }
+	public void setPosition(String position) {
+		this.position = position;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-    public String getPosition() {
-        return position;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setPosition(String position) {
-        this.position = position;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getPhone() {
-        return phone;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getFunctions() {
+		return functions;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setFunctions(String functions) {
+		this.functions = functions;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public String getCurriculum() {
+		return curriculum;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public void setCurriculum(String curriculum) {
+		this.curriculum = curriculum;
+	}
 
-    public String getFunctions() {
-        return functions;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setFunctions(String functions) {
-        this.functions = functions;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getCurriculum() {
-        return curriculum;
-    }
+	public Boolean getEnabled() {
+		return enabled;
+	}
 
-    public void setCurriculum(String curriculum) {
-        this.curriculum = curriculum;
-    }
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
+	public Boolean getActive() {
+		return active;
+	}
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
 
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
+	public Boolean getMarked() {
+		return marked;
+	}
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+	public void setMarked(Boolean marked) {
+		this.marked = marked;
+	}
 
-    public Integer getPriority() {
-        return priority;
-    }
+	public String getCreatedAt() {
+		return createdAt;
+	}
 
-    public void setPriority(Integer priority) {
-        this.priority = priority;
-    }
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
+	}
 
-    public Instituciones getInstitutionId() {
-        return institutionId;
-    }
+	public String getUpdatedAt() {
+		return updatedAt;
+	}
 
-    public void setInstitutionId(Instituciones institutionId) {
-        this.institutionId = institutionId;
-    }
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
-    public Dependencias getInstitutionDependencyId() {
-        return institutionDependencyId;
-    }
+	public Long getPriority() {
+		return priority;
+	}
 
-    public void setInstitutionDependencyId(Dependencias institutionDependencyId) {
-        this.institutionDependencyId = institutionDependencyId;
-    }
+	public void setPriority(Long priority) {
+		this.priority = priority;
+	}
 
-    public Comites getCommitteeId() {
-        return committeeId;
-    }
+	public Long getInstitutionId() {
+		return institutionId;
+	}
 
-    public void setCommitteeId(Comites committeeId) {
-        this.committeeId = committeeId;
-    }
+	public void setInstitutionId(Long institutionId) {
+		this.institutionId = institutionId;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+	public Long getInstitutionDependencyId() {
+		return institutionDependencyId;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Funcionarios)) {
-            return false;
-        }
-        Funcionarios other = (Funcionarios) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
+	public void setInstitutionDependencyId(Long institutionDependencyId) {
+		this.institutionDependencyId = institutionDependencyId;
+	}
 
-    @Override
-    public String toString() {
-        return "com.compliance.model.Funcionarios[ id=" + id + " ]";
-    }
-    
+	public Long getCommitteeId() {
+		return committeeId;
+	}
+
+	public void setCommitteeId(Long committeeId) {
+		this.committeeId = committeeId;
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof Funcionarios)) {
+			return false;
+		}
+		Funcionarios other = (Funcionarios) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "com.compliance.model.Funcionarios[ id=" + id + " ]";
+	}
+
 }
